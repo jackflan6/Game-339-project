@@ -18,27 +18,27 @@ public class GameManager : MonoBehaviour
     {
         print("started");
         enemyManager.SetUpEnemies();
-        PlayBattle();
+       // PlayBattle();
     }
 
-    public void PlayBattle()
-    {
-        while (battling)
-        {
-            print("Player turn!");
-            turnSystem.PlayerTurn();
-            if (turnSystem.player.HP<=0)
-            {
-                battling = false;
-                print("Enemy won!");
-            }
-            print("Enemy turn!");
-            turnSystem.EnemiesTurn();
-            if (enemyManager.enemies.Count == 0)
-            {
-                battling = false;
-                print("Player won!");
-            }
-        }
-    }
+    // public void PlayBattle()
+    // {
+    //     while (battling)
+    //     {
+    //         print("Player turn!");
+    //         turnSystem.PlayerTurn();
+    //         if (turnSystem.player.HP<=0)
+    //         {
+    //             battling = false;
+    //             print("Enemy won!");
+    //         }
+    //         print("Enemy turn!");
+    //         turnSystem.EnemiesTurn();
+    //         if (enemyManager.enemies.Count == 0)
+    //         {
+    //             battling = false;
+    //             print("Player won!");
+    //         }
+    //     }
+    // }
 }

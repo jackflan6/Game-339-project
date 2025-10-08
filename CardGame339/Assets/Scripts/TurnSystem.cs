@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnSystem : MonoBehaviour
 {
@@ -9,35 +11,41 @@ public class TurnSystem : MonoBehaviour
     public CardManager cardManager;
     public Enemy EnemyToAttack;
 
-    private IRandom _random;
+    public UnityRandom random;
     public Player player;
 
     public int MaxMana;
     public int currentMana;
     public bool isPlayerTurn;
+    public Card cardToPlay;
+    public Text ManaText;
 
     public TurnSystem(EnemyManager enemyManagerInput, CombatSystem combatSystemInput, Player playerInput,
-        IRandom random, CardManager cardManagerInput, int maxMana)
+        UnityRandom randomInput, CardManager cardManagerInput, int maxMana)
     {
         enemyManager = enemyManagerInput;
         combatSystem = combatSystemInput;
         player = playerInput;
-        _random = random;
+        random = randomInput;
         cardManager = cardManagerInput;
         MaxMana = maxMana;
+        currentMana = MaxMana;
     }
 
     private void Awake()
     {
         cardManager.SetUpStartingHand();
+        ManaText.text = "Hello: " + currentMana;
+        isPlayerTurn = true;
     }
     
     public void EnemiesTurn()
     {
+        print("enemies Turn");
         BurnDamageToAllEnemies();
         foreach (Enemy enemy in enemyManager.enemies)
         {
-            int chooseAction=_random.RandomNumber(2);
+            int chooseAction=random.RandomNumber(2);
             if (chooseAction == 0)
             {
                 combatSystem.DealDamageToPlayer(player, enemy);
@@ -48,31 +56,16 @@ public class TurnSystem : MonoBehaviour
                 combatSystem.GenerateEnemyShield(enemy);
             }
         }
+
+        PlayerTurn();
     }
 
     public void PlayerTurn()
     {
+        print("player turn!");
+        isPlayerTurn = true;
         cardManager.DrawCard();
         currentMana = MaxMana;
-        while (isPlayerTurn)
-        {
-            Card cardToPlay = cardManager.cardToPlay;
-            while (cardToPlay.ManaCost > currentMana)
-            {
-                cardToPlay = cardManager.cardToPlay;
-            }
-            currentMana -= cardToPlay.ManaCost;
-
-            Enemy enemyToAttack = EnemyToAttack;
-            cardManager.PlayCard(cardToPlay, player, enemyToAttack);
-            if (enemyToAttack.IsDead())
-            {
-                enemyManager.enemies.Remove(enemyToAttack);
-            }
-
-            cardToPlay = null;
-            enemyToAttack = null;
-        }
     }
 
     public void BurnDamageToAllEnemies()
@@ -94,13 +87,42 @@ public class TurnSystem : MonoBehaviour
     {
         //user input in unity
         print("clicked!");
-        EnemyToAttack = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Enemy>();
+        if (isPlayerTurn && hasClickedOnCard())
+        {
+            EnemyToAttack = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Enemy>();
+            cardManager.PlayCard(cardToPlay,player,EnemyToAttack);
+        }
+    }
+    public void SelectCardToPlay()
+    {
+        if (isPlayerTurn)
+        {
+            cardToPlay = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Card>();
+            //currentMana -= cardToPlay.ManaCost;
+        }
     }
 
     public void EndPlayerTurn()
     {
         isPlayerTurn = false;
+        EnemiesTurn();
     }
+    
+    public bool hasClickedOnCard()
+    {
+        if (cardToPlay != null)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public void UpdateText(string message)
+    {
+        ManaText.text = message;
+    }
+    
 
     // public int CalculateTotalShock()
     // {

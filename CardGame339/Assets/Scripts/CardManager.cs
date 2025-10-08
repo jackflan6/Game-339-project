@@ -12,8 +12,6 @@ public class CardManager : MonoBehaviour
     public List<Card> AllCards;
     public CombatSystem CombatSystem;
 
-    public Card cardToPlay;
-
     public int startingHandSize;
     
 
@@ -41,6 +39,7 @@ public class CardManager : MonoBehaviour
 
     public void PlayCard(Card card, Player player, Enemy enemy)
     {
+        print("cardPlayed!");
         int totalShock=1;
         if (card.Element.Equals("Shock"))
         {
@@ -64,18 +63,25 @@ public class CardManager : MonoBehaviour
                 DrawCard();
             }
         }
+
+        Hand.Remove(card);
         DiscardPile.Add(card);
     }
 
     public void DrawCard()
     {
+        if (Deck.Count == 0)
+        {
+            int discards = DiscardPile.Count;
+            for (int a = 0; a < discards; a++)
+            {
+                Deck.Add(DiscardPile[0]);
+                DiscardPile.Remove(DiscardPile[0]);
+            }
+        }
         Hand.Add(Deck[0]);
         Deck.Remove(Deck[0]);
+        
     }
-
-    public void SelectCardToPlay()
-    {
-        //user input in unity
-        cardToPlay = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Card>();
-    }
+    
 }

@@ -14,6 +14,6 @@ public class CardDisplay : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        spriteRenderer.sprite = cardData.sprite;
+       // spriteRenderer.sprite = cardData.sprite;
     }
 }
