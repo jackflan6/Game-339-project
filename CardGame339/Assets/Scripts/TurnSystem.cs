@@ -1,40 +1,16 @@
-using System.ComponentModel.DataAnnotations;
+using UnityEngine;
 
-namespace ConsoleApp1;
-
-public class TurnSystem
+public class TurnSystem : MonoBehaviour
 {
-    private EnemyManager _enemyManager { get; set; }
-    public EnemyManager enemyManager
-    {
-        get => _enemyManager;
-        set => _enemyManager = value;
-    }
-    
-    private CombatSystem _combatSystem { get; set; }
+    public EnemyManager enemyManager;
 
-    public CombatSystem combatSystem
-    {
-        get => _combatSystem;
-        set => _combatSystem = value;
-    }
-    
-    private CardManager _cardManager { get; set; }
+    public CombatSystem combatSystem;
 
-    public CardManager cardManager
-    {
-        get => _cardManager;
-        set => _cardManager = value;
-    }
+    public CardManager cardManager;
+    public Enemy EnemyToAttack;
 
     private IRandom _random;
-    
-    private Player _player { get; set; }
-    public Player player
-    {
-        get => _player;
-        set => _player = value;
-    }
+    public Player player;
 
     public int MaxMana;
     public int currentMana;
@@ -43,28 +19,33 @@ public class TurnSystem
     public TurnSystem(EnemyManager enemyManagerInput, CombatSystem combatSystemInput, Player playerInput,
         IRandom random, CardManager cardManagerInput, int maxMana)
     {
-        _enemyManager = enemyManagerInput;
-        _combatSystem = combatSystemInput;
-        _player = playerInput;
+        enemyManager = enemyManagerInput;
+        combatSystem = combatSystemInput;
+        player = playerInput;
         _random = random;
-        _cardManager = cardManagerInput;
+        cardManager = cardManagerInput;
         MaxMana = maxMana;
+    }
+
+    private void Awake()
+    {
+        cardManager.SetUpStartingHand();
     }
     
     public void EnemiesTurn()
     {
         BurnDamageToAllEnemies();
-        foreach (Enemy enemy in _enemyManager.enemies)
+        foreach (Enemy enemy in enemyManager.enemies)
         {
             int chooseAction=_random.RandomNumber(2);
             if (chooseAction == 0)
             {
-                _combatSystem.DealDamageToPlayer(_player, enemy);
+                combatSystem.DealDamageToPlayer(player, enemy);
             }
 
             if (chooseAction == 1)
             {
-                _combatSystem.GenerateEnemyShield(enemy);
+                combatSystem.GenerateEnemyShield(enemy);
             }
         }
     }
@@ -75,41 +56,45 @@ public class TurnSystem
         currentMana = MaxMana;
         while (isPlayerTurn)
         {
-            Card cardToPlay = cardManager.SelectCardToPlay();
+            Card cardToPlay = cardManager.cardToPlay;
             while (cardToPlay.ManaCost > currentMana)
             {
-                cardToPlay = cardManager.SelectCardToPlay();
+                cardToPlay = cardManager.cardToPlay;
             }
             currentMana -= cardToPlay.ManaCost;
 
-            Enemy enemyToAttack = SelectEnemyToAttack();
-            cardManager.PlayCard(cardToPlay, _player, enemyToAttack);
+            Enemy enemyToAttack = EnemyToAttack;
+            cardManager.PlayCard(cardToPlay, player, enemyToAttack);
             if (enemyToAttack.IsDead())
             {
                 enemyManager.enemies.Remove(enemyToAttack);
             }
+
+            cardToPlay = null;
+            enemyToAttack = null;
         }
     }
 
     public void BurnDamageToAllEnemies()
     {
-        foreach (Enemy enemy in _enemyManager.enemies)
+        foreach (Enemy enemy in enemyManager.enemies)
         {
             if (enemy.currentBurnDamage>0)
             {
-                _combatSystem.BurnDamageToEnemy(enemy);
+                combatSystem.BurnDamageToEnemy(enemy);
                 if (enemy.IsDead())
                 {
-                    _enemyManager.enemies.Remove(enemy);
+                    enemyManager.enemies.Remove(enemy);
                 }
             }
         }
     }
 
-    public Enemy SelectEnemyToAttack()
+    public void SelectEnemyToAttack()
     {
         //user input in unity
-        return enemyManager.enemies[0];
+        print("clicked!");
+        EnemyToAttack = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Enemy>();
     }
 
     public void EndPlayerTurn()

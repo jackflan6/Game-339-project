@@ -1,6 +1,6 @@
-namespace ConsoleApp1;
+using UnityEngine;
 
-public class CombatSystem
+public class CombatSystem : MonoBehaviour
 {
     // enemy attack dmg
     // player attack dmg

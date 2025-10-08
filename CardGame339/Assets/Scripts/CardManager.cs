@@ -1,6 +1,7 @@
-namespace ConsoleApp1;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class CardManager
+public class CardManager : MonoBehaviour 
 {
     public List<Card> Deck = new List<Card>();
 
@@ -8,12 +9,34 @@ public class CardManager
 
     public List<Card> DiscardPile = new List<Card>();
 
+    public List<Card> AllCards;
     public CombatSystem CombatSystem;
+
+    public Card cardToPlay;
+
+    public int startingHandSize;
     
 
     public CardManager(CombatSystem combatSystem)
     {
         CombatSystem = combatSystem;
+    }
+
+    public void SetUpStartingHand()
+    {
+        int shuffleNum = AllCards.Count;
+        for(int a=0;a<shuffleNum;a++)
+        {
+            int cardIndex = Random.Range(0, AllCards.Count);
+            Deck.Add(AllCards[cardIndex]);
+            AllCards.Remove(AllCards[cardIndex]);
+        }
+
+        for (int a = 0; a < startingHandSize; a++)
+        {
+            Hand.Add(Deck[0]);
+            Deck.Remove(Deck[0]);
+        }
     }
 
     public void PlayCard(Card card, Player player, Enemy enemy)
@@ -50,9 +73,9 @@ public class CardManager
         Deck.Remove(Deck[0]);
     }
 
-    public Card SelectCardToPlay()
+    public void SelectCardToPlay()
     {
         //user input in unity
-        return new Card("Fire", 0, 0, 0, 0);
+        cardToPlay = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Card>();
     }
 }

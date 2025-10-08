@@ -1,6 +1,6 @@
-namespace ConsoleApp1;
+using UnityEngine;
 
-public class Card
+public class Card : MonoBehaviour
 {
     public string Element;
     public int Damage;
