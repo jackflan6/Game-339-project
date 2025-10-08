@@ -51,9 +51,9 @@ public class CombatSystem
         return enemy.currentShield;
     }
 
-    public int GeneratePlayerShield(Player player)
+    public int GeneratePlayerShield(Player player, Card card)
     {
-        player.currentShield += player.Defense;
+        player.currentShield += card.ShieldValue;
         return player.currentShield;
     }
 
@@ -67,6 +67,16 @@ public class CombatSystem
         }
 
         return enemy.HP;
+    }
+
+    public void ApplyBurnDamageToEnemy(Enemy enemy, Card card)
+    {
+        enemy.currentBurnDamage += card.BurnDamage;
+    }
+
+    public void HealPlayer(Player player, Card card)
+    {
+        player.HP += card.Heal;
     }
     
     
