@@ -83,15 +83,11 @@ public class TurnSystem : MonoBehaviour
 
     public void BurnDamageToAllEnemies()
     {
-        foreach (Enemy enemy in enemyManager.enemies)
+        for (int a=0;a<enemyManager.enemies.Count;a++)
         {
-            if (enemy.currentBurnDamage>0)
+            if (enemyManager.enemies[a].currentBurnDamage>0)
             {
-                combatSystem.BurnDamageToEnemy(enemy);
-                if (enemy.IsDead())
-                {
-                    enemyManager.enemies.Remove(enemy);
-                }
+                combatSystem.BurnDamageToEnemy(enemyManager.enemies[a]);
             }
         }
     }

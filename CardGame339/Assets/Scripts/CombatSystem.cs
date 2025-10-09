@@ -72,6 +72,12 @@ public class CombatSystem : MonoBehaviour
         {
             enemy.isBurning = false;
         }
+        if (enemy.HP <= 0)
+        {
+            enemyManager.enemies.Remove(enemy);
+            enemy.gameObject.SetActive(false);
+        }
+        enemy.HPText.text = "HP: " + enemy.HP;
 
         return enemy.HP;
     }
