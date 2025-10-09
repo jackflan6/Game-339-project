@@ -6,6 +6,7 @@ public class CombatSystem : MonoBehaviour
     // player attack dmg
     // we receieve inputs
     // we calculate damage, output result
+    public EnemyManager enemyManager;
     
     // TODO: make class variables properly private / public, build out enemy damage to player (unit tests!), build round system, status effects per round 
     
@@ -23,7 +24,11 @@ public class CombatSystem : MonoBehaviour
             damageDealt = 0;
         }
         enemy.HP -= damageDealt;
-        
+        if (enemy.HP <= 0)
+        {
+            enemyManager.enemies.Remove(enemy);
+            enemy.gameObject.SetActive(false);
+        }
         return enemy.HP;
     }
 

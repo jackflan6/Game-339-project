@@ -19,6 +19,7 @@ public class TurnSystem : MonoBehaviour
     public bool isPlayerTurn;
     public Card cardToPlay;
     public Text ManaText;
+    public Text PlayerHP;
 
     public TurnSystem(EnemyManager enemyManagerInput, CombatSystem combatSystemInput, Player playerInput,
         UnityRandom randomInput, CardManager cardManagerInput, int maxMana)
@@ -35,8 +36,13 @@ public class TurnSystem : MonoBehaviour
     private void Awake()
     {
         cardManager.SetUpStartingHand();
-        ManaText.text = "Hello: " + currentMana;
-        isPlayerTurn = true;
+        ManaText.text = "Mana: " + currentMana;
+        PlayerHP.text = "HP: " + player.HP;
+    }
+
+    private void Start()
+    {
+        PlayerTurn();
     }
     
     public void EnemiesTurn()
@@ -49,12 +55,18 @@ public class TurnSystem : MonoBehaviour
             if (chooseAction == 0)
             {
                 combatSystem.DealDamageToPlayer(player, enemy);
+                UpdateHPText("HP: " + player.HP);
             }
 
             if (chooseAction == 1)
             {
                 combatSystem.GenerateEnemyShield(enemy);
             }
+        }
+
+        if (player.HP <= 0)
+        {
+            print("player lost!");
         }
 
         PlayerTurn();
@@ -64,8 +76,9 @@ public class TurnSystem : MonoBehaviour
     {
         print("player turn!");
         isPlayerTurn = true;
-        cardManager.DrawCard();
+       // cardManager.DrawCard();
         currentMana = MaxMana;
+        UpdateText("Mana: "+currentMana);
     }
 
     public void BurnDamageToAllEnemies()
@@ -86,25 +99,30 @@ public class TurnSystem : MonoBehaviour
     public void SelectEnemyToAttack()
     {
         //user input in unity
-        print("clicked!");
         if (isPlayerTurn && hasClickedOnCard())
         {
             EnemyToAttack = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Enemy>();
             cardManager.PlayCard(cardToPlay,player,EnemyToAttack);
+            UpdateText("Mana: " + currentMana);
+            cardToPlay = null;
         }
     }
     public void SelectCardToPlay()
     {
-        if (isPlayerTurn)
+        if (isPlayerTurn && UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Card>().ManaCost<=currentMana)
         {
             cardToPlay = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Card>();
-            //currentMana -= cardToPlay.ManaCost;
+            currentMana -= cardToPlay.ManaCost;
         }
     }
 
     public void EndPlayerTurn()
     {
         isPlayerTurn = false;
+        if (enemyManager.enemies.Count == 0)
+        {
+            print("Player won!");
+        }
         EnemiesTurn();
     }
     
@@ -121,6 +139,11 @@ public class TurnSystem : MonoBehaviour
     public void UpdateText(string message)
     {
         ManaText.text = message;
+    }
+
+    public void UpdateHPText(string message)
+    {
+        PlayerHP.text = message;
     }
     
 
