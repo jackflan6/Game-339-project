@@ -104,6 +104,8 @@ public class TurnSystem : MonoBehaviour
             EnemyToAttack = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Enemy>();
             cardManager.PlayCard(cardToPlay,player,EnemyToAttack);
             UpdateText("Mana: " + currentMana);
+            UpdateHPText("HP: " + player.HP);
+            UpdateShieldText("Shield: " + player.currentShield);
             cardToPlay = null;
         }
     }
@@ -144,6 +146,11 @@ public class TurnSystem : MonoBehaviour
     public void UpdateHPText(string message)
     {
         PlayerHP.text = message;
+    }
+
+    public void UpdateShieldText(string message)
+    {
+        player.ShieldText.text = message;
     }
     
 

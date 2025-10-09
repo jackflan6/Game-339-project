@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -20,6 +21,8 @@ public class Enemy : MonoBehaviour
     public bool isBurning;
 
     public int currentBurnDamage;
+
+    public TextMeshProUGUI HPText;
 
     public Enemy(int hp, int attack, int defense, string name, IGameLogger logger)
     {

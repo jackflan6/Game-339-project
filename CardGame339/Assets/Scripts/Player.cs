@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
     public int currentShield;
     public bool isBurning;
     public int currentBurnDamage;
+    public Text ShieldText;
     
     public Player(int hp, int attack, int defense, string name, IGameLogger logger)
     {

@@ -24,6 +24,7 @@ public class CombatSystem : MonoBehaviour
             damageDealt = 0;
         }
         enemy.HP -= damageDealt;
+        enemy.HPText.text = "HP: " +enemy.HP;
         if (enemy.HP <= 0)
         {
             enemyManager.enemies.Remove(enemy);
@@ -46,6 +47,7 @@ public class CombatSystem : MonoBehaviour
             damageDealt = 0;
         }
         player.HP -= damageDealt;
+        player.ShieldText.text = "Shield: " + player.currentShield;
         
         return player.HP;
     }
