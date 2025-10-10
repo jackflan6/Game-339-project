@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "NewCard", menuName = "Cards/CardData")]
 public class Card2 : ScriptableObject
@@ -30,4 +32,41 @@ public class Card : MonoBehaviour
         ManaCost = manaCost;
     }
 
+
+
+    //UnityEvent SelectedCard;
+    bool hover;
+    public Card origionalCard;
+    void Start()
+    {
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().onMouseMove += OnMouseMove;
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().onMousePress += OnMouseClick;
+    }
+    private void OnDestroy()
+    {
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().onMouseMove -= OnMouseMove;
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().onMousePress -= OnMouseClick;
+
+    }
+
+    public void OnMouseMove(Vector2 pos)
+    {
+        Vector3 worldPos = new Vector3(0, 0, transform.position.z) + (Vector3)((Vector2)Camera.main.ScreenToWorldPoint(pos));
+        if (GetComponent<Collider2D>().bounds.Contains((Vector2)Camera.main.ScreenToWorldPoint(pos)))
+        {
+            Debug.Log("is clicked");
+            hover = true;
+        }else
+        {
+            hover = false;
+        }
+    }
+    public void OnMouseClick(Vector2 pos)
+    {
+        if (hover)
+        {
+            Debug.Log("is clicked");
+            GameObject.FindGameObjectWithTag("TurnManager").GetComponent<TurnSystem>().SelectCardToPlay(origionalCard.GetComponent<Card>());
+        }
+    }
 }

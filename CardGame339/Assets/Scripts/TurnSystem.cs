@@ -76,7 +76,7 @@ public class TurnSystem : MonoBehaviour
     {
         print("player turn!");
         isPlayerTurn = true;
-       // cardManager.DrawCard();
+       cardManager.DrawCard();
         currentMana = MaxMana;
         UpdateText("Mana: "+currentMana);
     }
@@ -105,11 +105,11 @@ public class TurnSystem : MonoBehaviour
             cardToPlay = null;
         }
     }
-    public void SelectCardToPlay()
+    public void SelectCardToPlay(Card card)
     {
-        if (isPlayerTurn && UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Card>().ManaCost<=currentMana)
+        if (isPlayerTurn && card.ManaCost<=currentMana)
         {
-            cardToPlay = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Card>();
+            cardToPlay = card;
             currentMana -= cardToPlay.ManaCost;
         }
     }

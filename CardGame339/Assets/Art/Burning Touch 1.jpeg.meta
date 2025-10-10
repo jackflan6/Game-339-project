@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cf50643317c228d4a9ebe56f088aebdb
+guid: 69ddac7627dcdea47ae12edbb6485116
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1655267911620308181
-    second: "Earth\u2019s Revitalization_0"
+      213: 2449737338363148187
+    second: Burning Touch_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Earth\u2019s Revitalization_0"
+      name: Burning Touch_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5dc2b384561b8f610800000000000000
-      internalID: 1655267911620308181
+      spriteID: b97752641273ff120800000000000000
+      internalID: 2449737338363148187
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "Earth\u2019s Revitalization_0": 1655267911620308181
+      Burning Touch_0: 2449737338363148187
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

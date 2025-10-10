@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardManager : MonoBehaviour 
+public class CardManager : MonoBehaviour
 {
     public List<Card> Deck = new List<Card>();
-
     public List<Card> Hand = new List<Card>();
 
     public List<Card> DiscardPile = new List<Card>();
@@ -35,6 +34,7 @@ public class CardManager : MonoBehaviour
             Hand.Add(Deck[0]);
             Deck.Remove(Deck[0]);
         }
+        reloadHand();
     }
 
     public void PlayCard(Card card, Player player, Enemy enemy)
@@ -63,9 +63,10 @@ public class CardManager : MonoBehaviour
                 DrawCard();
             }
         }
-
+        if (!Hand.Contains(card)) Debug.Log("oh no");
         Hand.Remove(card);
         DiscardPile.Add(card);
+        reloadHand();
     }
 
     public void DrawCard()
@@ -82,6 +83,26 @@ public class CardManager : MonoBehaviour
         Hand.Add(Deck[0]);
         Deck.Remove(Deck[0]);
         
+        reloadHand();
     }
-    
+
+    public List<GameObject> cardsGameObj = new List<GameObject>();
+    public void reloadHand()
+    {
+            foreach (GameObject g in cardsGameObj)
+            {
+               Destroy(g);
+            }
+        
+        int i = 0;
+        foreach (Card card in Hand)
+        {
+            i++;
+            GameObject c = GameObject.Instantiate(card.gameObject, new Vector3(2.5f - 2.5f * i, -2.5f, 0), new Quaternion());
+            cardsGameObj.Add(c);
+            c.GetComponent<Card>().origionalCard = card;
+            
+        }
+    }
+
 }
