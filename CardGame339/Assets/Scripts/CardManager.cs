@@ -97,11 +97,10 @@ public class CardManager : MonoBehaviour
         int i = 0;
         foreach (Card card in Hand)
         {
-            i++;
             GameObject c = GameObject.Instantiate(card.gameObject, new Vector3(2.5f - 2.5f * i, -2.5f, 0), new Quaternion());
             cardsGameObj.Add(c);
             c.GetComponent<Card>().origionalCard = card;
-            
+            i++;
         }
     }
 

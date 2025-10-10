@@ -97,6 +97,7 @@ public class TurnSystem : MonoBehaviour
         //user input in unity
         if (isPlayerTurn && hasClickedOnCard())
         {
+            currentMana -= cardToPlay.ManaCost;
             EnemyToAttack = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Enemy>();
             cardManager.PlayCard(cardToPlay,player,EnemyToAttack);
             UpdateText("Mana: " + currentMana);
@@ -110,7 +111,6 @@ public class TurnSystem : MonoBehaviour
         if (isPlayerTurn && card.ManaCost<=currentMana)
         {
             cardToPlay = card;
-            currentMana -= cardToPlay.ManaCost;
         }
     }
 
