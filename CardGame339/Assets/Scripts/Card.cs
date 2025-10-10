@@ -54,7 +54,6 @@ public class Card : MonoBehaviour
         Vector3 worldPos = new Vector3(0, 0, transform.position.z) + (Vector3)((Vector2)Camera.main.ScreenToWorldPoint(pos));
         if (GetComponent<Collider2D>().bounds.Contains((Vector2)Camera.main.ScreenToWorldPoint(pos)))
         {
-            Debug.Log("is clicked");
             hover = true;
         }else
         {
@@ -65,7 +64,6 @@ public class Card : MonoBehaviour
     {
         if (hover)
         {
-            Debug.Log("is clicked");
             GameObject.FindGameObjectWithTag("TurnManager").GetComponent<TurnSystem>().SelectCardToPlay(origionalCard.GetComponent<Card>());
         }
     }

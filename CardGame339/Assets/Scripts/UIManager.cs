@@ -19,7 +19,6 @@ public class UIManager : MonoBehaviour
         }
         if (Mouse.current.press.value >0 && mousepos != null)
         {
-            Debug.Log(onMouseMove.GetInvocationList().Length);
             onMousePress.Invoke(mousepos);
         }
     }
