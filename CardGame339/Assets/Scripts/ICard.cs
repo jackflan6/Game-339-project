@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ICard
+public interface ICard
 {
-    public virtual void Effect(IEnemy enemy) { }
+    public void Effect(IEnemy enemy);
 }

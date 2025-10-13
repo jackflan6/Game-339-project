@@ -11,9 +11,12 @@ public class CardManager : IManager
     public List<Card> AllCards = ManagerManager.Resolve<List<Card>>();
     public CombatSystem CombatSystem = ManagerManager.Resolve<CombatSystem>();
 
-    public int startingHandSize = ManagerManager.Resolve<Dictionary<string, int>>()["handSize"];
+    public int startingHandSize;
     
-   
+   public CardManager(int handSize)
+    {
+        startingHandSize = handSize;
+    }
 
     public void SetUpStartingHand()
     {

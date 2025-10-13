@@ -12,30 +12,31 @@ public class ServiceResolver : MonoBehaviour
     }
     public IGameLogger logger;
     public IRandom random;
+    [Header("Player")]
     public int handSize = 3;
+    public int playerHP = 20;
+    public string playerName;
+    public int maxMana;
     public Dictionary<string, int> ints;
-
+    [Header("Cards")]
     public List<Card> allCards;
+    [Header("UI")]
     public UIManager UImanager = null;
     private void Start()
     {
-        ints = new Dictionary<string, int>();
-        ints.TryAdd("handSize", handSize);
         //you can only register one thing of each type
-        ManagerManager.registerDependency(() => ints);
         ManagerManager.registerDependency(() => logger);
         ManagerManager.registerDependency(() => random);
         ManagerManager.registerDependency(() => UImanager);
         ManagerManager.registerDependency(() => new EnemyManager());
         ManagerManager.registerDependency(() => new CombatSystem());
-        ManagerManager.registerDependency(() => new TurnSystem(10));
+        ManagerManager.registerDependency(() => new TurnSystem(maxMana));
         ManagerManager.registerDependency(() => new GameManager());
-        ManagerManager.registerDependency(() => new Player(10, 0, ""));
-        ManagerManager.registerDependency(() => new CardManager());
+        ManagerManager.registerDependency(() => new Player(playerHP, 0, playerName));
+        ManagerManager.registerDependency(() => new CardManager(handSize));
         ManagerManager.registerDependency(() => allCards);
         foreach (Func<object> manager in ManagerManager.managers)
         {
-
             (manager() as IManager).Awake();
             (manager() as IManager).Start();
         }

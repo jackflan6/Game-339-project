@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -150,32 +149,4 @@ public class TurnSystem : IManager
         player.ShieldText.text = message;
     }
     
-
-    // public int CalculateTotalShock()
-    // {
-    //     int totalShock;
-    //     foreach (Card card in discardPile)
-    //     {
-    //         if (card.hasShock)
-    //         {
-    //             totalShock++;
-    //         }
-    //     }
-    //
-    //     return totalShock;
-    // }
-    //
-    // public void PlayCard(Card card)
-    // {
-    //     Action cardEffect;
-    //     if (card.hasShock)
-    //     {
-    //         int shock=CalculateTotalShock();
-    //         for (int a = 0; a < discardPile.length; a++)
-    //         {
-    //             cardEffect.Invoke();
-    //         }
-    //     }
-    //
-    // }
 }
