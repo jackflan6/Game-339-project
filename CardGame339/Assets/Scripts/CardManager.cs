@@ -13,6 +13,7 @@ public class CardManager : IManager
 
     public int startingHandSize = ManagerManager.Resolve<Dictionary<string, int>>()["handSize"];
     
+   
 
     public void SetUpStartingHand()
     {

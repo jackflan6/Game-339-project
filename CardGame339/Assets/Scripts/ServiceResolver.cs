@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.EventSystems.EventTrigger;
-
 
 public class ServiceResolver : MonoBehaviour
 {
@@ -14,19 +13,19 @@ public class ServiceResolver : MonoBehaviour
     public IGameLogger logger;
     public IRandom random;
     public int handSize = 3;
-    public Dictionary<string,int> ints;
+    public Dictionary<string, int> ints;
 
     public List<Card> allCards;
     public UIManager UImanager = null;
     private void Start()
     {
         ints = new Dictionary<string, int>();
-        ints.TryAdd("handSize",handSize);
+        ints.TryAdd("handSize", handSize);
         //you can only register one thing of each type
-        ManagerManager.register(ints);
-        ManagerManager.register(logger);
-        ManagerManager.register(random);
-        ManagerManager.register(UImanager);
+        ManagerManager.registerDependency(() => ints);
+        ManagerManager.registerDependency(() => logger);
+        ManagerManager.registerDependency(() => random);
+        ManagerManager.registerDependency(() => UImanager);
         ManagerManager.registerDependency(() => new EnemyManager());
         ManagerManager.registerDependency(() => new CombatSystem());
         ManagerManager.registerDependency(() => new TurnSystem(10));
@@ -37,15 +36,15 @@ public class ServiceResolver : MonoBehaviour
         foreach (Func<object> manager in ManagerManager.managers)
         {
 
-            ((IManager)manager()).Awake();
-            ((IManager)manager()).Start();
+            (manager() as IManager).Awake();
+            (manager() as IManager).Start();
         }
     }
     private void Update()
     {
         foreach (Func<object> manager in ManagerManager.managers)
         {
-            ((IManager)manager()).Update();
+            (manager() as IManager).Update();
         }
     }
 
@@ -63,3 +62,5 @@ public class ServiceResolver : MonoBehaviour
         ManagerManager.Resolve<TurnSystem>().SelectCardToPlay(card);
     }
 }
+
+
