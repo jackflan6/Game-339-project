@@ -9,7 +9,7 @@ using System.Collections.Concurrent;
 public static class ManagerManager
 {
     static ConcurrentDictionary<Type, Func<object>> m_register = new ConcurrentDictionary<Type, Func<object>>();
-    public static List<IManager> managers = new List<IManager>();
+    public static List<Func<object>> managers = new List<Func<object>>();
     public static T Resolve<T>()
     {
         if (m_register.TryGetValue(typeof(T),out var ret))
@@ -25,10 +25,6 @@ public static class ManagerManager
     {
         if (obj == null) { throw new Exception("Tried to register a null value"); }
 
-        if (obj is IManager) {
-            var manager = obj as IManager;
-            managers.Add(manager);
-        }
 
         if (m_register.TryAdd(typeof(T), () => obj)) { return; }
 
@@ -37,9 +33,24 @@ public static class ManagerManager
 
     public static void registerFactory<T>(Func<object> factory)
     {
-        if (factory != null) throw new Exception("Tried to register a null value");
+        if (factory == null) throw new Exception("Tried to register a null value");
 
         if (m_register.TryAdd(typeof(T), factory)) return;
+
+        throw new Exception($"Already registered a {typeof(T)}");
+    }
+    
+    public static void registerDependency<T>(Func<T> obj)
+    {
+        if (obj == null) { throw new Exception("Tried to register a null value"); }
+
+        if (typeof(T).IsSubclassOf(typeof(IManager)))
+        {
+            managers.Add(() => obj);
+        }
+        Lazy<T> lazy = new Lazy<T>(obj);
+
+        if (m_register.TryAdd(typeof(T), () => obj)) { return; }
 
         throw new Exception($"Already registered a {typeof(T)}");
     }

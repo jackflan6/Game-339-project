@@ -27,24 +27,25 @@ public class ServiceResolver : MonoBehaviour
         ManagerManager.register(logger);
         ManagerManager.register(random);
         ManagerManager.register(UImanager);
-        ManagerManager.register(allCards);
-        ManagerManager.register(new EnemyManager());
-        ManagerManager.register(new CombatSystem());
-        ManagerManager.register(new TurnSystem(10));
-        ManagerManager.register(new GameManager());
-        ManagerManager.register(new Player(10, 0, ""));
-        ManagerManager.register(new CardManager());
-        foreach (IManager manager in ManagerManager.managers)
+        ManagerManager.registerDependency(() => new EnemyManager());
+        ManagerManager.registerDependency(() => new CombatSystem());
+        ManagerManager.registerDependency(() => new TurnSystem(10));
+        ManagerManager.registerDependency(() => new GameManager());
+        ManagerManager.registerDependency(() => new Player(10, 0, ""));
+        ManagerManager.registerDependency(() => new CardManager());
+        ManagerManager.registerDependency(() => allCards);
+        foreach (Func<object> manager in ManagerManager.managers)
         {
-            manager.Awake();
-            manager.Start();
+
+            ((IManager)manager()).Awake();
+            ((IManager)manager()).Start();
         }
     }
     private void Update()
     {
-        foreach (IManager manager in ManagerManager.managers)
+        foreach (Func<object> manager in ManagerManager.managers)
         {
-            manager.Update();
+            ((IManager)manager()).Update();
         }
     }
 
