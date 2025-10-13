@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public interface IManager
+public abstract class IManager
 {
-    public void start();
-    public void awake();
-    public void update();
+    public IGameLogger logger = ManagerManager.Resolve<IGameLogger>();
+    public virtual void Start() { }
+    public virtual void Awake() { }
+    public virtual void Update() { }
 }

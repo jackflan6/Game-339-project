@@ -1,15 +1,14 @@
 using UnityEngine;
-
-public class CombatSystem : MonoBehaviour
+public class CombatSystem : IManager
 {
     // enemy attack dmg
     // player attack dmg
     // we receieve inputs
     // we calculate damage, output result
-    public EnemyManager enemyManager;
     
     // TODO: make class variables properly private / public, build out enemy damage to player (unit tests!), build round system, status effects per round 
-    
+
+    EnemyManager enemyManager = ManagerManager.Resolve<EnemyManager>();
     public int DealDamageToEnemy(Card card, Enemy enemy)
     {
         int damageDealt = card.Damage;

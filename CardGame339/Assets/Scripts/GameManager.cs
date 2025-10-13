@@ -1,22 +1,17 @@
 using System;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : IManager
 {
-    public EnemyManager enemyManager;
+    public EnemyManager enemyManager = ManagerManager.Resolve<EnemyManager>();
 
-    public TurnSystem turnSystem;
+    public TurnSystem turnSystem = ManagerManager.Resolve<TurnSystem>();
 
     public bool battling=true;
-    public GameManager(EnemyManager enemyManagerInput, TurnSystem turnSystemInput)
-    {
-        enemyManager = enemyManagerInput;
-        turnSystem = turnSystemInput;
-    }
 
-    private void Start()
+    public override void Start()
     {
-        print("started");
+        logger.print("started");
         enemyManager.SetUpEnemies();
        // PlayBattle();
     }

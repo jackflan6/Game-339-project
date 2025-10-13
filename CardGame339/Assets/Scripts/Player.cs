@@ -1,13 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player
 {
-    private readonly IGameLogger _logger;
+    private readonly IGameLogger _logger = ManagerManager.Resolve<IGameLogger>();
 
     public int HP;
-
-    public int Attack;
 
     public int Defense;
 
@@ -16,13 +14,11 @@ public class Player : MonoBehaviour
     public int currentShield;
     public bool isBurning;
     public int currentBurnDamage;
-    public Text ShieldText;
+    public Text ShieldText = ManagerManager.Resolve<UIManager>().shieldText;
     
-    public Player(int hp, int attack, int defense, string name, IGameLogger logger)
+    public Player(int hp, int defense, string name)
     {
-        _logger = logger;
         HP = hp;
-        Attack = attack;
         Defense = defense;
         Name = name;
     }

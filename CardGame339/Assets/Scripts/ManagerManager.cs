@@ -4,31 +4,43 @@ using System.Transactions;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections.Concurrent;
 
-public class ManagerManager : MonoBehaviour
+public static class ManagerManager
 {
-    [SerializeField]
-    public List<IManager> managers;
+    static ConcurrentDictionary<Type, Func<object>> m_register = new ConcurrentDictionary<Type, Func<object>>();
+    public static List<IManager> managers = new List<IManager>();
+    public static T Resolve<T>()
+    {
+        if (m_register.TryGetValue(typeof(T),out var ret))
+        {
+            return (T)ret();
+        }
 
-    private void Start()
-    {
-        foreach (IManager m in managers)
-        {
-            m.start();
-        }
+        throw new Exception($"There is yet to be a registration for {typeof(T)}");
     }
-    private void Awake()
+
+
+    public static void register<T>(T obj)
     {
-        foreach (IManager m in managers)
-        {
-            m.awake();
+        if (obj == null) { throw new Exception("Tried to register a null value"); }
+
+        if (obj is IManager) {
+            var manager = obj as IManager;
+            managers.Add(manager);
         }
+
+        if (m_register.TryAdd(typeof(T), () => obj)) { return; }
+
+        throw new Exception($"Already registered a {typeof(T)}");
     }
-    private void Update()
+
+    public static void registerFactory<T>(Func<object> factory)
     {
-        foreach (IManager m in managers)
-        {
-            m.update();
-        }
+        if (factory != null) throw new Exception("Tried to register a null value");
+
+        if (m_register.TryAdd(typeof(T), factory)) return;
+
+        throw new Exception($"Already registered a {typeof(T)}");
     }
 }

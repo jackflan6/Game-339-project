@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TurnSystem : MonoBehaviour
+public class TurnSystem : IManager
 {
     public EnemyManager enemyManager;
 
@@ -11,7 +12,7 @@ public class TurnSystem : MonoBehaviour
     public CardManager cardManager;
     public Enemy EnemyToAttack;
 
-    public UnityRandom random;
+    public IRandom random;
     public Player player;
 
     public int MaxMana;
@@ -21,33 +22,33 @@ public class TurnSystem : MonoBehaviour
     public Text ManaText;
     public Text PlayerHP;
 
-    public TurnSystem(EnemyManager enemyManagerInput, CombatSystem combatSystemInput, Player playerInput,
-        UnityRandom randomInput, CardManager cardManagerInput, int maxMana)
+    public TurnSystem(int maxMana)
     {
-        enemyManager = enemyManagerInput;
-        combatSystem = combatSystemInput;
-        player = playerInput;
-        random = randomInput;
-        cardManager = cardManagerInput;
         MaxMana = maxMana;
         currentMana = MaxMana;
     }
 
-    private void Awake()
+    public override void Awake()
     {
+        enemyManager = ManagerManager.Resolve<EnemyManager>();
+        combatSystem = ManagerManager.Resolve<CombatSystem>();
+        cardManager = ManagerManager.Resolve<CardManager>();
+        random = ManagerManager.Resolve<IRandom>();
+        player = ManagerManager.Resolve<Player>();
+        ManaText = ManagerManager.Resolve<UIManager>().manaText;
+        PlayerHP = ManagerManager.Resolve<UIManager>().playerHP;
         cardManager.SetUpStartingHand();
         ManaText.text = "Mana: " + currentMana;
         PlayerHP.text = "HP: " + player.HP;
     }
-
-    private void Start()
+    public override void Start()
     {
         PlayerTurn();
     }
     
     public void EnemiesTurn()
     {
-        print("enemies Turn");
+        logger.print("enemies Turn");
         BurnDamageToAllEnemies();
         foreach (Enemy enemy in enemyManager.enemies)
         {
@@ -66,7 +67,7 @@ public class TurnSystem : MonoBehaviour
 
         if (player.HP <= 0)
         {
-            print("player lost!");
+            logger.print("player lost!");
         }
 
         PlayerTurn();
@@ -74,11 +75,11 @@ public class TurnSystem : MonoBehaviour
 
     public void PlayerTurn()
     {
-        print("player turn!");
-        isPlayerTurn = true;
+       logger.print("player turn!");
+       isPlayerTurn = true;
        cardManager.DrawCard();
-        currentMana = MaxMana;
-        UpdateText("Mana: "+currentMana);
+       currentMana = MaxMana;
+       UpdateText("Mana: "+currentMana);
     }
 
     public void BurnDamageToAllEnemies()
@@ -92,13 +93,13 @@ public class TurnSystem : MonoBehaviour
         }
     }
 
-    public void SelectEnemyToAttack()
+    public void SelectEnemyToAttack(Enemy enemy)
     {
         //user input in unity
         if (isPlayerTurn && hasClickedOnCard())
         {
             currentMana -= cardToPlay.ManaCost;
-            EnemyToAttack = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Enemy>();
+            EnemyToAttack = enemy;
             cardManager.PlayCard(cardToPlay,player,EnemyToAttack);
             UpdateText("Mana: " + currentMana);
             UpdateHPText("HP: " + player.HP);
@@ -119,7 +120,7 @@ public class TurnSystem : MonoBehaviour
         isPlayerTurn = false;
         if (enemyManager.enemies.Count == 0)
         {
-            print("Player won!");
+            logger.print("Player won!");
         }
         EnemiesTurn();
     }

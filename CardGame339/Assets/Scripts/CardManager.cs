@@ -1,23 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardManager : MonoBehaviour
+public class CardManager : IManager
 {
     public List<Card> Deck = new List<Card>();
     public List<Card> Hand = new List<Card>();
 
     public List<Card> DiscardPile = new List<Card>();
 
-    public List<Card> AllCards;
-    public CombatSystem CombatSystem;
+    public List<Card> AllCards = ManagerManager.Resolve<List<Card>>();
+    public CombatSystem CombatSystem = ManagerManager.Resolve<CombatSystem>();
 
-    public int startingHandSize;
+    public int startingHandSize = ManagerManager.Resolve<Dictionary<string, int>>()["handSize"];
     
-
-    public CardManager(CombatSystem combatSystem)
-    {
-        CombatSystem = combatSystem;
-    }
 
     public void SetUpStartingHand()
     {
@@ -39,7 +34,7 @@ public class CardManager : MonoBehaviour
 
     public void PlayCard(Card card, Player player, Enemy enemy)
     {
-        print("cardPlayed!");
+        logger.print("cardPlayed!");
         int totalShock=1;
         if (card.Element.Equals("Shock"))
         {
@@ -91,13 +86,13 @@ public class CardManager : MonoBehaviour
     {
             foreach (GameObject g in cardsGameObj)
             {
-               Destroy(g);
+               logger.Destroy(g);
             }
         
         int i = 0;
         foreach (Card card in Hand)
         {
-            GameObject c = GameObject.Instantiate(card.gameObject, new Vector3(2.5f - 2.5f * i, -2.5f, 0), new Quaternion());
+            GameObject c = logger.Instantiate(card.gameObject, new Vector3(2.5f - 2.5f * i, -2.5f, 0), new Quaternion());
             cardsGameObj.Add(c);
             c.GetComponent<Card>().origionalCard = card;
             i++;

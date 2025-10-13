@@ -1,19 +1,13 @@
+using System;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
-public class UnityGameLogger : MonoBehaviour
+public class UnityGameLogger : MonoBehaviour, IGameLogger
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
-        
+        GameObject.FindGameObjectWithTag("ServiceResolver").GetComponent<ServiceResolver>().logger = this;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Info(string message)
     {
         print(message);
@@ -27,5 +21,17 @@ public class UnityGameLogger : MonoBehaviour
     public void Error(string message)
     {
         print(message);
+    }
+    public void print(string message)
+    {
+        Debug.Log(message);
+    }
+    public void Destroy(object obj) 
+    {
+        GameObject.Destroy((GameObject)obj);
+    }
+    public GameObject Instantiate(GameObject obj, Vector3 pos, Quaternion rot)
+    {
+        return GameObject.Instantiate(obj, pos, rot);
     }
 }

@@ -1,15 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : IManager
 {
     private readonly IGameLogger _logger;
     public List<Enemy> enemies = new List<Enemy>();
-
-    public EnemyManager(IGameLogger logger)
-    {
-        _logger = logger;
-    }
 
     public void SetUpEnemies()
     {

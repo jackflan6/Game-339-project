@@ -64,7 +64,7 @@ public class Card : MonoBehaviour
     {
         if (hover)
         {
-            GameObject.FindGameObjectWithTag("TurnManager").GetComponent<TurnSystem>().SelectCardToPlay(origionalCard.GetComponent<Card>());
+            ManagerManager.Resolve<TurnSystem>().SelectCardToPlay(origionalCard.GetComponent<Card>());
         }
     }
 }
