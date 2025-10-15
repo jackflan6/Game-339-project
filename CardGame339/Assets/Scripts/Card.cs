@@ -34,7 +34,6 @@ public class Card : MonoBehaviour
     //}
 
 
-
     //UnityEvent SelectedCard;
     bool hover;
     public Card origionalCard;

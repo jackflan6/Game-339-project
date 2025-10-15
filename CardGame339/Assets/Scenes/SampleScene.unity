@@ -1738,6 +1738,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   handSize: 3
+  playerHP: 20
+  playerName: 
+  maxMana: 10
   allCards:
   - {fileID: 3887498549589106531, guid: 7d8f44e7fcfdea44f89778cbca1113bf, type: 3}
   - {fileID: 6786057770922555839, guid: 4834ad1c49b812f4faafa51789b9e650, type: 3}
