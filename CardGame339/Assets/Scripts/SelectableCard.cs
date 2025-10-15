@@ -6,6 +6,7 @@ public class SelectableCard : MonoBehaviour
 
     //UnityEvent SelectedCard;
     bool hover;
+
     public int cardId;
     public Card origionalCard;
     void Start()
