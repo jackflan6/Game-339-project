@@ -1,6 +1,9 @@
+using System;
 using UnityEngine;
-
+[Serializable]
 public class ICard
 {
-    public virtual void Effect(IEnemy enemy) { }
+    public int ManaCost{ get; set; }
+    public void Effect(IEnemy enemy) { }
+    
 }

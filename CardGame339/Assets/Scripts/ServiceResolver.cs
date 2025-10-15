@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using static UnityEngine.EventSystems.EventTrigger;
 
 
 public class ServiceResolver : MonoBehaviour
@@ -14,14 +12,15 @@ public class ServiceResolver : MonoBehaviour
     public IGameLogger logger;
     public IRandom random;
     public int handSize = 3;
-    public Dictionary<string,int> ints;
+    public Dictionary<string, int> ints;
 
     public List<Card> allCards;
+    public List<Enemy> allEnemys;
     public UIManager UImanager = null;
     private void Start()
     {
         ints = new Dictionary<string, int>();
-        ints.TryAdd("handSize",handSize);
+        ints.TryAdd("handSize", handSize);
         //you can only register one thing of each type
         ManagerManager.register(ints);
         ManagerManager.register(logger);
@@ -34,9 +33,10 @@ public class ServiceResolver : MonoBehaviour
         ManagerManager.registerDependency(() => new Player(10, 0, ""));
         ManagerManager.registerDependency(() => new CardManager());
         ManagerManager.registerDependency(() => allCards);
+        ManagerManager.registerDependency(() => allEnemys);
+
         foreach (Func<object> manager in ManagerManager.managers)
         {
-
             ((IManager)manager()).Awake();
             ((IManager)manager()).Start();
         }

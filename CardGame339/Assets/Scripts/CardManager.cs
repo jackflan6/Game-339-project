@@ -1,18 +1,32 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using Random = UnityEngine.Random;
 using UnityEngine;
 
 public class CardManager : IManager
 {
+    public IEnumerable<Type> AllCardTypes;
     public List<Card> Deck = new List<Card>();
     public List<Card> Hand = new List<Card>();
 
     public List<Card> DiscardPile = new List<Card>();
 
-    public List<Card> AllCards = ManagerManager.Resolve<List<Card>>();
+
+    public List<Card> AllCards = ManagerManager.Resolve<List<Card>>();  
     public CombatSystem CombatSystem = ManagerManager.Resolve<CombatSystem>();
 
     public int startingHandSize = ManagerManager.Resolve<Dictionary<string, int>>()["handSize"];
-    
+
+    IEnumerable<Type> GetAll()
+    {
+        AllCardTypes = AppDomain.CurrentDomain.GetAssemblies()
+            .SelectMany(assembly => assembly.GetTypes())
+            .Where(type => type.IsSubclassOf(typeof(Card)));
+        return AllCardTypes;
+    }
+
+
 
     public void SetUpStartingHand()
     {

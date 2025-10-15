@@ -1,9 +1,6 @@
 using NUnit.Framework;
 using System;
-using System.Transactions;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
 using System.Collections.Concurrent;
 
 public static class ManagerManager
@@ -44,13 +41,14 @@ public static class ManagerManager
     {
         if (obj == null) { throw new Exception("Tried to register a null value"); }
 
-        if (typeof(T).IsSubclassOf(typeof(IManager)))
-        {
-            managers.Add(() => obj);
-        }
         Lazy<T> lazy = new Lazy<T>(obj);
 
-        if (m_register.TryAdd(typeof(T), () => obj)) { return; }
+        if (typeof(T).IsSubclassOf(typeof(IManager)))
+        {
+            managers.Add(() => lazy.Value);
+        }
+
+        if (m_register.TryAdd(typeof(T), () => lazy.Value)) { return; }
 
         throw new Exception($"Already registered a {typeof(T)}");
     }
