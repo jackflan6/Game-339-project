@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class ServiceResolver : MonoBehaviour
 {
@@ -14,16 +14,15 @@ public class ServiceResolver : MonoBehaviour
     public IRandom random;
     [Header("Player")]
     public int handSize = 3;
-    public int playerHP = 20;
-    public string playerName;
-    public int maxMana;
     public Dictionary<string, int> ints;
-    [Header("Cards")]
+
     public List<Card> allCards;
-    [Header("UI")]
+    public List<Enemy> allEnemys;
     public UIManager UImanager = null;
     private void Start()
     {
+        ints = new Dictionary<string, int>();
+        ints.TryAdd("handSize", handSize);
         //you can only register one thing of each type
         ManagerManager.registerDependency(() => logger);
         ManagerManager.registerDependency(() => random);
@@ -35,10 +34,12 @@ public class ServiceResolver : MonoBehaviour
         ManagerManager.registerDependency(() => new Player(playerHP, 0, playerName));
         ManagerManager.registerDependency(() => new CardManager(handSize));
         ManagerManager.registerDependency(() => allCards);
+        ManagerManager.registerDependency(() => allEnemys);
+
         foreach (Func<object> manager in ManagerManager.managers)
         {
-            (manager() as IManager).Awake();
-            (manager() as IManager).Start();
+            ((IManager)manager()).Awake();
+            ((IManager)manager()).Start();
         }
     }
     private void Update()

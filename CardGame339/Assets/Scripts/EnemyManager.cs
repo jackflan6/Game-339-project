@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyManager : IManager
 {
     private readonly IGameLogger _logger;
-    public List<Enemy> enemies = new List<Enemy>();
+    public List<Enemy> enemies = ManagerManager.Resolve<List<Enemy>>();
 
     public void SetUpEnemies()
     {

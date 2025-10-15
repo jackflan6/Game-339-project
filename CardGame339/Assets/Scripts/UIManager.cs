@@ -16,12 +16,6 @@ public class UIManager : MonoBehaviour
 
 
 
-
-
-
-
-
-
     private void Awake()
     {
         GameObject.FindGameObjectWithTag("ServiceResolver").GetComponent<ServiceResolver>().UImanager = this;
@@ -31,12 +25,12 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if (mousepos != Mouse.current.position.value && onMouseMove != null)
+        if (mousepos != Mouse.current.position.value && onMouseMove != null && onMouseMove != null)
         {
             mousepos = Mouse.current.position.value;
             onMouseMove.Invoke(mousepos);
         }
-        if (Mouse.current.press.value >0 && mousepos != null)
+        if (Mouse.current.press.value >0 && mousepos != null && onMousePress != null)
         {
             onMousePress.Invoke(mousepos);
         }

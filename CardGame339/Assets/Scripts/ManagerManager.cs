@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using System;
-using System.Transactions;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
 
@@ -44,14 +43,12 @@ public static class ManagerManager
 
         Lazy<T> lazy = new Lazy<T>(obj);
 
-        if (m_register.TryAdd(typeof(T), () => lazy.Value)) 
+        if (typeof(T).IsSubclassOf(typeof(IManager)))
         {
-            if (typeof(T).IsSubclassOf(typeof(IManager)))
-            {
-                managers.Add(() => lazy.Value);
-            }
-            return; 
+            managers.Add(() => lazy.Value);
         }
+
+        if (m_register.TryAdd(typeof(T), () => lazy.Value)) { return; }
 
         throw new Exception($"Already registered a {typeof(T)}");
     }
