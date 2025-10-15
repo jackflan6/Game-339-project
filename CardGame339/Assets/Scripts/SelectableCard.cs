@@ -1,13 +1,13 @@
 using System;
 using UnityEngine;
 
-public class UnityCard : MonoBehaviour
+public class SelectableCard : MonoBehaviour
 {
 
     //UnityEvent SelectedCard;
     bool hover;
-    [SerializeField]
-    public Action origionalObject;
+    public int cardId;
+    public Card origionalCard;
     void Start()
     {
         GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().onMouseMove += OnMouseMove;
@@ -35,7 +35,7 @@ public class UnityCard : MonoBehaviour
     {
         if (hover)
         {
-           // ManagerManager.Resolve<TurnSystem>().SelectCardToPlay(origionalCard.GetComponent<Card>());
+           ManagerManager.Resolve<TurnSystem>().SelectCardToPlay(origionalCard.GetComponent<Card>());
         }
     }
 }

@@ -6,10 +6,9 @@ using UnityEngine;
 
 public class CardManager : IManager
 {
-    public IEnumerable<Type> AllCardTypes;
     public List<Card> Deck = new List<Card>();
     public List<Card> Hand = new List<Card>();
-
+    
     public List<Card> DiscardPile = new List<Card>();
 
 
@@ -18,16 +17,22 @@ public class CardManager : IManager
 
     public int startingHandSize = ManagerManager.Resolve<Dictionary<string, int>>()["handSize"];
 
-    IEnumerable<Type> GetAll()
+    public Lazy<Dictionary<int, Type>> GetAllCardIDs = new Lazy<Dictionary<int, Type>>(() =>
     {
-        AllCardTypes = AppDomain.CurrentDomain.GetAssemblies()
+        Dictionary<int, Type> CardIDs = new Dictionary<int, Type>();
+        IEnumerable<Type> c = AppDomain.CurrentDomain.GetAssemblies()
             .SelectMany(assembly => assembly.GetTypes())
             .Where(type => type.IsSubclassOf(typeof(Card)));
-        return AllCardTypes;
-    }
+        foreach (Type t in c)
+        {
+            CardIDs.TryAdd((int)t.GetField("cardID").GetValue(null),t);
+        }
+        return CardIDs ;
+    });
 
 
-
+    public event Action<Card> CardDraw;
+    public event Action<Card> CardPlayed;
     public void SetUpStartingHand()
     {
         int shuffleNum = AllCards.Count;
@@ -40,10 +45,8 @@ public class CardManager : IManager
 
         for (int a = 0; a < startingHandSize; a++)
         {
-            Hand.Add(Deck[0]);
-            Deck.Remove(Deck[0]);
+            CardDraw();
         }
-        reloadHand();
     }
 
     public void PlayCard(Card card, Player player, Enemy enemy)
@@ -75,7 +78,8 @@ public class CardManager : IManager
         if (!Hand.Contains(card)) Debug.Log("oh no");
         Hand.Remove(card);
         DiscardPile.Add(card);
-        reloadHand();
+
+        if (CardPlayed != null) CardPlayed.Invoke(card);
     }
 
     public void DrawCard()
@@ -92,25 +96,25 @@ public class CardManager : IManager
         Hand.Add(Deck[0]);
         Deck.Remove(Deck[0]);
         
-        reloadHand();
+        if (CardDraw != null) CardDraw.Invoke();
     }
 
     public List<GameObject> cardsGameObj = new List<GameObject>();
-    public void reloadHand()
-    {
-            foreach (GameObject g in cardsGameObj)
-            {
-               logger.Destroy(g);
-            }
+    //public void reloadHand()
+    //{
+    //        foreach (GameObject g in cardsGameObj)
+    //        {
+    //           logger.Destroy(g);
+    //        }
         
-        int i = 0;
-        foreach (Card card in Hand)
-        {
-            GameObject c = logger.Instantiate(card.gameObject, new Vector3(2.5f - 2.5f * i, -2.5f, 0), new Quaternion());
-            cardsGameObj.Add(c);
-            c.GetComponent<Card>().origionalCard = card;
-            i++;
-        }
-    }
+    //    int i = 0;
+    //    foreach (Card card in Hand)
+    //    {
+    //        GameObject c = logger.Instantiate(card.gameObject, new Vector3(2.5f - 2.5f * i, -2.5f, 0), new Quaternion());
+    //        cardsGameObj.Add(c);
+    //        c.GetComponent<Card>().origionalCard = card;
+    //        i++;
+    //    }
+    //}
 
 }

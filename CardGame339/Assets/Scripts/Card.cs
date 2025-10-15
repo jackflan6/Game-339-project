@@ -2,18 +2,9 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "NewCard", menuName = "Cards/CardData")]
-public class Card2 : ScriptableObject
-{
-    public Sprite sprite;
-    public string CardType;
-    public string Name;
-    public int ManaValue;
-    
-}
 public class Card : MonoBehaviour
 {
-
+    public static int cardID;
     public string Element;
     public int Damage;
     public int ShieldValue;
@@ -21,7 +12,6 @@ public class Card : MonoBehaviour
     public int Heal;
     public bool DrawCard;
     public int ManaCost;
-    public void Effect(IEnemy enemy) { }
     //public Card(string element, int damage, int shieldValue, int burnDamage, int heal, int manaCost=1, bool drawCard=false)
     //{
     //    Element = element;
