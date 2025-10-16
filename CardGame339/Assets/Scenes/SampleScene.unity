@@ -1532,13 +1532,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f58be38683462d841b7cb4d4c5ca6d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  f:
-    rid: -2
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+  CardPrefabList:
+  - {fileID: 3555370440800643982, guid: 7d8f44e7fcfdea44f89778cbca1113bf, type: 3}
+  - {fileID: 3555370440800643982, guid: 7d8f44e7fcfdea44f89778cbca1113bf, type: 3}
+  - {fileID: 3555370440800643982, guid: 7d8f44e7fcfdea44f89778cbca1113bf, type: 3}
 --- !u!4 &1554487090
 Transform:
   m_ObjectHideFlags: 0
@@ -1548,7 +1545,7 @@ Transform:
   m_GameObject: {fileID: 1554487088}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7386, y: -2.2799, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1738,23 +1735,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   handSize: 3
-  playerHP: 20
-  playerName: 
   maxMana: 10
-  allCards:
-  - {fileID: 3887498549589106531, guid: 7d8f44e7fcfdea44f89778cbca1113bf, type: 3}
-  - {fileID: 6786057770922555839, guid: 4834ad1c49b812f4faafa51789b9e650, type: 3}
-  - {fileID: 6786057770922555839, guid: 01e90b0b4480d1441aae567a8d6f3a76, type: 3}
-  - {fileID: 6786057770922555839, guid: 01e90b0b4480d1441aae567a8d6f3a76, type: 3}
-  - {fileID: 6786057770922555839, guid: 01e90b0b4480d1441aae567a8d6f3a76, type: 3}
-  - {fileID: 6786057770922555839, guid: 01e90b0b4480d1441aae567a8d6f3a76, type: 3}
-  - {fileID: 6786057770922555839, guid: 01e90b0b4480d1441aae567a8d6f3a76, type: 3}
-  - {fileID: 6786057770922555839, guid: 01e90b0b4480d1441aae567a8d6f3a76, type: 3}
+  playerHP: 20
+  playerName: player1
+  allCardsPrefabs:
+  - {fileID: 3555370440800643982, guid: 7d8f44e7fcfdea44f89778cbca1113bf, type: 3}
+  - {fileID: 3555370440800643982, guid: 7d8f44e7fcfdea44f89778cbca1113bf, type: 3}
+  - {fileID: 3555370440800643982, guid: 7d8f44e7fcfdea44f89778cbca1113bf, type: 3}
+  - {fileID: 3555370440800643982, guid: 7d8f44e7fcfdea44f89778cbca1113bf, type: 3}
+  - {fileID: 3555370440800643982, guid: 7d8f44e7fcfdea44f89778cbca1113bf, type: 3}
+  - {fileID: 3555370440800643982, guid: 7d8f44e7fcfdea44f89778cbca1113bf, type: 3}
+  - {fileID: 3555370440800643982, guid: 7d8f44e7fcfdea44f89778cbca1113bf, type: 3}
+  - {fileID: 3555370440800643982, guid: 7d8f44e7fcfdea44f89778cbca1113bf, type: 3}
+  - {fileID: 3555370440800643982, guid: 7d8f44e7fcfdea44f89778cbca1113bf, type: 3}
+  - {fileID: 3555370440800643982, guid: 7d8f44e7fcfdea44f89778cbca1113bf, type: 3}
   allEnemys:
   - {fileID: 1781397420}
   - {fileID: 49009425}
   - {fileID: 1600079091}
   UImanager: {fileID: 1868977203}
+  gameObjectManager: {fileID: 1554487089}
+  unityLogger: {fileID: 1905676379}
+  unityRandom: {fileID: 42237880}
 --- !u!4 &1607715861
 Transform:
   m_ObjectHideFlags: 0
@@ -2178,7 +2180,7 @@ Transform:
   m_GameObject: {fileID: 1868977202}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.10665, y: -0.36261, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2222,7 +2224,7 @@ Transform:
   m_GameObject: {fileID: 1905676378}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.10665, y: -0.36261, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -1,70 +1,24 @@
 using System;
-using UnityEngine;
-using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "NewCard", menuName = "Cards/CardData")]
-public class Card2 : ScriptableObject
+public abstract class Card : ICard
 {
-    public Sprite sprite;
-    public string CardType;
-    public string Name;
-    public int ManaValue;
-    
-}
-public class Card : MonoBehaviour
-{
-
-    public string Element;
-    public int Damage;
+    public string Element = "";
     public int ShieldValue;
     public int BurnDamage;
     public int Heal;
-    public bool DrawCard;
-    public int ManaCost;
-    public void Effect(IEnemy enemy) { }
-    //public Card(string element, int damage, int shieldValue, int burnDamage, int heal, int manaCost=1, bool drawCard=false)
-    //{
-    //    Element = element;
-    //    Damage = damage;
-    //    ShieldValue = shieldValue;
-    //    BurnDamage = burnDamage;
-    //    Heal = heal;
-    //    DrawCard = drawCard;
-    //    ManaCost = manaCost;
-    //}
+
+    //public abstract int cardID { get; }
+    public abstract int ManaCost { get;}
+    public abstract int Damage { get; }
+    public abstract void Effect(IEnemy enemy);
 
 
-    //UnityEvent SelectedCard;
-    bool hover;
-    public Card origionalCard;
-    void Start()
+    public void DrawCard()
     {
-        GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().onMouseMove += OnMouseMove;
-        GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().onMousePress += OnMouseClick;
+        ManagerManager.Resolve<CardManager>().DrawCard();
     }
-    private void OnDestroy()
+    public void DamageEnemy(int damage,Enemy enemy)
     {
-        GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().onMouseMove -= OnMouseMove;
-        GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().onMousePress -= OnMouseClick;
-
-    }
-
-    public void OnMouseMove(Vector2 pos)
-    {
-        Vector3 worldPos = new Vector3(0, 0, transform.position.z) + (Vector3)((Vector2)Camera.main.ScreenToWorldPoint(pos));
-        if (GetComponent<Collider2D>().bounds.Contains((Vector2)Camera.main.ScreenToWorldPoint(pos)))
-        {
-            hover = true;
-        }else
-        {
-            hover = false;
-        }
-    }
-    public void OnMouseClick(Vector2 pos)
-    {
-        if (hover)
-        {
-            ManagerManager.Resolve<TurnSystem>().SelectCardToPlay(origionalCard.GetComponent<Card>());
-        }
+        ManagerManager.Resolve<CombatSystem>().DealDamageToEnemy(this,enemy);
     }
 }

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4808689931171611159}
   - component: {fileID: 3958411045777743599}
   - component: {fileID: 2485553409630616884}
-  - component: {fileID: 3887498549589106531}
+  - component: {fileID: 2721450588126600007}
   m_Layer: 0
-  m_Name: Card
+  m_Name: billowingass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,7 +138,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.68, y: 2.99}
   m_EdgeRadius: 0
---- !u!114 &3887498549589106531
+--- !u!114 &2721450588126600007
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,14 +147,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3555370440800643982}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71b65d9187eb9c64dbbe45ce4f13f2d5, type: 3}
+  m_Script: {fileID: 11500000, guid: cb468ae913290304d94c943b7bae9644, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Card
-  Element: 
-  Damage: 1
-  ShieldValue: 1
-  BurnDamage: 1
-  Heal: 1
-  DrawCard: 1
-  ManaCost: 1
-  hover: 0
+  m_EditorClassIdentifier: Assembly-CSharp::SelectableCard
+  cardID: 1
+  cardPosition: {x: 0, y: 0}
+  acceleration: 10

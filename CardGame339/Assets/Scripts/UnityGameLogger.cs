@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class UnityGameLogger : MonoBehaviour, IGameLogger
 {
-    private void Awake()
-    {
-        GameObject.FindGameObjectWithTag("ServiceResolver").GetComponent<ServiceResolver>().logger = this;
-    }
     public void Info(string message)
     {
         print(message);
