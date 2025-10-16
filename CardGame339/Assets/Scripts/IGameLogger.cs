@@ -1,6 +1,4 @@
 using System;
-using Unity;
-using UnityEngine;
 
 public interface IGameLogger
 {
@@ -8,6 +6,4 @@ public interface IGameLogger
     void Warning(string message);
     void Error(string message);
     void print(string message);
-    void Destroy(object obj);
-    GameObject Instantiate(GameObject obj, Vector3 pos, Quaternion rot);
 }

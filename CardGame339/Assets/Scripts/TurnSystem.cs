@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
 
 public class TurnSystem : IManager
@@ -37,12 +36,12 @@ public class TurnSystem : IManager
         player = ManagerManager.Resolve<Player>();
         ManaText = ManagerManager.Resolve<UIManager>().manaText;
         PlayerHP = ManagerManager.Resolve<UIManager>().playerHP;
-        cardManager.SetUpStartingHand();
         ManaText.text = "Mana: " + currentMana;
         PlayerHP.text = "HP: " + player.HP;
     }
     public override void Start()
     {
+        cardManager.SetUpStartingHand();
         PlayerTurn();
     }
     

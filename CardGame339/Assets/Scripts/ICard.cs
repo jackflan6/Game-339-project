@@ -1,9 +1,8 @@
 using System;
-using UnityEngine;
-[Serializable]
-public class ICard
+public interface ICard
 {
-    public int ManaCost{ get; set; }
-    public void Effect(IEnemy enemy) { }
+    public int ManaCost{ get; }
+    public int Damage { get; }
+    public abstract void Effect(IEnemy enemy);
     
 }

@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IEnemy
 {
     private readonly IGameLogger _logger;
 

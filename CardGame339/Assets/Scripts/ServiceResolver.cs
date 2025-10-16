@@ -5,39 +5,48 @@ using UnityEngine;
 
 public class ServiceResolver : MonoBehaviour
 {
-    public ServiceResolver(IGameLogger logger)
-    {
-        this.logger = logger;
-    }
-    public IGameLogger logger;
-    public IRandom random;
-    public int handSize = 3;
-    public Dictionary<string, int> ints;
+    public int handSize;
+    public int maxMana;
+    public int playerHP;
+    public string playerName;
 
-    public List<Card> allCards;
+    public List<GameObject> allCardsPrefabs;
     public List<Enemy> allEnemys;
-    public UIManager UImanager = null;
-    private void Start()
+    public UIManager UImanager;
+    public GameObjectManager gameObjectManager;
+    public UnityGameLogger unityLogger;
+    public UnityRandom unityRandom;
+    private void Awake()
     {
-        ints = new Dictionary<string, int>();
-        ints.TryAdd("handSize", handSize);
         //you can only register one thing of each type
-        ManagerManager.register(ints);
-        ManagerManager.register(logger);
-        ManagerManager.register(random);
+        ManagerManager.register((IGameLogger)unityLogger);
+        ManagerManager.register((IRandom)unityRandom);
         ManagerManager.register(UImanager);
         ManagerManager.registerDependency(() => new EnemyManager());
         ManagerManager.registerDependency(() => new CombatSystem());
-        ManagerManager.registerDependency(() => new TurnSystem(10));
+        ManagerManager.registerDependency(() => new TurnSystem(maxMana));
         ManagerManager.registerDependency(() => new GameManager());
-        ManagerManager.registerDependency(() => new Player(10, 0, ""));
-        ManagerManager.registerDependency(() => new CardManager());
-        ManagerManager.registerDependency(() => allCards);
+        ManagerManager.registerDependency(() => new Player(playerHP, 0, playerName));
+        ManagerManager.registerDependency(() => new CardManager(handSize));
         ManagerManager.registerDependency(() => allEnemys);
+        
+        List<Card> allCards = new List<Card>();
+        foreach (GameObject gam in allCardsPrefabs)
+        {
+            allCards.Add((Card)Activator.CreateInstance(ManagerManager.Resolve<CardManager>().GetAllCardIDs.Value[gam.GetComponent<SelectableCard>().cardID])) ;
+        }
+        ManagerManager.Resolve<CardManager>().AllCards = allCards;
 
         foreach (Func<object> manager in ManagerManager.managers)
         {
             ((IManager)manager()).Awake();
+        }
+    }
+
+    private void Start()
+    {
+        foreach (Func<object> manager in ManagerManager.managers)
+        {
             ((IManager)manager()).Start();
         }
     }
