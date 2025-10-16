@@ -51,7 +51,7 @@ public class TurnSystem : IManager
         BurnDamageToAllEnemies();
         foreach (Enemy enemy in enemyManager.enemies)
         {
-            int chooseAction=random.RandomNumber(2);
+            int chooseAction=random.RandomNumber(3);
             if (chooseAction == 0)
             {
                 combatSystem.DealDamageToPlayer(player, enemy);
@@ -61,6 +61,11 @@ public class TurnSystem : IManager
             if (chooseAction == 1)
             {
                 combatSystem.GenerateEnemyShield(enemy);
+            }
+
+            if (chooseAction == 2)
+            {
+                combatSystem.EnemyTalk(enemy,enemyManager.enemyTaunts[random.RandomNumber(enemyManager.enemyTaunts.Count)]);
             }
         }
 

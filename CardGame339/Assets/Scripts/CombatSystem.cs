@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 public class CombatSystem : IManager
 {
@@ -61,6 +62,15 @@ public class CombatSystem : IManager
     {
         player.currentShield += card.ShieldValue;
         return player.currentShield;
+    }
+
+    public void EnemyTalk(Enemy enemy, string message)
+    {
+        if (enemy.GetComponent<DialogueDisplayer>() == null)
+        {
+            enemy.AddComponent<DialogueDisplayer>();
+        }
+        enemy.GetComponent<DialogueDisplayer>().DisplayDialogue(message, enemy.gameObject);
     }
 
     public int BurnDamageToEnemy(Enemy enemy)

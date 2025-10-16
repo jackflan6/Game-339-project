@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour, IEnemy
     public int currentBurnDamage;
 
     public TextMeshProUGUI HPText;
+    public TextMeshProUGUI DialogueText;
 
     public Enemy(int hp, int attack, int defense, string name, IGameLogger logger)
     {
