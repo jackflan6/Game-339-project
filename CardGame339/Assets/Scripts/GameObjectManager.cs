@@ -7,24 +7,15 @@ using UnityEngine;
 
 public class GameObjectManager : MonoBehaviour
 {
-    //[SerializeRefeance]
     [SerializeField]
     public List<GameObject> CardPrefabList;
     public static List<GameObject> staticCardPrefabList = new List<GameObject>(); 
     private static List<GameObject> allCreatedCards = new List<GameObject>();
 
-    public Lazy<Dictionary<Type, GameObject>> CardToPrefab = new Lazy<Dictionary<Type, GameObject>>(() => { 
+    [SerializeReference]
+    private static List<GameObject> EnemyPrefabList;
 
-        Dictionary < Type, GameObject > dic = new Dictionary<Type, GameObject>();
 
-        Dictionary<int, Type> idToTypes = ManagerManager.Resolve<CardManager>().GetAllCardIDs.Value;
-
-        foreach (GameObject obj in staticCardPrefabList)
-        {
-            dic.TryAdd(idToTypes[obj.GetComponent<SelectableCard>().cardID], obj);
-        }
-        return dic;
-    });
 
     public void UpdateCardPos()
     {
@@ -75,6 +66,28 @@ public class GameObjectManager : MonoBehaviour
         public GameObject prefab;
     }
 
+    public Lazy<Dictionary<Type, GameObject>> CardToPrefab = new Lazy<Dictionary<Type, GameObject>>(() => {
+        Dictionary<Type, GameObject> dic = new Dictionary<Type, GameObject>();
+
+        Dictionary<int, Type> idToTypes = ManagerManager.Resolve<CardManager>().GetAllCardIDs.Value;
+
+        foreach (GameObject obj in staticCardPrefabList)
+        {
+            dic.TryAdd(idToTypes[obj.GetComponent<SelectableCard>().cardID], obj);
+        }
+        return dic;
+    });
+    public Lazy<Dictionary<Type, GameObject>> EnemyToPrefab = new Lazy<Dictionary<Type, GameObject>>(() => {
+        Dictionary<Type, GameObject> dic = new Dictionary<Type, GameObject>();
+
+        Dictionary<int, Type> idToTypes = ManagerManager.Resolve<CardManager>().GetAllCardIDs.Value;
+
+        foreach (GameObject obj in EnemyPrefabList)
+        {
+            dic.TryAdd(idToTypes[obj.GetComponent<SelectableEnemy>().enemyId], obj);
+        }
+        return dic;
+    });
 }
 
 
