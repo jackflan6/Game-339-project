@@ -23,14 +23,13 @@ public class CombatSystem : IManager
         {
             damageDealt = 0;
         }
-        enemy.HP -= damageDealt;
-        enemy.HPText.text = "HP: " +enemy.HP;
-        if (enemy.HP <= 0)
+        enemy.HP.Value -= damageDealt;
+        if (enemy.HP.Value <= 0)
         {
             enemyManager.enemies.Remove(enemy);
             enemy.gameObject.SetActive(false);
         }
-        return enemy.HP;
+        return enemy.HP.Value;
     }
 
     public int DealDamageToPlayer(Player player, Enemy enemy)
@@ -47,7 +46,7 @@ public class CombatSystem : IManager
             damageDealt = 0;
         }
         player.HP -= damageDealt;
-        player.ShieldText.text = "Shield: " + player.currentShield;
+        player.ShieldText.text = "Shield: " + player.currentShield; ////update shield text
         
         return player.HP;
     }
@@ -75,20 +74,19 @@ public class CombatSystem : IManager
 
     public int BurnDamageToEnemy(Enemy enemy)
     {
-        enemy.HP -= enemy.currentBurnDamage;
+        enemy.HP.Value -= enemy.currentBurnDamage;
         enemy.currentBurnDamage /= 2;
         if (enemy.currentBurnDamage == 0)
         {
             enemy.isBurning = false;
         }
-        if (enemy.HP <= 0)
+        if (enemy.HP.Value <= 0)
         {
             enemyManager.enemies.Remove(enemy);
             enemy.gameObject.SetActive(false);
         }
-        enemy.HPText.text = "HP: " + enemy.HP;
 
-        return enemy.HP;
+        return enemy.HP.Value;
     }
 
     public void ApplyBurnDamageToEnemy(Enemy enemy, Card card)

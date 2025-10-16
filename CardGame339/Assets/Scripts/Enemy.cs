@@ -1,25 +1,24 @@
+using System;
 using Game.Runtime;
 using TMPro;
 using UnityEditor.EngineDiagnostics;
 using UnityEngine;
 
+[Serializable]
+public class ObservableInt : ObservableValue<int>, ISerializationCallbackReceiver
+{
+    [SerializeField] private int initialValue;
+
+    public void OnAfterDeserialize() => Value = initialValue;
+    public void OnBeforeSerialize() => initialValue = Value;
+}
+
 public class Enemy : ObserverMonoBehaviour, IEnemy
 {
     private readonly IGameLogger _logger;
-
-    private ObservableValue<int> _observableHp;
-    
-    private ObservableValue<int> observableHp => _observableHp ??= new ObservableValue<int>(UiHp);
-
-    public int HP
-    {
-        get => observableHp.Value;
-        set => observableHp.Value = value;
-    }
-
-    public int UiHp;
     
     public int Attack;
+    public ObservableInt HP;
 
     public int Defense;
 
@@ -37,8 +36,9 @@ public class Enemy : ObserverMonoBehaviour, IEnemy
 
     public Enemy(int hp, int attack, int defense, string name, IGameLogger logger)
     {
+        HP = new ObservableInt();
         _logger = logger;
-        HP = hp;
+        HP.Value = hp;
         Attack = attack;
         Defense = defense;
         Name = name;
@@ -46,7 +46,7 @@ public class Enemy : ObserverMonoBehaviour, IEnemy
 
     public bool IsDead()
     {
-        if (HP <= 0)
+        if (HP.Value <= 0)
         {
             return true;
         }
@@ -56,7 +56,7 @@ public class Enemy : ObserverMonoBehaviour, IEnemy
 
     protected override void Subscribe()
     {
-        observableHp.ChangeEvent += ObservableHpOnChangeEvent;
+        HP.ChangeEvent += ObservableHpOnChangeEvent;
     }
 
     private void ObservableHpOnChangeEvent(int obj)
@@ -66,6 +66,6 @@ public class Enemy : ObserverMonoBehaviour, IEnemy
 
     protected override void Unsubscribe()
     {
-        observableHp.ChangeEvent -= ObservableHpOnChangeEvent;
+        HP.ChangeEvent -= ObservableHpOnChangeEvent;
     }
 }

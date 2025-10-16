@@ -331,8 +331,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ef346479f72174fa853b68f1a7272b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  HP: 5
   Attack: 5
+  HP:
+    initialValue: 7
   Defense: 5
   Name: 1
   currentShield: 0
@@ -1030,7 +1031,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -143.45, y: -32.36}
+  m_AnchoredPosition: {x: 26, y: -32.359}
   m_SizeDelta: {x: 289.57654, y: 64.37741}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &866089364
@@ -1381,7 +1382,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -143.45, y: -62}
+  m_AnchoredPosition: {x: 26, y: -67.709}
   m_SizeDelta: {x: 289.57654, y: 53.2014}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1131541030
@@ -1857,8 +1858,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ef346479f72174fa853b68f1a7272b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  HP: 5
   Attack: 5
+  HP:
+    initialValue: 8
   Defense: 5
   Name: 1
   currentShield: 0
@@ -2313,8 +2315,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ef346479f72174fa853b68f1a7272b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  HP: 5
   Attack: 5
+  HP:
+    initialValue: 6
   Defense: 5
   Name: 1
   currentShield: 0
