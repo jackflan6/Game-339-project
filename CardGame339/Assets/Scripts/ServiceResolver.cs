@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -54,7 +55,7 @@ public class ServiceResolver : MonoBehaviour
     {
         foreach (Func<object> manager in ManagerManager.managers)
         {
-            ((IManager)manager()).Update();
+            (manager() as IManager).Update();
         }
     }
 
@@ -72,3 +73,5 @@ public class ServiceResolver : MonoBehaviour
         ManagerManager.Resolve<TurnSystem>().SelectCardToPlay(card);
     }
 }
+
+
