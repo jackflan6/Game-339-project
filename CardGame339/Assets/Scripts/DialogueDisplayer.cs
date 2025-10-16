@@ -19,7 +19,7 @@ public class DialogueDisplayer : MonoBehaviour
         
     }
 
-    public void DisplayDialogue(string message, GameObject speaker)
+    public void DisplayCharacterDialogue(string message, GameObject speaker)
     {
         if (speaker.GetComponentInChildren<TextMeshProUGUI>() != null)
         {

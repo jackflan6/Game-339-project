@@ -70,7 +70,7 @@ public class CombatSystem : IManager
         {
             enemy.AddComponent<DialogueDisplayer>();
         }
-        enemy.GetComponent<DialogueDisplayer>().DisplayDialogue(message, enemy.gameObject);
+        enemy.GetComponent<DialogueDisplayer>().DisplayCharacterDialogue(message, enemy.gameObject);
     }
 
     public int BurnDamageToEnemy(Enemy enemy)
