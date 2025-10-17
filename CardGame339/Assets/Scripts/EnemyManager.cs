@@ -9,6 +9,13 @@ public class EnemyManager : IManager
     public event Action<Enemy> enemyAdded;
     public event Action<Enemy> enemyRemoved;
 
+    public List<string> enemyTaunts = new List<string>()
+    {
+        "Let's see if you can handle this next attack!",
+        "I'll take you down!",
+        "You were a fool to challenge me!"
+    };
+
     public void SetUpEnemies()
     {
         foreach (Type enemy in enemiesToCreate)

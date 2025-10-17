@@ -22,14 +22,12 @@ public class CombatSystem : IManager
         {
             damageDealt = 0;
         }
-        enemy.HP -= damageDealt;
-        //enemy.HPText.text = "HP: " +enemy.HP;
-        if (enemy.HP <= 0)
+        enemy.HP.Value -= damageDealt;
+        if (enemy.HP.Value <= 0)
         {
             enemyManager.DestroyEnemy(enemy);
         }
-        ManagerManager.Resolve<IGameLogger>().print("current enemy hp " + enemy.HP);
-        return enemy.HP;
+        return enemy.HP.Value;
     }
 
     public int DealDamageToPlayer(Player player, Enemy enemy)
@@ -62,21 +60,29 @@ public class CombatSystem : IManager
         return player.currentShield.Value;
     }
 
+    public void EnemyTalk(Enemy enemy, string message)
+    {
+        if (enemy.GetComponent<DialogueDisplayer>() == null)
+        {
+            enemy.AddComponent<DialogueDisplayer>();
+        }
+        enemy.GetComponent<DialogueDisplayer>().DisplayCharacterDialogue(message, enemy.gameObject);
+    }
+
     public int BurnDamageToEnemy(Enemy enemy)
     {
-        enemy.HP -= enemy.currentBurnDamage;
+        enemy.HP.Value -= enemy.currentBurnDamage;
         enemy.currentBurnDamage /= 2;
         if (enemy.currentBurnDamage == 0)
         {
             enemy.isBurning = false;
         }
-        if (enemy.HP <= 0)
+        if (enemy.HP.Value <= 0)
         {
             enemyManager.DestroyEnemy(enemy);
         }
-        //enemy.HPText.text = "HP: " + enemy.HP;
 
-        return enemy.HP;
+        return enemy.HP.Value;
     }
 
     public void ApplyBurnDamageToEnemy(Enemy enemy, Card card)

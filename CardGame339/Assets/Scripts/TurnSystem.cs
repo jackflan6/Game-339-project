@@ -37,6 +37,22 @@ public class TurnSystem : IManager
         foreach (Enemy enemy in enemyManager.enemies)
         {
             enemy.DoAction(player,enemy);
+            int chooseAction=random.RandomNumber(3);
+            if (chooseAction == 0)
+            {
+                combatSystem.DealDamageToPlayer(player, enemy);
+                UpdateHPText("HP: " + player.HP);
+            }
+
+            if (chooseAction == 1)
+            {
+                combatSystem.GenerateEnemyShield(enemy);
+            }
+
+            if (chooseAction == 2)
+            {
+                combatSystem.EnemyTalk(enemy,enemyManager.enemyTaunts[random.RandomNumber(enemyManager.enemyTaunts.Count)]);
+            }
         }
 
         if (player.HP.Value <= 0)
