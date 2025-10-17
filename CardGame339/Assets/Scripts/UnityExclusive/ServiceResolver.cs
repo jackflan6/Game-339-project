@@ -11,8 +11,12 @@ public class ServiceResolver : MonoBehaviour
     public int playerHP;
     public string playerName;
 
+    //The logic for these two list are just to set up the enemys.
+    //They will eventualy need to be removed when the rest of the logic is created
     public List<GameObject> allCardsPrefabs;
-    public List<Enemy> allEnemys;
+    public List<GameObject> allEnemyPrefabs;
+
+
     public UIManager UImanager;
     public GameObjectManager gameObjectManager;
     public UnityGameLogger unityLogger;
@@ -29,7 +33,6 @@ public class ServiceResolver : MonoBehaviour
         ManagerManager.registerDependency(() => new GameManager());
         ManagerManager.registerDependency(() => new Player(playerHP, 0, playerName));
         ManagerManager.registerDependency(() => new CardManager(handSize));
-        ManagerManager.registerDependency(() => allEnemys);
         
         List<Card> allCards = new List<Card>();
         foreach (GameObject gam in allCardsPrefabs)
@@ -37,6 +40,14 @@ public class ServiceResolver : MonoBehaviour
             allCards.Add((Card)Activator.CreateInstance(ManagerManager.Resolve<CardManager>().GetAllCardIDs.Value[gam.GetComponent<SelectableCard>().cardID])) ;
         }
         ManagerManager.Resolve<CardManager>().AllCards = allCards;
+
+
+        foreach (GameObject gam in allEnemyPrefabs)
+        {
+            ManagerManager.Resolve<EnemyManager>().enemiesToCreate.Add(ManagerManager.Resolve<EnemyManager>().GetAllEnemyIDs.Value[gam.GetComponent<SelectableEnemy>().enemyID]);
+        }
+
+
 
         foreach (Func<object> manager in ManagerManager.managers)
         {

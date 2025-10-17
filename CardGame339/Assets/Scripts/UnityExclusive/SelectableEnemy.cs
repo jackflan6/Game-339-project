@@ -1,20 +1,14 @@
 using System;
 using UnityEngine;
 
-public class SelectableCard : MonoBehaviour
+public class SelectableEnemy : MonoBehaviour
 {
 
     //UnityEvent SelectedCard;
     bool hover;
-    public int cardID;
-    /*    public string Element;
-        public int Damage;
-        public int ShieldValue;
-        public int BurnDamage;
-        public int Heal;
-        public int ManaCost;*/
-    public Card origionalCard;
-    public Vector2 cardPosition;
+    public int enemyID;
+    public Enemy origionalEnemy;
+    public Vector2 EnemyPosition;
     public float acceleration = 10;
     void Start()
     {
@@ -30,17 +24,17 @@ public class SelectableCard : MonoBehaviour
     private float speed;
     private void Update()
     {
-        if ((cardPosition - (Vector2)transform.position).magnitude < speed)
-        {
-            speed = ((Vector2)transform.position + cardPosition).magnitude/(speed * Time.deltaTime);
-        } else
-        {
-            speed += acceleration * Time.deltaTime;
-        }
-        Vector2 dir = cardPosition - (Vector2)transform.position;
-        transform.position =dir * speed * Time.deltaTime;
+        //if ((EnemyPosition - (Vector2)transform.position).magnitude < speed)
+        //{
+        //    speed = ((Vector2)transform.position + EnemyPosition).magnitude / (speed * Time.deltaTime);
+        //} else
+        //{
+        //    speed += acceleration * Time.deltaTime;
+        //}
+        //Vector2 dir = EnemyPosition - (Vector2)transform.position;
+        //transform.position =dir * speed * Time.deltaTime;
 
-      // transform.position = cardPosition;
+       transform.position = EnemyPosition;
     }
     public void OnMouseMove(Vector2 pos)
     {
@@ -57,7 +51,7 @@ public class SelectableCard : MonoBehaviour
     {
         if (hover)
         {
-           ManagerManager.Resolve<TurnSystem>().SelectCardToPlay(origionalCard);
+           ManagerManager.Resolve<TurnSystem>().SelectEnemyToAttack(origionalEnemy);
         }
     }
 }

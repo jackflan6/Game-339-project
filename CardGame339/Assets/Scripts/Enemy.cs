@@ -1,27 +1,14 @@
 using System;
 using Game.Runtime;
 using TMPro;
-using UnityEditor.EngineDiagnostics;
-using UnityEngine;
+using Unity.VisualScripting;
 
-[Serializable]
-public class ObservableInt : ObservableValue<int>, ISerializationCallbackReceiver
+
+public abstract class Enemy : IEnemy
 {
-    [SerializeField] private int initialValue;
-
-    public void OnAfterDeserialize() => Value = initialValue;
-    public void OnBeforeSerialize() => initialValue = Value;
-}
-
-public class Enemy : ObserverMonoBehaviour, IEnemy
-{
-    private readonly IGameLogger _logger;
-    
-    public int Attack;
-    public ObservableInt HP;
-
+    public abstract int HP { get; set; }
+    public abstract int Attack { get; set; }
     public int Defense;
-
     public string Name;
 
 
@@ -34,15 +21,7 @@ public class Enemy : ObserverMonoBehaviour, IEnemy
     public TextMeshProUGUI HPText;
     public TextMeshProUGUI DialogueText;
 
-    public Enemy(int hp, int attack, int defense, string name, IGameLogger logger)
-    {
-        HP = new ObservableInt();
-        _logger = logger;
-        HP.Value = hp;
-        Attack = attack;
-        Defense = defense;
-        Name = name;
-    }
+    public abstract void DoAction(Player player,Enemy enemy);
 
     public bool IsDead()
     {
