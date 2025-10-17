@@ -1,18 +1,12 @@
 using TMPro;
-using UnityEngine;
+using Unity.VisualScripting;
 
-public class Enemy : MonoBehaviour, IEnemy
+
+public abstract class Enemy : IEnemy
 {
-    private readonly IGameLogger _logger;
-
-
-    public int HP;
-
-
-    public int Attack;
-
+    public abstract int HP { get; set; }
+    public abstract int Attack { get; set; }
     public int Defense;
-
     public string Name;
 
 
@@ -24,14 +18,7 @@ public class Enemy : MonoBehaviour, IEnemy
 
     public TextMeshProUGUI HPText;
 
-    public Enemy(int hp, int attack, int defense, string name, IGameLogger logger)
-    {
-        _logger = logger;
-        HP = hp;
-        Attack = attack;
-        Defense = defense;
-        Name = name;
-    }
+    public abstract void DoAction(Player player,Enemy enemy);
 
     public bool IsDead()
     {

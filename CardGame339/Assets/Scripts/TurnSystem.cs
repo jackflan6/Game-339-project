@@ -1,44 +1,29 @@
 using System.Collections.Generic;
 using TMPro;
-using UnityEngine.UI;
 
 public class TurnSystem : IManager
 {
-    public EnemyManager enemyManager;
+    public EnemyManager enemyManager = ManagerManager.Resolve<EnemyManager>();
 
-    public CombatSystem combatSystem;
+    public CombatSystem combatSystem = ManagerManager.Resolve<CombatSystem>();
 
-    public CardManager cardManager;
+    public CardManager cardManager = ManagerManager.Resolve<CardManager>();
     public Enemy EnemyToAttack;
 
-    public IRandom random;
-    public Player player;
+    public IRandom random = ManagerManager.Resolve<IRandom>();
+    public Player player = ManagerManager.Resolve<Player>();
 
     public int MaxMana;
-    public int currentMana;
+    public ValueHolder<int> currentMana = new ValueHolder<int>();
     public bool isPlayerTurn;
     public Card cardToPlay;
-    public Text ManaText;
-    public Text PlayerHP;
 
     public TurnSystem(int maxMana)
     {
         MaxMana = maxMana;
-        currentMana = MaxMana;
+        currentMana.Value = MaxMana;
     }
 
-    public override void Awake()
-    {
-        enemyManager = ManagerManager.Resolve<EnemyManager>();
-        combatSystem = ManagerManager.Resolve<CombatSystem>();
-        cardManager = ManagerManager.Resolve<CardManager>();
-        random = ManagerManager.Resolve<IRandom>();
-        player = ManagerManager.Resolve<Player>();
-        ManaText = ManagerManager.Resolve<UIManager>().manaText;
-        PlayerHP = ManagerManager.Resolve<UIManager>().playerHP;
-        ManaText.text = "Mana: " + currentMana;
-        PlayerHP.text = "HP: " + player.HP;
-    }
     public override void Start()
     {
         cardManager.SetUpStartingHand();
@@ -51,20 +36,10 @@ public class TurnSystem : IManager
         BurnDamageToAllEnemies();
         foreach (Enemy enemy in enemyManager.enemies)
         {
-            int chooseAction=random.RandomNumber(2);
-            if (chooseAction == 0)
-            {
-                combatSystem.DealDamageToPlayer(player, enemy);
-                UpdateHPText("HP: " + player.HP);
-            }
-
-            if (chooseAction == 1)
-            {
-                combatSystem.GenerateEnemyShield(enemy);
-            }
+            enemy.DoAction(player,enemy);
         }
 
-        if (player.HP <= 0)
+        if (player.HP.Value <= 0)
         {
             logger.print("player lost!");
         }
@@ -77,8 +52,7 @@ public class TurnSystem : IManager
        logger.print("player turn!");
        isPlayerTurn = true;
        cardManager.DrawCard();
-       currentMana = MaxMana;
-       UpdateText("Mana: "+currentMana);
+       currentMana.Value = MaxMana;
     }
 
     public void BurnDamageToAllEnemies()
@@ -97,18 +71,15 @@ public class TurnSystem : IManager
         //user input in unity
         if (isPlayerTurn && hasClickedOnCard())
         {
-            currentMana -= cardToPlay.ManaCost;
+            currentMana.Value -= cardToPlay.ManaCost;
             EnemyToAttack = enemy;
             cardManager.PlayCard(cardToPlay,player,EnemyToAttack);
-            UpdateText("Mana: " + currentMana);
-            UpdateHPText("HP: " + player.HP);
-            UpdateShieldText("Shield: " + player.currentShield);
             cardToPlay = null;
         }
     }
     public void SelectCardToPlay(Card card)
     {
-        if (isPlayerTurn && card.ManaCost<=currentMana)
+        if (isPlayerTurn && card.ManaCost <= currentMana.Value)
         {
             cardToPlay = card;
         }
@@ -134,19 +105,6 @@ public class TurnSystem : IManager
         return false;
     }
 
-    public void UpdateText(string message)
-    {
-        ManaText.text = message;
-    }
-
-    public void UpdateHPText(string message)
-    {
-        PlayerHP.text = message;
-    }
-
-    public void UpdateShieldText(string message)
-    {
-        player.ShieldText.text = message;
-    }
+    
     
 }

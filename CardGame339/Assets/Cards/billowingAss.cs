@@ -1,14 +1,17 @@
 
-public class billowingAss : Card
+public class BillowingAss : Card
 {
-    //it is nessasary to have every card have a static int for its ID
+    //::::Important::::
+    //It is nessasary to have every card have a static int for its ID.
+    //This need to be called "cardID" and reflected in the selectableCard object.
+    //It is not forced by the interface so you just need to remember
     public static int cardID = 1;
-    //public override int cardID { get { return staticCardID; } }//this is also needed
+
     public override int ManaCost { get; } = 1;
-    public override int Damage { get; } = 1;
+    public override int Damage { get; } = 3;
 
     public override void Effect(IEnemy enemy)
     {
-        
+        //shit in there graveyard
     }
 }

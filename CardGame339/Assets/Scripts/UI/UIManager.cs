@@ -30,19 +30,9 @@ public class UIManager : MonoBehaviour
             mousepos = Mouse.current.position.value;
             onMouseMove.Invoke(mousepos);
         }
-        if (Mouse.current.press.value >0 && mousepos != null && onMousePress != null)
+        if (Mouse.current.press.wasPressedThisFrame&& mousepos != null && onMousePress != null)
         {
             onMousePress.Invoke(mousepos);
         }
-    }
-    public void subToOnMouseMove(Action<Vector2> action)
-    {
-        Debug.Log("what");
-        onMouseMove += action;
-    }
-    public void subToOnMousePress(Action<Vector2> action)
-    {
-        Debug.Log("what");
-        onMousePress += action;
     }
 }

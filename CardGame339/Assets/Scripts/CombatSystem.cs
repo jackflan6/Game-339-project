@@ -1,4 +1,4 @@
-using UnityEngine;
+
 public class CombatSystem : IManager
 {
     // enemy attack dmg
@@ -23,32 +23,31 @@ public class CombatSystem : IManager
             damageDealt = 0;
         }
         enemy.HP -= damageDealt;
-        enemy.HPText.text = "HP: " +enemy.HP;
+        //enemy.HPText.text = "HP: " +enemy.HP;
         if (enemy.HP <= 0)
         {
-            enemyManager.enemies.Remove(enemy);
-            enemy.gameObject.SetActive(false);
+            enemyManager.DestroyEnemy(enemy);
         }
+        ManagerManager.Resolve<IGameLogger>().print("current enemy hp " + enemy.HP);
         return enemy.HP;
     }
 
     public int DealDamageToPlayer(Player player, Enemy enemy)
     {
         int damageDealt = enemy.Attack;
-        damageDealt -= player.currentShield;
-        player.currentShield -= enemy.Attack;
-        if (player.currentShield < 0)
+        damageDealt -= player.currentShield.Value;
+        player.currentShield.Value -= enemy.Attack;
+        if (player.currentShield.Value < 0)
         {
-            player.currentShield = 0;
+            player.currentShield.Value = 0;
         }
         if (damageDealt < 0)
         {
             damageDealt = 0;
         }
-        player.HP -= damageDealt;
-        player.ShieldText.text = "Shield: " + player.currentShield;
+        player.HP.Value -= damageDealt;
         
-        return player.HP;
+        return player.HP.Value;
     }
     
     public int GenerateEnemyShield(Enemy enemy)
@@ -59,8 +58,8 @@ public class CombatSystem : IManager
 
     public int GeneratePlayerShield(Player player, Card card)
     {
-        player.currentShield += card.ShieldValue;
-        return player.currentShield;
+        player.currentShield.Value += card.ShieldValue;
+        return player.currentShield.Value;
     }
 
     public int BurnDamageToEnemy(Enemy enemy)
@@ -73,10 +72,9 @@ public class CombatSystem : IManager
         }
         if (enemy.HP <= 0)
         {
-            enemyManager.enemies.Remove(enemy);
-            enemy.gameObject.SetActive(false);
+            enemyManager.DestroyEnemy(enemy);
         }
-        enemy.HPText.text = "HP: " + enemy.HP;
+        //enemy.HPText.text = "HP: " + enemy.HP;
 
         return enemy.HP;
     }
@@ -88,7 +86,7 @@ public class CombatSystem : IManager
 
     public void HealPlayer(Player player, Card card)
     {
-        player.HP += card.Heal;
+        player.HP.Value += card.Heal;
     }
     
     

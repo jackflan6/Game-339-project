@@ -13,7 +13,9 @@ public class GameObjectManager : MonoBehaviour
     private static List<GameObject> allCreatedCards = new List<GameObject>();
 
     [SerializeReference]
-    private static List<GameObject> EnemyPrefabList;
+    public List<GameObject> EnemyPrefabList;
+    private static List<GameObject> staticEnemyPrefabList;
+    private static List<GameObject> allCreatedEnemys = new List<GameObject>();
 
 
 
@@ -21,21 +23,25 @@ public class GameObjectManager : MonoBehaviour
     {
        int i = 0;
        foreach (GameObject card in allCreatedCards)
-        {
-            i++;
-            card.GetComponent<SelectableCard>().cardPosition = new Vector2(2.5f - 2.5f * i, -2.5f);
-        }
+       {
+           i++;
+           card.GetComponent<SelectableCard>().cardPosition = new Vector2(2.5f - 2.5f * i, -2.5f);
+       }
+
     }
 
     private void Start()
     {
         staticCardPrefabList = CardPrefabList;
+        staticEnemyPrefabList = EnemyPrefabList;
 
         ManagerManager.Resolve<CardManager>().CardDraw += createCard;
         ManagerManager.Resolve<CardManager>().CardPlayed += DestroyCard;
-        GameObject.FindGameObjectWithTag("ServiceResolver").GetComponent<ServiceResolver>().gameObjectManager = this;
-
+        ManagerManager.Resolve<EnemyManager>().enemyAdded += createEnemy;
+        ManagerManager.Resolve<EnemyManager>().enemyRemoved += DestroyEnemy;
     }
+
+
     public void createCard(Card card)
     {
         Debug.Log("created card");
@@ -43,6 +49,16 @@ public class GameObjectManager : MonoBehaviour
         allCreatedCards.Add(c);
         c.GetComponent<SelectableCard>().origionalCard = card;
         UpdateCardPos();
+    }
+    public void UpdateEnemyPos()
+    {
+        int i = 0;
+        foreach (GameObject enemy in allCreatedEnemys)
+        {
+            i++;
+            enemy.GetComponent<SelectableEnemy>().EnemyPosition = new Vector2(6f - 4f * i, 2f);
+        }
+
     }
 
     public void DestroyCard(Card card)
@@ -59,6 +75,27 @@ public class GameObjectManager : MonoBehaviour
         }
     }
 
+    public void createEnemy(Enemy enemy)
+    {
+        Debug.Log("created enemy");
+        GameObject c = Instantiate(EnemyToPrefab.Value[enemy.GetType()]);
+        allCreatedEnemys.Add(c);
+        c.GetComponent<SelectableEnemy>().origionalEnemy = enemy;
+        UpdateEnemyPos();
+    }
+
+    public void DestroyEnemy(Enemy enemy)
+    {
+        foreach (GameObject obj in allCreatedEnemys)
+        {
+            if (obj.GetComponent<SelectableEnemy>().origionalEnemy == enemy)
+            {
+                allCreatedEnemys.Remove(obj);
+                Destroy(obj);
+                return;
+            }
+        }
+    }
     [Serializable]
     private class PrefabAndName
     {
@@ -80,11 +117,14 @@ public class GameObjectManager : MonoBehaviour
     public Lazy<Dictionary<Type, GameObject>> EnemyToPrefab = new Lazy<Dictionary<Type, GameObject>>(() => {
         Dictionary<Type, GameObject> dic = new Dictionary<Type, GameObject>();
 
-        Dictionary<int, Type> idToTypes = ManagerManager.Resolve<CardManager>().GetAllCardIDs.Value;
+        Dictionary<int, Type> idToTypes = ManagerManager.Resolve<EnemyManager>().GetAllEnemyIDs.Value;
 
-        foreach (GameObject obj in EnemyPrefabList)
+        foreach (GameObject obj in staticEnemyPrefabList)
         {
-            dic.TryAdd(idToTypes[obj.GetComponent<SelectableEnemy>().enemyId], obj);
+            if (!dic.TryAdd(idToTypes[obj.GetComponent<SelectableEnemy>().enemyID], obj))
+            {
+                Debug.Log("failed to find id for " + obj.name);
+            }
         }
         return dic;
     });

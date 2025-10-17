@@ -1,21 +1,51 @@
+using System;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
 
 public class EnemyManager : IManager
 {
-    private readonly IGameLogger _logger;
-    public List<Enemy> enemies = ManagerManager.Resolve<List<Enemy>>();
+    public List<Type> enemiesToCreate = new List<Type>();
+    public List<Enemy> enemies = new List<Enemy>();
+    public event Action<Enemy> enemyAdded;
+    public event Action<Enemy> enemyRemoved;
 
     public void SetUpEnemies()
     {
-       // CreateEnemy(5, 5, 5, "1", _logger);
-      //  CreateEnemy(7, 7, 7, "2", _logger);
+        foreach (Type enemy in enemiesToCreate)
+        {
+            CreateEnemy(enemy);
+        }
     }
-    
-    public Enemy CreateEnemy(int hp, int attack, int defense, string name, IGameLogger logger)
+
+    public void CreateEnemy(Type enemy)
     {
-        Enemy enemy = new Enemy(hp, attack, defense, name, logger);
-        enemies.Add(enemy);
-        return enemy;
+        Enemy enemyObj = (Enemy)Activator.CreateInstance(enemy);
+        enemies.Add(enemyObj);
+        if (enemyAdded != null)
+        {
+            enemyAdded.Invoke(enemyObj);
+        } else
+        {
+            ManagerManager.Resolve<IGameLogger>().print("GameObject was not created");
+        }
+        ManagerManager.Resolve<IGameLogger>().print("created " + enemy.Name);
     }
+
+    public void DestroyEnemy(Enemy enemy)
+    {
+        if (enemyRemoved != null) enemyRemoved.Invoke(enemy);
+        enemies.Remove(enemy);
+    }
+    public Lazy<Dictionary<int, Type>> GetAllEnemyIDs = new Lazy<Dictionary<int, Type>>(() =>
+    {
+        Dictionary<int, Type> EnemyIDs = new Dictionary<int, Type>();
+        IEnumerable<Type> c = AppDomain.CurrentDomain.GetAssemblies()
+            .SelectMany(assembly => assembly.GetTypes())
+            .Where(type => type.IsSubclassOf(typeof(Enemy)));
+        foreach (Type t in c)
+        {
+            EnemyIDs.TryAdd((int)t.GetField("enemyID").GetValue(null), t);
+        }
+        return EnemyIDs;
+    });
 }
