@@ -6,6 +6,7 @@ TagManager:
   tags:
   - UIManager
   - ServiceResolver
+  - GameObjectManager
   layers:
   - Default
   - TransparentFX

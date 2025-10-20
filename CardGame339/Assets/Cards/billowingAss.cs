@@ -12,6 +12,5 @@ public class BillowingAss : Card
 
     public override void Effect(IEnemy enemy)
     {
-        //shit in there graveyard
     }
 }

@@ -60,14 +60,6 @@ public class CombatSystem : IManager
         return player.currentShield.Value;
     }
 
-    public void EnemyTalk(Enemy enemy, string message)
-    {
-        if (enemy.GetComponent<DialogueDisplayer>() == null)
-        {
-            enemy.AddComponent<DialogueDisplayer>();
-        }
-        enemy.GetComponent<DialogueDisplayer>().DisplayCharacterDialogue(message, enemy.gameObject);
-    }
 
     public int BurnDamageToEnemy(Enemy enemy)
     {

@@ -21,11 +21,13 @@ public class ServiceResolver : MonoBehaviour
     public GameObjectManager gameObjectManager;
     public UnityGameLogger unityLogger;
     public UnityRandom unityRandom;
+    public UnityDialogSys unityDialog;
     private void Awake()
     {
         //you can only register one thing of each type
         ManagerManager.register((IGameLogger)unityLogger);
         ManagerManager.register((IRandom)unityRandom);
+        ManagerManager.register((IDialog)unityDialog);
         ManagerManager.register(UImanager);
         ManagerManager.registerDependency(() => new EnemyManager());
         ManagerManager.registerDependency(() => new CombatSystem());
@@ -33,7 +35,7 @@ public class ServiceResolver : MonoBehaviour
         ManagerManager.registerDependency(() => new GameManager());
         ManagerManager.registerDependency(() => new Player(playerHP, 0, playerName));
         ManagerManager.registerDependency(() => new CardManager(handSize));
-        
+
         List<Card> allCards = new List<Card>();
         foreach (GameObject gam in allCardsPrefabs)
         {

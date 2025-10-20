@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public interface IEnemy
 {
-    public int HP { get; set; }
+    public ValueHolder<int> HP { get; set; }
     public int Attack { get; set; }
     public virtual void damage(int val) { }
     public virtual void onNewTurn() { }
