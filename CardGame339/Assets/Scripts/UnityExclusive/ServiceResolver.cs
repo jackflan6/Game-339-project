@@ -35,6 +35,7 @@ public class ServiceResolver : MonoBehaviour
         ManagerManager.registerDependency(() => new GameManager());
         ManagerManager.registerDependency(() => new Player(playerHP, 0, playerName));
         ManagerManager.registerDependency(() => new CardManager(handSize));
+        ManagerManager.registerDependency(()=> unityDialog);
 
         List<Card> allCards = new List<Card>();
         foreach (GameObject gam in allCardsPrefabs)
