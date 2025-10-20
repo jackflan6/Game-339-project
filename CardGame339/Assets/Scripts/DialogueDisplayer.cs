@@ -21,9 +21,9 @@ public class DialogueDisplayer : MonoBehaviour
 
     public void DisplayCharacterDialogue(string message, GameObject speaker)
     {
-        if (speaker.GetComponentInChildren<TextMeshProUGUI>() != null)
+        if (speaker.GetComponentInChildren<TextMeshPro>() != null)
         {
-            speaker.GetComponentInChildren<TextMeshProUGUI>().text = message;
+            speaker.GetComponentInChildren<TextMeshPro>().text = message;
             print("text created with message: " + message);
         }
         else
@@ -31,4 +31,6 @@ public class DialogueDisplayer : MonoBehaviour
             print("text mesh is null");
         }
     }
+    
+    
 }
