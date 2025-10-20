@@ -8,6 +8,9 @@ public class TurnSystem : IManager
     public CombatSystem combatSystem = ManagerManager.Resolve<CombatSystem>();
 
     public CardManager cardManager = ManagerManager.Resolve<CardManager>();
+
+    public UnityDialogSys UnityDialogSys = ManagerManager.Resolve<UnityDialogSys>();
+    
     public Enemy EnemyToAttack;
 
     public IRandom random = ManagerManager.Resolve<IRandom>();
@@ -43,6 +46,7 @@ public class TurnSystem : IManager
         if (player.HP.Value <= 0)
         {
             logger.print("player lost!");
+            UnityDialogSys.PrepareBattleEndDialogue(2);
         }
 
         PlayerTurn();
@@ -92,6 +96,7 @@ public class TurnSystem : IManager
         if (enemyManager.enemies.Count == 0)
         {
             logger.print("Player won!");
+            UnityDialogSys.PrepareBattleEndDialogue(1);
         }
         EnemiesTurn();
     }
