@@ -6,6 +6,7 @@ public class SelectableEnemy : MonoBehaviour
 
     //UnityEvent SelectedCard;
     bool hover;
+    [HideInInspector]
     public int enemyID;
     public Enemy origionalEnemy;
     public Vector2 EnemyPosition;
