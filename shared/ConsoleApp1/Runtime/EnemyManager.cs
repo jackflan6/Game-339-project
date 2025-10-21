@@ -1,28 +1,85 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace ConsoleApp1
+public class EnemyManager : IManager
 {
-    public class EnemyManager
-    {
-        private readonly IGameLogger _logger;
-        public List<Enemy> enemies = new List<Enemy>();
-
-        public EnemyManager(IGameLogger logger)
-    {
-        _logger = logger;
-    }
-
-        public void SetUpEnemies()
-    {
-        CreateEnemy(5, 5, 5, "1", _logger);
-        CreateEnemy(7, 7, 7, "2", _logger);
-    }
+    public IGameLogger logger { get; }
+    public List<Type> enemiesToCreate = new List<Type>();
+    public List<Enemy> enemies = new List<Enemy>();
+    public event Action<Enemy> enemyAdded;
+    public event Action<Enemy> enemyRemoved;
     
-        public Enemy CreateEnemy(int hp, int attack, int defense, string name, IGameLogger logger)
+    #if !NOT_UNITY
+    public EnemyManager()
     {
-        Enemy enemy = new Enemy(hp, attack, defense, name, logger);
-        enemies.Add(enemy);
-        return enemy;
+        logger = ManagerManager.Resolve<IGameLogger>();
     }
+    #endif
+
+    public EnemyManager(IGameLogger log)
+    {
+        logger = log;
+    }
+
+    public List<string> enemyTaunts = new List<string>()
+    {
+        "Let's see if you can handle this next attack!",
+        "I'll take you down!",
+        "You were a fool to challenge me!"
+    };
+
+    public void SetUpEnemies()
+    {
+        foreach (Type enemy in enemiesToCreate)
+        {
+            CreateEnemy(enemy);
+        }
+    }
+
+    public void CreateEnemy(Type enemy)
+    {
+        Enemy enemyObj = (Enemy)Activator.CreateInstance(enemy);
+        enemies.Add(enemyObj);
+        if (enemyAdded != null)
+        {
+            enemyAdded.Invoke(enemyObj);
+        } else
+        {
+            ManagerManager.Resolve<IGameLogger>().print("GameObject was not created");
+        }
+        ManagerManager.Resolve<IGameLogger>().print("created " + enemy.Name);
+    }
+
+    public void DestroyEnemy(Enemy enemy)
+    {
+        if (enemyRemoved != null) enemyRemoved.Invoke(enemy);
+        enemies.Remove(enemy);
+    }
+    public Lazy<Dictionary<int, Type>> GetAllEnemyIDs = new Lazy<Dictionary<int, Type>>(() =>
+    {
+        Dictionary<int, Type> EnemyIDs = new Dictionary<int, Type>();
+        IEnumerable<Type> c = AppDomain.CurrentDomain.GetAssemblies()
+            .SelectMany(assembly => assembly.GetTypes())
+            .Where(type => type.IsSubclassOf(typeof(Enemy)));
+        foreach (Type t in c)
+        {
+            EnemyIDs.TryAdd((int)t.GetField("enemyID").GetValue(null), t);
+        }
+        return EnemyIDs;
+    });
+    public void Start()
+    {
+        
+    }
+
+    public void Awake()
+    {
+      
+    }
+
+    public void Update()
+    {
+       
     }
 }

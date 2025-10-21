@@ -1,25 +1,24 @@
-namespace ConsoleApp1
+using System;
+
+public abstract class Card : ICard
 {
-    public class Card
+    public string Element = "";
+    public int ShieldValue;
+    public int BurnDamage;
+    public int Heal;
+
+    //public abstract int cardID { get; }
+    public abstract int ManaCost { get;}
+    public abstract int Damage { get; }
+    public abstract void Effect(IEnemy enemy);
+
+
+    public void DrawCard()
     {
-        public string Element;
-        public int Damage;
-        public int ShieldValue;
-        public int BurnDamage;
-        public int Heal;
-        public bool DrawCard;
-        public int ManaCost;
-
-        public Card(string element, int damage, int shieldValue, int burnDamage, int heal, int manaCost=1, bool drawCard=false)
-        {
-            Element = element;
-            Damage = damage;
-            ShieldValue = shieldValue;
-            BurnDamage = burnDamage;
-            Heal = heal;
-            DrawCard = drawCard;
-            ManaCost = manaCost;
-        }
-
+        ManagerManager.Resolve<CardManager>().DrawCard();
+    }
+    public void DamageEnemy(int damage,Enemy enemy)
+    {
+        ManagerManager.Resolve<CombatSystem>().DealDamageToEnemy(this,enemy);
     }
 }

@@ -1,7 +1,4 @@
-namespace ConsoleApp1
+public interface IRandom
 {
-    public interface IRandom
-    {
-        int RandomNumber(int upperBound);
-    }
+    int RandomNumber(int upperBound);
 }

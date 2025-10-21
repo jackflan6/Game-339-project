@@ -24,6 +24,7 @@ public class ServiceResolver : MonoBehaviour
     public UnityDialogSys unityDialog;
     private void Awake()
     {
+        print("Service Resolver is awake");
         //you can only register one thing of each type
         ManagerManager.register((IGameLogger)unityLogger);
         ManagerManager.register((IRandom)unityRandom);
@@ -62,7 +63,9 @@ public class ServiceResolver : MonoBehaviour
     {
         foreach (Func<object> manager in ManagerManager.managers)
         {
-            ((IManager)manager()).Start();
+            var man = (IManager)manager();
+            print(man.GetType() + "has started");
+            man.Start();
         }
     }
     private void Update()

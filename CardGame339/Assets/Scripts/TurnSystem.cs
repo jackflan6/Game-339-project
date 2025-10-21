@@ -27,12 +27,24 @@ public class TurnSystem : IManager
         currentMana.Value = MaxMana;
     }
 
-    public override void Start()
+    public IGameLogger logger { get; } = ManagerManager.Resolve<IGameLogger>();
+
+    public void Start()
     {
         cardManager.SetUpStartingHand();
         PlayerTurn();
     }
-    
+
+    public void Awake()
+    {
+        
+    }
+
+    public void Update()
+    {
+        
+    }
+
     public void EnemiesTurn()
     {
         logger.print("enemies Turn");

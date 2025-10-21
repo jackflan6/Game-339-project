@@ -1,64 +1,24 @@
-namespace ConsoleApp1
+public class Player
 {
-    public class Player
-    {
-        private readonly IGameLogger _logger;
-    
-        private int _HP { get; set; }
-        public int HP
-        {
-            get => _HP;
-            set => _HP = value;
-        }
+    private readonly IGameLogger _logger = ManagerManager.Resolve<IGameLogger>();
 
-        private int _Attack { get; set; }
-        public int Attack
-        {
-            get => _Attack;
-            set => _Attack = value;
-        }
-        private int _Defense { get; set; }
-        public int Defense
-        {
-            get => _Defense;
-            set => _Defense = value;
-        }
-        private string _Name { get; set; }
-        public string Name
-        {
-            get => _Name;
-            set => _Name = value;
-        }
+    public ValueHolder<int> HP = new ValueHolder<int>();
 
-        private int _currentShield;
-        public int currentShield
-        {
-            get => _currentShield;
-            set => _currentShield = value;
-        }
-        private bool _isBurning { get; set; }
-        public bool isBurning
-        {
-            get => _isBurning;
-            set => _isBurning = value;
-        }
-        private int _currentBurnDamage { get; set; }
-        public int currentBurnDamage
-        {
-            get => _currentBurnDamage;
-            set => _currentBurnDamage = value;
-        }
+    public int Defense;
+
+    public string Name;
+
+    public ValueHolder<int> currentShield = new ValueHolder<int>();
+    public bool isBurning;
+    public int currentBurnDamage;
     
-        public Player(int hp, int attack, int defense, string name, IGameLogger logger)
+    public Player(int hp, int defense, string name)
     {
-        _logger = logger;
-        _HP = hp;
-        _Attack = attack;
-        _Defense = defense;
-        _Name = name;
+        HP.Value = hp;
+        Defense = defense;
+        Name = name;
     }
     
     
     
-    }
 }
