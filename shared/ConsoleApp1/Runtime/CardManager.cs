@@ -5,6 +5,9 @@ using Random = System.Random;
 
 public class CardManager : IManager
 {
+    public IGameLogger logger { get; }
+    public readonly IRandom random;
+    
     public List<Card> Deck = new List<Card>();
     public List<Card> Hand = new List<Card>();
     
@@ -33,12 +36,21 @@ public class CardManager : IManager
 
 
 
+    
 
-    private Random random = new Random();
-
+#if !NOT_UNITY
     public CardManager(int handsize)
     {
         startingHandSize = handsize;
+        random = ManagerManager.Resolve<IRandom>();
+        logger=ManagerManager.Resolve<IGameLogger>();
+    }
+#endif
+    public CardManager(IGameLogger log, IRandom rand, int handsize)
+    {
+        startingHandSize = handsize;
+        logger = log;
+        random = rand;
     }
 
     public event Action<Card> CardDraw;
@@ -48,7 +60,7 @@ public class CardManager : IManager
         int shuffleNum = AllCards.Count;
         for(int a=0;a<shuffleNum;a++)
         {
-            int cardIndex = random.Next(0, AllCards.Count);
+            int cardIndex = random.RandomNumber(AllCards.Count);
             Deck.Add(AllCards[cardIndex]);
             AllCards.Remove(AllCards[cardIndex]);
         }
@@ -104,6 +116,18 @@ public class CardManager : IManager
         Hand.Add(Deck[0]);
         Deck.Remove(Deck[0]);
     }
+    public void Start()
+    {
+        
+    }
 
+    public void Awake()
+    {
+        
+    }
 
+    public void Update()
+    {
+        
+    }
 }

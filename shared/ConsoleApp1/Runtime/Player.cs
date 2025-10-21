@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class Player
 {
     private readonly IGameLogger _logger = ManagerManager.Resolve<IGameLogger>();

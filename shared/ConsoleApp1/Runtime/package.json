@@ -1,0 +1,8 @@
+{
+  "name": "com.consoleapp1",
+  "displayName": "Console App 1",
+  "version": "1.0.0",
+  "unity": "6000.2",
+  "description": "Shared game code for Game 399",
+  "author": { "name": "charlotte foster" }
+}

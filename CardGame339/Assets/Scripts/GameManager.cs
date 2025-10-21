@@ -6,13 +6,28 @@ public class GameManager : IManager
 
     public TurnSystem turnSystem = ManagerManager.Resolve<TurnSystem>();
 
+    public UnityDialogSys DialogSys = ManagerManager.Resolve<UnityDialogSys>();
+
     public bool battling=true;
 
-    public override void Start()
+    public IGameLogger logger { get; } = ManagerManager.Resolve<IGameLogger>();
+
+    public void Start()
     {
         logger.print("started");
         enemyManager.SetUpEnemies();
+        DialogSys.DisplayBattleStartDialogue();
        // PlayBattle();
+    }
+
+    public void Awake()
+    {
+        
+    }
+
+    public void Update()
+    {
+       
     }
 
     // public void PlayBattle()

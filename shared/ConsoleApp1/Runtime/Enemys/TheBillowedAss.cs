@@ -1,23 +1,40 @@
 using System;
 public class TheBillowedAss : Enemy
 {
-    CombatSystem combatSystem = ManagerManager.Resolve<CombatSystem>();
-    IDialog dialogSys = ManagerManager.Resolve<IDialog>();
-    EnemyManager enemyManager = ManagerManager.Resolve<EnemyManager>();
+    readonly CombatSystem combatSystem;
+    readonly IDialog dialogSys;
+    readonly EnemyManager enemyManager;
+    readonly IRandom random;
     //::::Important::::
     //It is nessasary to have every card have a static int for its ID.
     //This need to be called "enemyID" and reflected in the selectableCard object.
     //It is not forced by the interface so you just need to remember
     public static int enemyID = 1;
+    
+    #if !NOT_UNITY
+    public TheBillowedAss()
+    {
+         combatSystem = ManagerManager.Resolve<CombatSystem>();
+         dialogSys = ManagerManager.Resolve<IDialog>();
+         enemyManager = ManagerManager.Resolve<EnemyManager>();
+         random = ManagerManager.Resolve<IRandom>();
+         
+    }
+    #endif
+
+    public TheBillowedAss(CombatSystem combatSystem, IDialog iDialog, EnemyManager enemyManager, IRandom rand)
+    {
+        this.combatSystem = combatSystem;
+        dialogSys = iDialog;
+        this.enemyManager = enemyManager;
+        random = rand;
+    }
 
     public override int Attack { get; set; } = 1;
     public override ValueHolder<int> HP { get; set; } = 5;
-    public IRandom random = ManagerManager.Resolve<IRandom>();
 
     public override void DoAction(Player player, Enemy enemy)
     {
-
-        IRandom random = ManagerManager.Resolve<IRandom>();
         int chooseAction = random.RandomNumber(3);
         if (chooseAction == 0)
         {

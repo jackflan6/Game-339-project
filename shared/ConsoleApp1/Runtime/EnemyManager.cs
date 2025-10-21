@@ -4,10 +4,23 @@ using System.Linq;
 
 public class EnemyManager : IManager
 {
+    public IGameLogger logger { get; }
     public List<Type> enemiesToCreate = new List<Type>();
     public List<Enemy> enemies = new List<Enemy>();
     public event Action<Enemy> enemyAdded;
     public event Action<Enemy> enemyRemoved;
+    
+    #if !NOT_UNITY
+    public EnemyManager()
+    {
+        logger = ManagerManager.Resolve<IGameLogger>();
+    }
+    #endif
+
+    public EnemyManager(IGameLogger log)
+    {
+        logger = log;
+    }
 
     public List<string> enemyTaunts = new List<string>()
     {
@@ -55,4 +68,18 @@ public class EnemyManager : IManager
         }
         return EnemyIDs;
     });
+    public void Start()
+    {
+        
+    }
+
+    public void Awake()
+    {
+      
+    }
+
+    public void Update()
+    {
+       
+    }
 }

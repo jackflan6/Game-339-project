@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            9.0.x
+
+      - name: Restore
+        working-directory: shared
+        run: dotnet restore ConsoleApp1.sln
+
+      - name: Build
+        working-directory: shared
+        run: dotnet build ConsoleApp1.sln --configuration Release --no-restore
+
+      - name: Test
+        working-directory: shared
+        run: dotnet test ConsoleApp1.sln --configuration Release --no-build --logger "trx;LogFileName=test_results.trx"

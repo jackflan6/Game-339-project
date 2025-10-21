@@ -1,4 +1,4 @@
-namespace ConsoleApp1;
+namespace TestProject1;
 
 public class ConsoleGameLogger : IGameLogger
 {
@@ -13,6 +13,11 @@ public class ConsoleGameLogger : IGameLogger
     }
 
     public void Error(string message)
+    {
+        Console.WriteLine(message);
+    }
+
+    public void print(string message)
     {
         Console.WriteLine(message);
     }

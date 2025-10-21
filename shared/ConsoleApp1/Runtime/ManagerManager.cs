@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
@@ -44,7 +43,7 @@ public static class ManagerManager
 
         Lazy<T> lazy = new Lazy<T>(obj);
 
-        if (typeof(T).IsSubclassOf(typeof(IManager)))
+        if ((typeof(IManager)).IsAssignableFrom(typeof(T)))
         {
             managers.Add(() => lazy.Value);
         }
