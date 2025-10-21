@@ -121,7 +121,7 @@ public class Tests
         enemyManager.CreateEnemy(5, 5, 5, "Hello", logger);
         CombatSystem combatSystem = new CombatSystem();
         CardManager cardManager = new CardManager(combatSystem);
-        TurnSystem turnSystem = new TurnSystem(enemyManager, combatSystem, player,controlledRandom, cardManager);
+        TurnSystem turnSystem = new TurnSystem(enemyManager, combatSystem, player,controlledRandom, cardManager,10);
         turnSystem.EnemiesTurn();
         Assert.That(enemyManager.enemies[0].currentShield>0);
     }
@@ -136,7 +136,7 @@ public class Tests
         enemyManager.CreateEnemy(5, 5, 5, "Hello", logger);
         CombatSystem combatSystem = new CombatSystem();
         CardManager cardManager = new CardManager(combatSystem);
-        TurnSystem turnSystem = new TurnSystem(enemyManager, combatSystem, player,controlledRandom, cardManager);
+        TurnSystem turnSystem = new TurnSystem(enemyManager, combatSystem, player,controlledRandom, cardManager,10);
         turnSystem.EnemiesTurn();
         Assert.That(player.HP==5);
     }
@@ -152,7 +152,7 @@ public class Tests
         enemyManager.enemies[0].currentBurnDamage = 2;
         CombatSystem combatSystem = new CombatSystem();
         CardManager cardManager = new CardManager(combatSystem);
-        TurnSystem turnSystem = new TurnSystem(enemyManager, combatSystem, player,controlledRandom, cardManager);
+        TurnSystem turnSystem = new TurnSystem(enemyManager, combatSystem, player,controlledRandom, cardManager,10 );
         turnSystem.EnemiesTurn();
         turnSystem.EnemiesTurn();
         turnSystem.EnemiesTurn();
@@ -210,7 +210,7 @@ public class Tests
         Player player = new Player(10, 3, 6, "TestEnemy", logger);
         Card card = new Card("Fire", 2, 6, 3, 4);
         CardManager cardManager = new CardManager(combatSystem);
-        TurnSystem turnSystem = new TurnSystem(enemyManager, combatSystem, player,controlledRandom, cardManager);
+        TurnSystem turnSystem = new TurnSystem(enemyManager, combatSystem, player,controlledRandom, cardManager,10);
         cardManager.PlayCard(card,player, enemyManager.enemies[0]);
         turnSystem.EnemiesTurn();
         Assert.That(enemyManager.enemies[0].HP==5);
@@ -228,7 +228,7 @@ public class Tests
         Player player = new Player(10, 3, 6, "TestEnemy", logger);
         Card card = new Card("Fire", 2, 6, 3, 4);
         CardManager cardManager = new CardManager(combatSystem);
-        TurnSystem turnSystem = new TurnSystem(enemyManager, combatSystem, player,controlledRandom, cardManager);
+        TurnSystem turnSystem = new TurnSystem(enemyManager, combatSystem, player,controlledRandom, cardManager,10);
         cardManager.PlayCard(card,player, enemyManager.enemies[0]);
         turnSystem.EnemiesTurn();
         turnSystem.EnemiesTurn();
