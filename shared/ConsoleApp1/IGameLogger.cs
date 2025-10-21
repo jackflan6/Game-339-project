@@ -1,8 +1,9 @@
-namespace ConsoleApp1;
-
-public interface IGameLogger
+namespace ConsoleApp1
 {
-    void Info(string message);
-    void Warning(string message);
-    void Error(string message);
+    public interface IGameLogger
+    {
+        void Info(string message);
+        void Warning(string message);
+        void Error(string message);
+    }
 }

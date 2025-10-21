@@ -1,15 +1,15 @@
-namespace ConsoleApp1;
-
-public class CombatSystem
+namespace ConsoleApp1
 {
-    // enemy attack dmg
-    // player attack dmg
-    // we receieve inputs
-    // we calculate damage, output result
+    public class CombatSystem
+    {
+        // enemy attack dmg
+        // player attack dmg
+        // we receieve inputs
+        // we calculate damage, output result
     
-    // TODO: make class variables properly private / public, build out enemy damage to player (unit tests!), build round system, status effects per round 
+        // TODO: make class variables properly private / public, build out enemy damage to player (unit tests!), build round system, status effects per round 
     
-    public int DealDamageToEnemy(Card card, Enemy enemy)
+        public int DealDamageToEnemy(Card card, Enemy enemy)
     {
         int damageDealt = card.Damage;
         damageDealt -= enemy.currentShield;
@@ -27,7 +27,7 @@ public class CombatSystem
         return enemy.HP;
     }
 
-    public int DealDamageToPlayer(Player player, Enemy enemy)
+        public int DealDamageToPlayer(Player player, Enemy enemy)
     {
         int damageDealt = enemy.Attack;
         damageDealt -= player.currentShield;
@@ -45,19 +45,19 @@ public class CombatSystem
         return player.HP;
     }
     
-    public int GenerateEnemyShield(Enemy enemy)
+        public int GenerateEnemyShield(Enemy enemy)
     {
         enemy.currentShield += enemy.Defense;
         return enemy.currentShield;
     }
 
-    public int GeneratePlayerShield(Player player, Card card)
+        public int GeneratePlayerShield(Player player, Card card)
     {
         player.currentShield += card.ShieldValue;
         return player.currentShield;
     }
 
-    public int BurnDamageToEnemy(Enemy enemy)
+        public int BurnDamageToEnemy(Enemy enemy)
     {
         enemy.HP -= enemy.currentBurnDamage;
         enemy.currentBurnDamage /= 2;
@@ -69,15 +69,16 @@ public class CombatSystem
         return enemy.HP;
     }
 
-    public void ApplyBurnDamageToEnemy(Enemy enemy, Card card)
+        public void ApplyBurnDamageToEnemy(Enemy enemy, Card card)
     {
         enemy.currentBurnDamage += card.BurnDamage;
     }
 
-    public void HealPlayer(Player player, Card card)
+        public void HealPlayer(Player player, Card card)
     {
         player.HP += card.Heal;
     }
     
     
+    }
 }

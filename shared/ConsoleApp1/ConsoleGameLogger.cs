@@ -1,19 +1,22 @@
-namespace ConsoleApp1;
+using System;
 
-public class ConsoleGameLogger : IGameLogger
+namespace ConsoleApp1
 {
-    public void Info(string message)
+    public class ConsoleGameLogger : IGameLogger
+    {
+        public void Info(string message)
     {
         Console.WriteLine(message);
     }
 
-    public void Warning(string message)
+        public void Warning(string message)
     {
         Console.WriteLine(message);
     }
 
-    public void Error(string message)
+        public void Error(string message)
     {
         Console.WriteLine(message);
+    }
     }
 }

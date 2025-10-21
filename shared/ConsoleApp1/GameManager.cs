@@ -1,30 +1,30 @@
-namespace ConsoleApp1;
-
-public class GameManager
+namespace ConsoleApp1
 {
-    private EnemyManager _enemyManager { get; set; }
-    public EnemyManager enemyManager
+    public class GameManager
     {
-        get => _enemyManager;
-        set => _enemyManager = value;
-    }
+        private EnemyManager _enemyManager { get; set; }
+        public EnemyManager enemyManager
+        {
+            get => _enemyManager;
+            set => _enemyManager = value;
+        }
     
-    private TurnSystem _turnSystem { get; set; }
-    public TurnSystem turnSystem
-    {
-        get => _turnSystem;
-        set => _turnSystem = value;
-    }
+        private TurnSystem _turnSystem { get; set; }
+        public TurnSystem turnSystem
+        {
+            get => _turnSystem;
+            set => _turnSystem = value;
+        }
 
-    public bool battling;
-    public GameManager(EnemyManager enemyManagerInput, TurnSystem turnSystemInput)
+        public bool battling;
+        public GameManager(EnemyManager enemyManagerInput, TurnSystem turnSystemInput)
     {
         _enemyManager = enemyManagerInput;
         _enemyManager.SetUpEnemies();
         _turnSystem = turnSystemInput;
     }
 
-    public void PlayBattle()
+        public void PlayBattle()
     {
         while (battling)
         {
@@ -39,5 +39,6 @@ public class GameManager
                 battling = false;
             }
         }
+    }
     }
 }

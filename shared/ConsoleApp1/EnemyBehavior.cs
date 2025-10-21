@@ -1,16 +1,19 @@
-namespace ConsoleApp1;
+using System;
+using System.Collections.Generic;
 
-public static class EnemyBehavior
+namespace ConsoleApp1
 {
+    public static class EnemyBehavior
+    {
     
-    private static Dictionary<int, Action<Enemy>> possibleActions =
-        new Dictionary<int, Action<Enemy>>()
-        {
-            {0, Attack},
-            {1, Defend}
-        };
+        private static Dictionary<int, Action<Enemy>> possibleActions =
+            new Dictionary<int, Action<Enemy>>()
+            {
+                {0, Attack},
+                {1, Defend}
+            };
     
-    public static void TakeTurn(Enemy enemy)
+        public static void TakeTurn(Enemy enemy)
     {
         if (enemy.isBurning)
         {
@@ -31,14 +34,15 @@ public static class EnemyBehavior
 
     }
 
-    public static void Attack(Enemy enemy)
+        public static void Attack(Enemy enemy)
     {
          //returns an int that needs to be given to player
     }
 
-    public static void Defend(Enemy enemy)
+        public static void Defend(Enemy enemy)
     {
          //returns an int that needs to be given to player
     }
     
+    }
 }

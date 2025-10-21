@@ -1,22 +1,24 @@
-namespace ConsoleApp1;
+using System.Collections.Generic;
 
-public class CardManager
+namespace ConsoleApp1
 {
-    public List<Card> Deck = new List<Card>();
+    public class CardManager
+    {
+        public List<Card> Deck = new List<Card>();
 
-    public List<Card> Hand = new List<Card>();
+        public List<Card> Hand = new List<Card>();
 
-    public List<Card> DiscardPile = new List<Card>();
+        public List<Card> DiscardPile = new List<Card>();
 
-    public CombatSystem CombatSystem;
+        public CombatSystem CombatSystem;
     
 
-    public CardManager(CombatSystem combatSystem)
+        public CardManager(CombatSystem combatSystem)
     {
         CombatSystem = combatSystem;
     }
 
-    public void PlayCard(Card card, Player player, Enemy enemy)
+        public void PlayCard(Card card, Player player, Enemy enemy)
     {
         int totalShock=1;
         if (card.Element.Equals("Shock"))
@@ -44,15 +46,16 @@ public class CardManager
         DiscardPile.Add(card);
     }
 
-    public void DrawCard()
+        public void DrawCard()
     {
         Hand.Add(Deck[0]);
         Deck.Remove(Deck[0]);
     }
 
-    public Card SelectCardToPlay()
+        public Card SelectCardToPlay()
     {
         //user input in unity
         return new Card("Fire", 0, 0, 0, 0);
+    }
     }
 }
