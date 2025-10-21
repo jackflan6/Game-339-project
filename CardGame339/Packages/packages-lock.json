@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.consoleapp1": {
+      "version": "file:../../shared/ConsoleApp1/Runtime",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.2d.animation": {
       "version": "12.0.2",
       "depth": 0,
