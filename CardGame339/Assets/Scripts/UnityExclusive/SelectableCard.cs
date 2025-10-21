@@ -6,6 +6,7 @@ public class SelectableCard : MonoBehaviour
 
     //UnityEvent SelectedCard;
     bool hover;
+    [HideInInspector]
     public int cardID;
     /*    public string Element;
         public int Damage;

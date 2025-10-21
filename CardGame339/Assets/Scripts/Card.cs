@@ -12,7 +12,7 @@ public abstract class Card : ICard
     public abstract int Damage { get; }
     public abstract void Effect(IEnemy enemy);
 
-
+    
     public void DrawCard()
     {
         ManagerManager.Resolve<CardManager>().DrawCard();
