@@ -91,9 +91,31 @@ public class CombatSystem : IManager
         return enemy.HP.Value;
     }
 
+    public int BurnDamageToPlayer(Player player)
+    {
+        player.HP.Value -= player.currentBurnDamage;
+        player.currentBurnDamage /= 2;
+        if (player.currentBurnDamage == 0)
+        {
+            player.isBurning = false;
+        }
+
+        if (player.HP.Value <= 0)
+        {
+            logger.print("player lost!");
+        }
+
+        return player.HP.Value;
+    }
+
     public void ApplyBurnDamageToEnemy(Enemy enemy, Card card)
     {
         enemy.currentBurnDamage += card.burnDamage;
+    }
+
+    public void ApplyBurnDamageToPlayer(Player player, Enemy enemy)
+    {
+        player.currentBurnDamage += enemy.burnAttackDamage;
     }
 
     public void HealPlayer(Player player, Card card)

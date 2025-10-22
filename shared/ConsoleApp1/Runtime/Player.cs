@@ -1,6 +1,6 @@
 public class Player
 {
-    private readonly IGameLogger _logger = ManagerManager.Resolve<IGameLogger>();
+     readonly IGameLogger _logger;
 
     public ValueHolder<int> HP = new ValueHolder<int>();
 
@@ -12,8 +12,19 @@ public class Player
     public bool isBurning;
     public int currentBurnDamage;
     
+    #if !NOT_UNITY
     public Player(int hp, int defense, string name)
     {
+        _logger = ManagerManager.Resolve<IGameLogger>();
+        HP.Value = hp;
+        Defense = defense;
+        Name = name;
+    }
+    #endif
+
+    public Player(int hp, int defense, string name, IGameLogger logger)
+    {
+        _logger = logger;
         HP.Value = hp;
         Defense = defense;
         Name = name;
