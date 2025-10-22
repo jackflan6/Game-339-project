@@ -10,7 +10,7 @@ public class BurningSlash : Card
     public static int cardID = 2;
     public override int ManaCost { get; } = 1;
     public override int Damage { get; } = 3;
-    public override int burnDamage { get; set; } = 2;
+    public override int BurnDamage { get; set; } = 2;
 
     public override void Effect(Enemy enemy)
     {

@@ -1751,7 +1751,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dd0b213339c0b54aaf60f0f2d34f472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  handSize: 1
+  handSize: 2
+  maxHandSize: 5
   maxMana: 10
   playerHP: 20
   playerName: player1

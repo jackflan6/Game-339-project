@@ -25,7 +25,7 @@ public class GameObjectManager : MonoBehaviour
        foreach (GameObject card in allCreatedCards)
        {
            i++;
-           card.GetComponent<SelectableCard>().cardPosition = new Vector2(2.5f - 2.5f * i, -2.5f);
+           card.GetComponent<SelectableCard>().cardPosition = new Vector2(5f - 2.5f * i, -2.5f);
        }
 
     }

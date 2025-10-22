@@ -4,11 +4,12 @@ using System.Collections.Generic;
 public abstract class Card : ICard
 {
     public string Element = "";
+    //if one of these attributs are not used you no not need to implement it into a card
     public virtual int ShieldValue { get; set; }
-    public virtual int burnDamage { get; set; }
+    public virtual int BurnDamage { get; set; }
     public virtual int Heal { get; set; }
 
-    //public abstract int cardID { get; }
+    //you do need to implement these though
     public abstract int ManaCost { get;}
     public abstract int Damage { get; }
     public abstract void Effect(Enemy enemy);

@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,6 @@ public class enemyHealthUI : MonoBehaviour
 
     public void changeVal(int health)
     {
-
-        GetComponent<Text>().text = "HP: " + health;
+        GetComponent<TextMeshPro>().text = "HP: " + health;
     }
 }

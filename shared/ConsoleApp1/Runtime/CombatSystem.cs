@@ -110,7 +110,7 @@ public class CombatSystem : IManager
 
     public void ApplyBurnDamageToEnemy(Enemy enemy, Card card)
     {
-        enemy.currentBurnDamage += card.burnDamage;
+        enemy.currentBurnDamage += card.BurnDamage;
     }
 
     public void ApplyBurnDamageToPlayer(Player player, Enemy enemy)

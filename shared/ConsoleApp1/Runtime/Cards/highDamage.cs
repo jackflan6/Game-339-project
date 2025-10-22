@@ -7,14 +7,11 @@ public class highDamage : Card
     //It is not forced by the interface so you just need to remember
     public static int cardID = 3;
 
-    public override int ShieldValue { get; } = 0;
-    public override int Heal { get; } = 0;
     public override int ManaCost { get; } = 3;
     public override int Damage { get; } = 5;
 
-    public override int BurnDamage { get; } = 0;
 
-    public override void Effect(IEnemy enemy)
+    public override void Effect(Enemy enemy)
     {
     }
 }
