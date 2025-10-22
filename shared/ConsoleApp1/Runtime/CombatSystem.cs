@@ -65,6 +65,7 @@ public class CombatSystem : IManager
     public int GenerateEnemyShield(Enemy enemy)
     {
         enemy.currentShield += enemy.Defense;
+        logger.print("Enemy shield is at " + enemy.currentShield + " points!");
         return enemy.currentShield;
     }
 
