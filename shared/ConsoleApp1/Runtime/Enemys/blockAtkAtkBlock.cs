@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-public class specificPatternEnemy : Enemy
+public class blockAtkAtkBlock : Enemy
 {
     readonly CombatSystem combatSystem;
     readonly IDialog dialogSys;
@@ -16,7 +16,7 @@ public class specificPatternEnemy : Enemy
     public static int enemyID = 6;
     
     #if !NOT_UNITY
-    public specificPatternEnemy()
+    public blockAtkAtkBlock()
     {
          combatSystem = ManagerManager.Resolve<CombatSystem>();
          dialogSys = ManagerManager.Resolve<IDialog>();
@@ -26,7 +26,7 @@ public class specificPatternEnemy : Enemy
     }
     #endif
 
-    public specificPatternEnemy(CombatSystem combatSystem, IDialog iDialog, EnemyManager enemyManager, IRandom rand)
+    public blockAtkAtkBlock(CombatSystem combatSystem, IDialog iDialog, EnemyManager enemyManager, IRandom rand)
     {
         this.combatSystem = combatSystem;
         dialogSys = iDialog;
