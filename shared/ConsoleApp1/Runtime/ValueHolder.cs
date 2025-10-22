@@ -6,6 +6,11 @@ public class ValueHolder<T>
 {
     private T val;
     public event Action<T> ValueChanged;
+    public void sub(Action<T> act)
+    {
+        ValueChanged += act;
+        act.Invoke(val);
+    }
     public ValueHolder(T i)
     {
         val = i;
