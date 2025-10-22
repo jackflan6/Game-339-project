@@ -17,7 +17,8 @@ public class SelectableCard : MonoBehaviour
     public Card origionalCard;
     public Vector2 cardPosition;
     public float acceleration = 10;
-    public Color normCol = Color.white;
+    Color normCol = Color.white;
+    public Color originalCol;
     void Start()
     {
         GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().onMouseMove += OnMouseMove;
@@ -68,7 +69,7 @@ public class SelectableCard : MonoBehaviour
             normCol = Color.orange;
         } else
         {
-            normCol = Color.white;
+            normCol = originalCol;
 
         }
     }
