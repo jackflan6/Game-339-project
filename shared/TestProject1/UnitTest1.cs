@@ -18,7 +18,24 @@ namespace TestProject1
             Card card = new BillowingAss();
             Enemy enemy = new TheBillowedAss(combatSystem, dialogue, enemyManager, notSoRandom);
             combatSystem.DealDamageToEnemy(card, enemy);
-            Assert.That(enemy.HP==2);
+            logger.print("enemy HP: " + enemy.HP.Value);
+            Assert.That(enemy.HP==4);
+        }
+
+        [Test]
+        public void BurnDamageToPlayer()
+        {
+            IGameLogger logger = new ConsoleGameLogger();
+            Player player = new Player(10,10,"testPlayer", logger);
+            player.currentBurnDamage = 2;
+            EnemyManager enemyManager = new EnemyManager(logger);
+            CombatSystem combatSystem = new CombatSystem(enemyManager, logger);
+            combatSystem.BurnDamageToPlayer(player);
+            combatSystem.BurnDamageToPlayer(player);
+            combatSystem.BurnDamageToPlayer(player);
+            logger.print("Player HP: " + player.HP.Value);
+            Assert.That(player.HP.Value==7);
+
         }
     
         

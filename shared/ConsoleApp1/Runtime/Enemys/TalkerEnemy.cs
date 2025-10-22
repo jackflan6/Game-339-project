@@ -1,6 +1,5 @@
 using System;
-public class TalkerEnemy
-    : Enemy
+public class TalkerEnemy : Enemy
 {
     readonly CombatSystem combatSystem;
     readonly IDialog dialogSys;
@@ -33,6 +32,7 @@ public class TalkerEnemy
 
     public override int Attack { get; set; } = 0;
     public override int Defense { get; set; } = 0;
+    public override int burnAttackDamage { get; } = 0;
     public override ValueHolder<int> HP { get; set; } = 5;
 
     public override void DoAction(Player player, Enemy enemy)

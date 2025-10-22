@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1503819245442146346}
   - component: {fileID: 9182575072664120230}
   m_Layer: 0
-  m_Name: attackerEnemy
+  m_Name: burnEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -4652039622327434660, guid: 52aec690df210534284fb6357e64957d, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.56201315, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.10725784, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
