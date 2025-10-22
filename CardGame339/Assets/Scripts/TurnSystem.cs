@@ -65,9 +65,12 @@ public class TurnSystem : IManager
     }
 
     public void PlayerTurn()
-    {
+    { 
+        combatSystem.BurnDamageToPlayer(player);
        logger.print("player turn!");
        isPlayerTurn = true;
+       cardManager.DrawCard();
+       cardManager.DrawCard();
        cardManager.DrawCard();
        currentMana.Value = MaxMana;
     }

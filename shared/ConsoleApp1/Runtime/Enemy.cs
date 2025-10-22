@@ -6,6 +6,8 @@ public abstract class Enemy : IEnemy
     public abstract ValueHolder<int> HP { get; set; }
     public abstract int Attack { get; set; }
     public abstract int Defense { get; set; }
+    
+    public abstract int burnAttackDamage { get; }
     public string Name;
 
 

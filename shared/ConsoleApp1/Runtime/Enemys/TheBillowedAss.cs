@@ -32,11 +32,12 @@ public class TheBillowedAss : Enemy
 
     public override int Attack { get; set; } = 1;
     public override int Defense { get; set; } = 1;
+    public override int burnAttackDamage { get; } = 2;
     public override ValueHolder<int> HP { get; set; } = 5;
 
     public override void DoAction(Player player, Enemy enemy)
     {
-        int chooseAction = random.RandomNumber(3);
+        int chooseAction = random.RandomNumber(4);
         if (chooseAction == 0)
         {
             combatSystem.DealDamageToPlayer(player, enemy);
@@ -50,6 +51,11 @@ public class TheBillowedAss : Enemy
         if (chooseAction == 2)
         {
             dialogSys.EnemyTalk(enemy, enemyManager.enemyTaunts[random.RandomNumber(enemyManager.enemyTaunts.Count)]);
+        }
+
+        if (chooseAction == 3)
+        {
+            combatSystem.ApplyBurnDamageToPlayer(player, enemy);
         }
     }
 
