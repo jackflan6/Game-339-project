@@ -1,3 +1,4 @@
+using Codice.Client.BaseCommands.WkStatus.Printers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ public class CardManager : IManager
 {
     public IGameLogger logger { get; }
     public readonly IRandom random;
-    
+    public int maxHandSize;
     public List<Card> Deck = new List<Card>();
     public List<Card> Hand = new List<Card>();
     
@@ -39,18 +40,20 @@ public class CardManager : IManager
     
 
 #if !NOT_UNITY
-    public CardManager(int handsize)
+    public CardManager(int handsize,int maxHandSize)
     {
         startingHandSize = handsize;
         random = ManagerManager.Resolve<IRandom>();
         logger=ManagerManager.Resolve<IGameLogger>();
+        this.maxHandSize = maxHandSize;
     }
 #endif
-    public CardManager(IGameLogger log, IRandom rand, int handsize)
+    public CardManager(IGameLogger log, IRandom rand, int handsize, int maxHandSize)
     {
         startingHandSize = handsize;
         logger = log;
         random = rand;
+        this.maxHandSize = maxHandSize;
     }
 
     public event Action<Card> CardDraw;
@@ -103,18 +106,24 @@ public class CardManager : IManager
 
     public void DrawCard()
     {
-        if (Deck.Count == 0)
+        if (Hand.Count < maxHandSize)
         {
-            int discards = DiscardPile.Count;
-            for (int a = 0; a < discards; a++)
+            if (Deck.Count == 0)
             {
-                Deck.Add(DiscardPile[0]);
-                DiscardPile.Remove(DiscardPile[0]);
+                int discards = DiscardPile.Count;
+                for (int a = 0; a < discards; a++)
+                {
+                    Deck.Add(DiscardPile[0]);
+                    DiscardPile.Remove(DiscardPile[0]);
+                }
             }
+            if (CardDraw != null) CardDraw.Invoke(Deck[0]);
+            Hand.Add(Deck[0]);
+            Deck.Remove(Deck[0]);
+        } else
+        {
+            logger.print("at max hand size");
         }
-        if (CardDraw != null) CardDraw.Invoke(Deck[0]);
-        Hand.Add(Deck[0]);
-        Deck.Remove(Deck[0]);
     }
     public void Start()
     {

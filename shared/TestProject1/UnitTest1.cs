@@ -20,7 +20,7 @@ namespace TestProject1
             combatSystem.DealDamageToEnemy(card, enemy);
             Assert.That(enemy.HP==2);
         }
-    
-        
+
+
     }
 }

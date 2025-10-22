@@ -1,4 +1,6 @@
 
+using System.Collections.Generic;
+
 public class BurningSlash : Card
 {
     //::::Important::::
@@ -6,11 +8,12 @@ public class BurningSlash : Card
     //This need to be called "cardID" and reflected in the selectableCard object.
     //It is not forced by the interface so you just need to remember
     public static int cardID = 2;
-
     public override int ManaCost { get; } = 1;
     public override int Damage { get; } = 3;
+    public override int burnDamage { get; set; } = 2;
 
-    public override void Effect(IEnemy enemy)
+    public override void Effect(Enemy enemy)
     {
+        Burn(enemy);
     }
 }

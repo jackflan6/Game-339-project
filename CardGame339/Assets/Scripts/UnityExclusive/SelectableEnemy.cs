@@ -43,9 +43,11 @@ public class SelectableEnemy : MonoBehaviour
         if (GetComponent<Collider2D>().bounds.Contains((Vector2)Camera.main.ScreenToWorldPoint(pos)))
         {
             hover = true;
+            GetComponent<SpriteRenderer>().color = Color.yellow;
         } else
         {
             hover = false;
+            GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
     public void OnMouseClick(Vector2 pos)

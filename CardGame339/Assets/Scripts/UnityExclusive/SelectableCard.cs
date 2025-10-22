@@ -17,6 +17,7 @@ public class SelectableCard : MonoBehaviour
     public Card origionalCard;
     public Vector2 cardPosition;
     public float acceleration = 10;
+    public Color normCol = Color.white;
     void Start()
     {
         GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().onMouseMove += OnMouseMove;
@@ -31,17 +32,17 @@ public class SelectableCard : MonoBehaviour
     private float speed;
     private void Update()
     {
-        //if ((cardPosition - (Vector2)transform.position).magnitude < speed)
-        //{
-        //    speed = ((Vector2)transform.position + cardPosition).magnitude/(speed * Time.deltaTime);
-        //} else
-        //{
-        //    speed += acceleration * Time.deltaTime;
-        //}
-        //Vector2 dir = cardPosition - (Vector2)transform.position;
-        //transform.position =dir * speed * Time.deltaTime;
+        if ((cardPosition - (Vector2)transform.position).magnitude < speed)
+        {
+            speed = (cardPosition - (Vector2)transform.position).magnitude / (speed) * Time.deltaTime;
+        } else
+        {
+            speed += acceleration * Time.deltaTime;
+        }
+        Vector2 dir = cardPosition - (Vector2)transform.position;
+        transform.position +=(Vector3) dir * speed;
 
-        transform.position = cardPosition;
+        //transform.position = cardPosition;
     }
     public void OnMouseMove(Vector2 pos)
     {
@@ -49,9 +50,11 @@ public class SelectableCard : MonoBehaviour
         if (GetComponent<Collider2D>().bounds.Contains((Vector2)Camera.main.ScreenToWorldPoint(pos)))
         {
             hover = true;
+            GetComponent<SpriteRenderer>().color = Color.yellow;
         } else
         {
             hover = false;
+            GetComponent<SpriteRenderer>().color = normCol;
         }
     }
     public void OnMouseClick(Vector2 pos)
@@ -59,6 +62,14 @@ public class SelectableCard : MonoBehaviour
         if (hover)
         {
            ManagerManager.Resolve<TurnSystem>().SelectCardToPlay(origionalCard);
+        }
+        if (ManagerManager.Resolve<TurnSystem>().cardToPlay == origionalCard)
+        {
+            normCol = Color.orange;
+        } else
+        {
+            normCol = Color.white;
+
         }
     }
 }

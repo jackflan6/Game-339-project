@@ -7,6 +7,7 @@ using UnityEngine;
 public class ServiceResolver : MonoBehaviour
 {
     public int handSize;
+    public int maxHandSize;
     public int maxMana;
     public int playerHP;
     public string playerName;
@@ -35,7 +36,7 @@ public class ServiceResolver : MonoBehaviour
         ManagerManager.registerDependency(() => new TurnSystem(maxMana));
         ManagerManager.registerDependency(() => new GameManager());
         ManagerManager.registerDependency(() => new Player(playerHP, 0, playerName));
-        ManagerManager.registerDependency(() => new CardManager(handSize));
+        ManagerManager.registerDependency(() => new CardManager(handSize,maxHandSize));
         ManagerManager.registerDependency(()=> unityDialog);
 
         List<Card> allCards = new List<Card>();
