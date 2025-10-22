@@ -11,10 +11,12 @@ public class SelectableEnemy : MonoBehaviour
     public Enemy origionalEnemy;
     public Vector2 EnemyPosition;
     public float acceleration = 10;
+    private Color defaultColor;
     void Start()
     {
         GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().onMouseMove += OnMouseMove;
         GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().onMousePress += OnMouseClick;
+        defaultColor = this.GetComponent<SpriteRenderer>().color;
     }
     private void OnDestroy()
     {
@@ -47,7 +49,7 @@ public class SelectableEnemy : MonoBehaviour
         } else
         {
             hover = false;
-            GetComponent<SpriteRenderer>().color = Color.white;
+            GetComponent<SpriteRenderer>().color = defaultColor;
         }
     }
     public void OnMouseClick(Vector2 pos)
