@@ -1,6 +1,8 @@
+using System.Collections.Generic;
+
 public class Player
 {
-     readonly IGameLogger _logger;
+    readonly IGameLogger _logger;
 
     public ValueHolder<int> HP = new ValueHolder<int>();
 
@@ -20,6 +22,7 @@ public class Player
         Defense = defense;
         Name = name;
     }
+    
     #endif
 
     public Player(int hp, int defense, string name, IGameLogger logger)
