@@ -6,6 +6,7 @@ using UnityEngine.UI;
     {
         public int ID;
         public List<int> Connections;
+        public List<Item> ItemsAtLocation;
         public Button button;
         public SceneChanger sceneChanger;
         public string sceneToLoad;
@@ -21,5 +22,11 @@ using UnityEngine.UI;
             {
                 LocationManager.Instance.ButtonClicked(this);
             }
+        }
+
+        public void RemoveItem(Item item)
+        {
+            if (ItemsAtLocation.Contains(item))
+                ItemsAtLocation.Remove(item);
         }
     }

@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class LocationManager : MonoBehaviour
 {
+    public MapPlayer mapPlayer;
     public static LocationManager Instance;
     private Dictionary<int, Location> allLocations = new Dictionary<int, Location>();
     public int StartingLocationID = 0;
@@ -37,15 +38,7 @@ public class LocationManager : MonoBehaviour
 
     void Start()
     {
-        foreach (var kvp in allLocations)
-        {
-            Debug.Log($"Location ID: {kvp.Key}, Button: {kvp.Value.button.name}");
-        }
-        foreach (var kvp in allLocations)
-        {
-            string connections = string.Join(",", kvp.Value.Connections);
-            Debug.Log($"Location ID {kvp.Key} connections: {connections}");
-        }
+        mapPlayer = new MapPlayer(StartingLocationID, playerIcon, allLocations);
         
         foreach (Location location in allLocations.Values)
         {
@@ -59,18 +52,17 @@ public class LocationManager : MonoBehaviour
         {
             startLocation.button.interactable = true;
             EnableConnectedButtons(startLocation);
-            MovePlayerIcon(startLocation);
         }
     }
 
     public void ButtonClicked(Location clickedLocation)
     {
+        mapPlayer.MovePlayerIcon(clickedLocation.ID);
+        
         DisableAllButtons();
         
         clickedLocation.button.interactable = true;
         EnableConnectedButtons(clickedLocation);
-        
-        MovePlayerIcon(clickedLocation);
         
         if (clickedLocation.sceneChanger != null)
             clickedLocation.sceneChanger.ChangeScene();
@@ -105,13 +97,5 @@ public class LocationManager : MonoBehaviour
                 button.interactable = false;
             }
         }
-    }
-
-    public void MovePlayerIcon(Location location)
-    {
-        if (playerIcon == null || location.button == null) return;
-        
-        playerIcon.position = location.button.transform.position;
-        Debug.Log($"Moved PlayerIcon to Location ID {location.ID}");
     }
 }
