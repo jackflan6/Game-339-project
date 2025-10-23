@@ -32,10 +32,10 @@ public class BurnAttackBoss : Enemy
         random = rand;
     }
 
-    public override int Attack { get; set; } = 3;
+    public override int Attack { get; set; } = 5;
     public override int Defense { get; set; } = 0;
-    public override int burnAttackDamage { get; } = 2;
-    public override ValueHolder<int> HP { get; set; } = 10;
+    public override int burnAttackDamage { get; } = 4;
+    public override ValueHolder<int> HP { get; set; } = 20;
 
     public override void DoAction(Player player, Enemy enemy)
     {
