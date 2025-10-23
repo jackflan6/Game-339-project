@@ -10,17 +10,19 @@ using static UnityEngine.GraphicsBuffer;
 public class EnemyDropDown : Editor
 {
     int _choiceIndex = 0;
-    Lazy<string[]> _choices = new Lazy<string[]>(() => {
+    Lazy<Dictionary<string, int>> _choices = new Lazy<Dictionary<string, int>>(() => {
         IEnumerable<Type> c = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(assembly => assembly.GetTypes())
                 .Where(type => type.IsSubclassOf(typeof(Enemy)));
-        string[] ret = new string[c.Count()];
+        Dictionary<string, int> ret = new Dictionary<string, int>();
         int i = 0;
         foreach (Type t in c)
         {
-            ret[i] = ((int)t.GetField("enemyID").GetValue(null) + ": " + t.Name);
+            ret.Add((int)t.GetField("enemyID").GetValue(null) + ": " + t.Name,
+                (int)t.GetField("enemyID").GetValue(null));
             ++i;
         }
+
         return ret;
     }
     );
@@ -29,24 +31,18 @@ public class EnemyDropDown : Editor
     public override void OnInspectorGUI()
     {
         int i = 0;
-        foreach (string choice in _choices.Value)
+        foreach (string choice in _choices.Value.Keys)
         {
-            if (((SelectableEnemy)target).enemyID == (int)Char.GetNumericValue(choice[0]))
+            if (((SelectableEnemy)target).enemyID == _choices.Value[choice])
             {
                 _choiceIndex = i;
             }
             i++;
         }
-        _choiceIndex = EditorGUILayout.Popup(_choiceIndex, _choices.Value);
+        _choiceIndex = EditorGUILayout.Popup(_choiceIndex, _choices.Value.Keys.ToArray());
         var someClass = target as SelectableEnemy;
-        int enemyID = (int)Char.GetNumericValue(_choices.Value[_choiceIndex][0]);
+        int enemyID = _choices.Value[_choices.Value.Keys.ToArray()[_choiceIndex]];
         someClass.enemyID = enemyID;
-        //if (someClass.cardID != cardID)
-        //{
-        //    serializedObject.FindProperty("enemyID").intValue = cardID;
-        //    serializedObject.ApplyModifiedProperties();
-        //}
-        // Draw the default inspector
         DrawDefaultInspector();
     }
 }

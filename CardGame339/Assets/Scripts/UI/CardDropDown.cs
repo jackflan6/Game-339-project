@@ -10,17 +10,19 @@ using static UnityEngine.GraphicsBuffer;
 public class CardDropDown : Editor
 {
     int _choiceIndex = 0;
-    Lazy<string[]> _choices = new Lazy<string[]>(() => {
+    Lazy<Dictionary<string,int>> _choices = new Lazy<Dictionary<string, int>>(() => {
         IEnumerable<Type> c = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(assembly => assembly.GetTypes())
                 .Where(type => type.IsSubclassOf(typeof(Card)));
-        string[] ret = new string[c.Count()];
+        Dictionary<string,int> ret = new Dictionary<string,int>();
         int i = 0;
         foreach (Type t in c)
         {
-            ret[i] = ((int)t.GetField("cardID").GetValue(null) + ": " + t.Name);
+            ret.Add((int)t.GetField("cardID").GetValue(null) + ": " + t.Name, 
+                (int)t.GetField("cardID").GetValue(null));
             ++i;
         }
+
         return ret;
     }
     );
@@ -29,17 +31,17 @@ public class CardDropDown : Editor
     public override void OnInspectorGUI()
     {
         int i = 0;
-        foreach (string choice in _choices.Value)
+        foreach (string choice in _choices.Value.Keys)
         {
-            if (((SelectableCard)target).cardID == (int)Char.GetNumericValue(choice[0]))
+            if (((SelectableCard)target).cardID == _choices.Value[choice])
             {
                 _choiceIndex = i;
             }
             i++;
         }
-        _choiceIndex = EditorGUILayout.Popup(_choiceIndex, _choices.Value);
+        _choiceIndex = EditorGUILayout.Popup(_choiceIndex, _choices.Value.Keys.ToArray());
         var someClass = target as SelectableCard;
-        int cardID = (int)Char.GetNumericValue(_choices.Value[_choiceIndex][0]);
+        int cardID = _choices.Value[_choices.Value.Keys.ToArray()[_choiceIndex]];
         someClass.cardID = cardID;
         //if (someClass.cardID != cardID)
         //{

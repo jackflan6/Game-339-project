@@ -13,7 +13,7 @@ public class blockTaunt : Enemy
     //It is nessasary to have every card have a static int for its ID.
     //This need to be called "enemyID" and reflected in the selectableCard object.
     //It is not forced by the interface so you just need to remember
-    public static int enemyID = -1;
+    public static int enemyID = 10;
     
     #if !NOT_UNITY
     public blockTaunt()

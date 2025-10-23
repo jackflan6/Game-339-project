@@ -952,7 +952,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -143.45, y: -32.36}
+  m_AnchoredPosition: {x: 0, y: -32.36}
   m_SizeDelta: {x: 289.57654, y: 64.37741}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &866089364
@@ -1258,7 +1258,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -143.45, y: -62}
+  m_AnchoredPosition: {x: 0, y: -62}
   m_SizeDelta: {x: 289.57654, y: 53.2014}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1131541030
@@ -1707,12 +1707,6 @@ MonoBehaviour:
   - {fileID: 1945363342640210897, guid: 151e56b565f642944ab863b91cd2235e, type: 3}
   - {fileID: 1945363342640210897, guid: 9bac4d1ee824a4545852685919bcf1ba, type: 3}
   - {fileID: 1945363342640210897, guid: f7f8b99b967243b4084b481030e6d873, type: 3}
-  - {fileID: 1945363342640210897, guid: 7eacdd4eb12f853458799232d84560fb, type: 3}
-  - {fileID: 1945363342640210897, guid: bab67c8198f35d5409c4c3b3c45dea29, type: 3}
-  - {fileID: 1945363342640210897, guid: 429218453b36f524f97450988acf8a64, type: 3}
-  - {fileID: 1945363342640210897, guid: 52f5d0947585a1b45800bf160262b9a0, type: 3}
-  - {fileID: 1945363342640210897, guid: 3b07aef85a4e05e439299e83ba55d459, type: 3}
-  - {fileID: 1945363342640210897, guid: 3ed135f708d7ebc468e3aa9696ed5b75, type: 3}
 --- !u!4 &1554487090
 Transform:
   m_ObjectHideFlags: 0
@@ -1774,9 +1768,9 @@ MonoBehaviour:
   - {fileID: 3555370440800643982, guid: 7d8f44e7fcfdea44f89778cbca1113bf, type: 3}
   - {fileID: 3555370440800643982, guid: 7d8f44e7fcfdea44f89778cbca1113bf, type: 3}
   allEnemyPrefabs:
-  - {fileID: 1945363342640210897, guid: 9bac4d1ee824a4545852685919bcf1ba, type: 3}
+  - {fileID: 1945363342640210897, guid: f7f8b99b967243b4084b481030e6d873, type: 3}
   - {fileID: 1945363342640210897, guid: bc9426462b3849245acb3cf646ee1d35, type: 3}
-  - {fileID: 1945363342640210897, guid: 151e56b565f642944ab863b91cd2235e, type: 3}
+  - {fileID: 1945363342640210897, guid: ac577b0722c9c2443a601ff07f1e225f, type: 3}
   UImanager: {fileID: 1868977203}
   gameObjectManager: {fileID: 1554487089}
   unityLogger: {fileID: 1905676379}
