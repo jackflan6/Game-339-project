@@ -14,4 +14,14 @@ public class SceneChanger : MonoBehaviour
         else
             print("no scene to load.");
     }
+    
+    public void ChangeSceneToSpecificScene(string sceneToChangeTo)
+    {
+        if (!string.IsNullOrEmpty(sceneToChangeTo))
+        {
+            SceneManager.LoadScene(sceneToChangeTo);
+        }
+        else
+            print("no scene to load.");
+    }
 }

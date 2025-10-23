@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -16,6 +17,8 @@ public class UnityDialogSys : MonoBehaviour, IDialog
 
     [SerializeField] private TextMeshProUGUI battleDialogue;
     [SerializeField] private TextMeshProUGUI battleDialogueCharacterNames;
+
+    public SceneChanger sceneChanger;
 
     private int battleState;
     private int dialogueCount = 0;
@@ -104,5 +107,29 @@ public class UnityDialogSys : MonoBehaviour, IDialog
         }
         dialogueCount = 1;
     }
-    
+
+    public void HandleBattleEnd(LocationManager locationManager)
+    {
+        StartCoroutine(RunBattleEndSequence(locationManager));
+    }
+
+    private IEnumerator RunBattleEndSequence(LocationManager locationManager)
+    {
+        PrepareBattleEndDialogue(1);
+
+        while (IsDialoguePlaying())
+            yield return null;
+
+        if (locationManager != null)
+        {
+            locationManager.SetupMapScene();
+        }
+
+        sceneChanger.ChangeSceneToSpecificScene("Map");
+    }
+
+    public bool IsDialoguePlaying()
+    {
+        return battleDialogue.transform.parent.gameObject.activeSelf;
+    }
 }
