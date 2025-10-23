@@ -880,40 +880,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnityDialogSys
   preBattleDialogue:
-  - I challenge you to a game of cards, Demon King!
-  - Ha! You can't possibly hope to defeat me, you ridiculous mortal.
-  - I'm the best gambler this world has ever seen! And I thirst for a real challenge!
-  - You're quite the silly, little man. Fine. I will humor your brash request.
-  - But only if you can get through my minions first!
-  - I'll take this human out and spare you the trouble, boss!
+  - I'll be the challenge you're searching for!
+  - I can attack and defend at the same time!
+  - Don't care! Move aside!
+  - The Demon King is who I want to challenge!
   postBattleVictoryDialogue:
-  - Noooo! I've been defeated!
-  - I'm sorry, boss!
-  - This one's stronger than he looks!
-  - Hahahaha!
-  - I am the ultimate gambler! I'm coming for you, Demon King!
+  - '*anguished screaming*'
+  - Not strong enough...
+  - Yep. See ya in hell.
   postBattleDefeatDialogue:
-  - Hahahaha! You were an idiot to challenge our boss!
-  - You failed to even get past me! And now your soul is mine!
-  - I'm sure it'll be delicious!
+  - You couldn't handle my dual strategy!
+  - I hope you enjoyed that final challenge.
   - '*anguished screaming*'
   preBattleCharacterNames:
+  - Boss B
+  - Boss B
   - Foolish Human
-  - Demon King
   - Foolish Human
-  - Demon King
-  - Demon King
-  - Devilish Minion
   postBattleVictoryCharacterNames:
-  - Devilish Minion
-  - Devilish Minion
-  - Devilish Minion
-  - Foolish Human
+  - Boss B
+  - Boss B
   - Foolish Human
   postBattleDefeatCharacterNames:
-  - Devilish Minion
-  - Devilish Minion
-  - Devilish Minion
+  - Boss B
+  - Boss B
   - Foolish Human
   battleDialogue: {fileID: 999748947}
   battleDialogueCharacterNames: {fileID: 1547961915}
@@ -1713,6 +1703,7 @@ MonoBehaviour:
   - {fileID: 1945363342640210897, guid: 52f5d0947585a1b45800bf160262b9a0, type: 3}
   - {fileID: 1945363342640210897, guid: 3b07aef85a4e05e439299e83ba55d459, type: 3}
   - {fileID: 1945363342640210897, guid: 3ed135f708d7ebc468e3aa9696ed5b75, type: 3}
+  - {fileID: 1945363342640210897, guid: c75aa1c94f2158444810b6ae7e050e81, type: 3}
 --- !u!4 &1554487090
 Transform:
   m_ObjectHideFlags: 0
@@ -1774,9 +1765,7 @@ MonoBehaviour:
   - {fileID: 3555370440800643982, guid: 7d8f44e7fcfdea44f89778cbca1113bf, type: 3}
   - {fileID: 3555370440800643982, guid: 7d8f44e7fcfdea44f89778cbca1113bf, type: 3}
   allEnemyPrefabs:
-  - {fileID: 1945363342640210897, guid: 9bac4d1ee824a4545852685919bcf1ba, type: 3}
-  - {fileID: 1945363342640210897, guid: bc9426462b3849245acb3cf646ee1d35, type: 3}
-  - {fileID: 1945363342640210897, guid: 151e56b565f642944ab863b91cd2235e, type: 3}
+  - {fileID: 1945363342640210897, guid: 3ed135f708d7ebc468e3aa9696ed5b75, type: 3}
   UImanager: {fileID: 1868977203}
   gameObjectManager: {fileID: 1554487089}
   unityLogger: {fileID: 1905676379}
