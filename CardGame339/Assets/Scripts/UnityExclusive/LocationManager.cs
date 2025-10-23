@@ -7,13 +7,15 @@ using UnityEngine.SceneManagement;
 
 public class LocationManager : MonoBehaviour
 {
-    public MapPlayer mapPlayer;
     public static LocationManager Instance;
-    private Dictionary<int, Location> allLocations = new Dictionary<int, Location>();
-    public int StartingLocationID = 0;
+
+    public MapPlayer mapPlayer;
     public RectTransform playerIcon;
+    public int StartingLocationID = 0;
+
+    private Dictionary<int, Location> allLocations = new Dictionary<int, Location>();
+    private List<int> completedBattles = new List<int>();
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         if (Instance == null)
@@ -26,51 +28,126 @@ public class LocationManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
-        foreach (Location location in Object.FindObjectsByType<Location>(FindObjectsSortMode.None))
-        {
-            if (!allLocations.ContainsKey(location.ID))
-            {
-                allLocations[location.ID] = location;
-            }
-        }
-    }
-
-    void Start()
-    {
-        mapPlayer = new MapPlayer(StartingLocationID, playerIcon, allLocations);
         
-        foreach (Location location in allLocations.Values)
+        RebuildLocations();
+        
+        if (MapPlayer.Instance == null)
         {
-            if (location.button != null)
-            {
-                location.button.interactable = false;
-            }
+            GameObject playerObj = new GameObject("MapPlayer");
+            mapPlayer = playerObj.AddComponent<MapPlayer>();
+            mapPlayer.Initialize(StartingLocationID, playerIcon, allLocations);
+        }
+        else
+        {
+            mapPlayer = MapPlayer.Instance;
+            mapPlayer.SetPlayerIcon(playerIcon);
         }
 
-        if (allLocations.TryGetValue(StartingLocationID, out Location startLocation))
-        {
-            startLocation.button.interactable = true;
-            EnableConnectedButtons(startLocation);
-        }
+        RefreshButtons();
     }
 
+    private void Start()
+    {
+        if (mapPlayer == null)
+        {
+            if (MapPlayer.Instance == null)
+            {
+                GameObject playerObj = new GameObject("MapPlayer");
+                mapPlayer = playerObj.AddComponent<MapPlayer>();
+                mapPlayer.Initialize(StartingLocationID, playerIcon, allLocations);
+            }
+            else
+            {
+                mapPlayer = MapPlayer.Instance;
+                mapPlayer.SetPlayerIcon(playerIcon);
+            }
+        }
+        
+        RefreshButtons();
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Map")
+        {
+            SetupMapScene();
+        }
+    }
+    
     public void ButtonClicked(Location clickedLocation)
     {
         mapPlayer.MovePlayerIcon(clickedLocation.ID);
-        
+
         DisableAllButtons();
-        
+
         clickedLocation.button.interactable = true;
         EnableConnectedButtons(clickedLocation);
-        
-        if (clickedLocation.sceneChanger != null)
-            clickedLocation.sceneChanger.ChangeScene();
+
+        if (!completedBattles.Contains(clickedLocation.ID))
+        {
+            completedBattles.Add(clickedLocation.ID);
+            
+            if (clickedLocation.sceneChanger != null)
+                clickedLocation.sceneChanger.ChangeSceneToSpecificScene(clickedLocation.sceneToLoad);
+        }
     }
 
-    private void EnableConnectedButtons(Location Location)
+    public void SetupMapScene()
     {
-        foreach (int connectionID in Location.Connections)
+        RebuildLocations();
+        
+        playerIcon = GameObject.Find("PlayerIcon")?.GetComponent<RectTransform>();
+        if (playerIcon != null && mapPlayer != null)
+        {
+            mapPlayer.SetPlayerIcon(playerIcon);
+            mapPlayer.MovePlayerIcon(mapPlayer.currentLocationID);
+        }
+        
+        RefreshButtons();
+        
+    }
+
+    public void RefreshMap()
+    {
+        SetupMapScene();
+    }
+    
+    private void RebuildLocations()
+    {
+        allLocations.Clear();
+        foreach (Location location in Object.FindObjectsByType<Location>(FindObjectsSortMode.None))
+        {
+            allLocations[location.ID] = location;
+            location.button = location.GetComponent<Button>();
+        }
+    }
+
+    private void RefreshButtons()
+    {
+        DisableAllButtons();
+
+        if (mapPlayer != null && allLocations.TryGetValue(mapPlayer.currentLocationID, out Location currentLocation))
+        {
+            if (currentLocation.button != null)
+                currentLocation.button.interactable = true;
+
+            EnableConnectedButtons(currentLocation);
+        }
+    }
+
+    private void EnableConnectedButtons(Location location)
+    {
+        foreach (int connectionID in location.Connections)
         {
             if (allLocations.TryGetValue(connectionID, out Location connectedLocation))
             {
@@ -82,7 +159,7 @@ public class LocationManager : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning($"Connection ID {connectionID} not found for Location {Location.ID}");  
+                Debug.LogWarning($"Connection ID {connectionID} not found for Location {location.ID}");
             }
         }
     }
@@ -91,11 +168,8 @@ public class LocationManager : MonoBehaviour
     {
         foreach (Location location in allLocations.Values)
         {
-            Button button = location.button;
-            if (button != null)
-            {
-                button.interactable = false;
-            }
+            if (location.button != null)
+                location.button.interactable = false;
         }
     }
 }

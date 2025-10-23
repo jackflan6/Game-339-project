@@ -3,17 +3,38 @@ using UnityEngine;
 
 public class MapPlayer : MonoBehaviour
 {
+    public static MapPlayer Instance;
+    
     public int currentLocationID;
     public List<Item> collectedItems = new List<Item>();
     private RectTransform playerIcon;
     private Dictionary<int, Location> allLocations;
 
-    public MapPlayer(int startingLocationID, RectTransform icon, Dictionary<int, Location> locations)
+    public void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    
+    public void Initialize(int startingLocationID, RectTransform icon, Dictionary<int, Location> locations)
     {
         currentLocationID = startingLocationID;
         playerIcon = icon;
         allLocations = locations;
         
+        MovePlayerIcon(currentLocationID);
+    }
+
+    public void SetPlayerIcon(RectTransform icon)
+    {
+        playerIcon = icon;
         MovePlayerIcon(currentLocationID);
     }
     
@@ -24,6 +45,7 @@ public class MapPlayer : MonoBehaviour
             if (location.button != null)
             {
                 playerIcon.position = location.button.transform.position;
+                currentLocationID = locationID;
                 Debug.Log($"Moved PlayerIcon to Location ID {location.ID}");
             }
         }

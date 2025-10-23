@@ -721,6 +721,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
       value: 
       objectReference: {fileID: 1259959860}
@@ -2319,6 +2323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1b697e1ce5fcca49a0a8ab3b147d0db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocationManager
+  mapPlayer: {fileID: 0}
   StartingLocationID: 0
   playerIcon: {fileID: 375603742}
 --- !u!4 &811540393
@@ -5086,6 +5091,10 @@ PrefabInstance:
     - target: {fileID: 8252598509034259939, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: m_Name
       value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle1
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger

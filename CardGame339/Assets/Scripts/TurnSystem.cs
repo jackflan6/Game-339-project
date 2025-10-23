@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TurnSystem : IManager
 {
@@ -10,6 +11,10 @@ public class TurnSystem : IManager
     public CardManager cardManager = ManagerManager.Resolve<CardManager>();
 
     public UnityDialogSys UnityDialogSys = ManagerManager.Resolve<UnityDialogSys>();
+
+    public SceneChanger SceneChanger = ManagerManager.Resolve<SceneChanger>();
+    
+    //public LocationManager locationManager = ManagerManager.Resolve<LocationManager>();
     
     public Enemy EnemyToAttack;
 
@@ -59,6 +64,7 @@ public class TurnSystem : IManager
         {
             logger.print("player lost!");
             UnityDialogSys.PrepareBattleEndDialogue(2);
+            SceneChanger.ChangeSceneToSpecificScene("DeathScreen");
         }
 
         PlayerTurn();
@@ -111,7 +117,12 @@ public class TurnSystem : IManager
         if (enemyManager.enemies.Count == 0)
         {
             logger.print("Player won!");
-            UnityDialogSys.PrepareBattleEndDialogue(1);
+            UnityDialogSys dialogSys = ManagerManager.Resolve<UnityDialogSys>();
+            LocationManager locationManager = ManagerManager.Resolve<LocationManager>();
+            
+            dialogSys?.HandleBattleEnd(locationManager);
+
+            return;
         }
         EnemiesTurn();
     }
@@ -125,7 +136,5 @@ public class TurnSystem : IManager
 
         return false;
     }
-
-    
     
 }

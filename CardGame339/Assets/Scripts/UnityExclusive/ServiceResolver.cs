@@ -23,6 +23,8 @@ public class ServiceResolver : MonoBehaviour
     public UnityGameLogger unityLogger;
     public UnityRandom unityRandom;
     public UnityDialogSys unityDialog;
+    public SceneChanger sceneChanger;
+    public LocationManager locationManager;
     private void Awake()
     {
         print("Service Resolver is awake");
@@ -31,6 +33,8 @@ public class ServiceResolver : MonoBehaviour
         ManagerManager.register((IRandom)unityRandom);
         ManagerManager.register((IDialog)unityDialog);
         ManagerManager.register(UImanager);
+        ManagerManager.register(sceneChanger);
+        ManagerManager.register(locationManager);
         ManagerManager.registerDependency(() => new EnemyManager());
         ManagerManager.registerDependency(() => new CombatSystem());
         ManagerManager.registerDependency(() => new TurnSystem(maxMana));
