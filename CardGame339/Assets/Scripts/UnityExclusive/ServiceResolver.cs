@@ -29,6 +29,7 @@ public class ServiceResolver : MonoBehaviour
     {
         print("Service Resolver is awake");
         //you can only register one thing of each type
+        ManagerManager.reload();
         ManagerManager.register((IGameLogger)unityLogger);
         ManagerManager.register((IRandom)unityRandom);
         ManagerManager.register((IDialog)unityDialog);

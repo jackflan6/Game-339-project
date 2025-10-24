@@ -52,4 +52,11 @@ public static class ManagerManager
 
         throw new Exception($"Already registered a {typeof(T)}");
     }
+
+    public static void reload()
+    {
+        m_register = new ConcurrentDictionary<Type, Func<object>>();
+        managers = new List<Func<object>>();
+    }
+
 }

@@ -18,7 +18,12 @@ public class GameObjectManager : MonoBehaviour
     public static Dictionary<Enemy,GameObject> allCreatedEnemys = new Dictionary<Enemy,GameObject>();
 
 
-
+    public void OnDestroy()
+    {
+        allCreatedEnemys = new Dictionary<Enemy, GameObject>(); 
+        allCreatedCards = new List<GameObject>();
+        staticCardPrefabList = new List<GameObject>();
+    }
     public void UpdateCardPos()
     {
        int i = 0;

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class TurnSystem : IManager
 {
