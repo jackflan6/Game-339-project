@@ -38,6 +38,75 @@ namespace TestProject1
 
         }
 
+        [Test]
+        public void GachaPull1x()
+        {
+            IRandom fakeRandom= new RealRandom();
+            IGameLogger logger = new ConsoleGameLogger();
+            GachaManager gachaManager = new GachaManager(fakeRandom);
+            logger.print(gachaManager.Pull().ToString());
+        }
+        
+        [Test]
+        public void GachaPull10x()
+        {
+            List<GachaItem> itemsPulled = new List<GachaItem>();
+            IRandom fakeRandom= new RealRandom();
+            IGameLogger logger = new ConsoleGameLogger();
+            GachaManager gachaManager = new GachaManager(fakeRandom);
+            for (int a = 0; a < 10; a++)
+            {
+                GachaItem newItem = gachaManager.Pull();
+                logger.print(newItem.ToString());
+                itemsPulled.Add(newItem);
+            }
+
+            bool containsFourStar = false;
+            foreach (GachaItem item in itemsPulled)
+            {
+                if (item.Rarity == 4)
+                {
+                    containsFourStar = true;
+                }
+            }
+            Assert.That(containsFourStar);
+        }
+
+        [Test]
+        public void GachaPullx90()
+        {
+            List<GachaItem> itemsPulled = new List<GachaItem>();
+            IRandom fakeRandom= new RealRandom();
+            IGameLogger logger = new ConsoleGameLogger();
+            GachaManager gachaManager = new GachaManager(fakeRandom);
+            for (int a = 0; a < 90; a++)
+            {
+                GachaItem newItem = gachaManager.Pull();
+                logger.print(newItem.ToString());
+                itemsPulled.Add(newItem);
+            }
+
+            int fourStars = 0;
+            foreach (GachaItem item in itemsPulled)
+            {
+                if (item.Rarity == 4)
+                {
+                    fourStars++;
+                }
+            }
+
+            bool containsFiveStar = false;
+            foreach (GachaItem item in itemsPulled)
+            {
+                if (item.Rarity == 5)
+                {
+                    containsFiveStar = true;
+                }
+            }
+            Assert.That(fourStars>=9&&containsFiveStar);
+        }
+        
+
 
     }
 }
