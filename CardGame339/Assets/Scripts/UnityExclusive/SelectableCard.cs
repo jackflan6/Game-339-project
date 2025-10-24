@@ -19,8 +19,10 @@ public class SelectableCard : MonoBehaviour
     public float acceleration = 10;
     Color normCol = Color.white;
     public Color originalCol;
+    private float normscale;
     void Start()
     {
+        normscale = transform.localScale.x;
         GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().onMouseMove += OnMouseMove;
         GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().onMousePress += OnMouseClick;
     }
@@ -52,10 +54,12 @@ public class SelectableCard : MonoBehaviour
         {
             hover = true;
             GetComponent<SpriteRenderer>().color = Color.yellow;
+            transform.localScale = new Vector3(normscale*1.5f, normscale*1.5f, 1);
         } else
         {
             hover = false;
             GetComponent<SpriteRenderer>().color = normCol;
+            transform.localScale = new Vector3(normscale, normscale, 1);
         }
     }
     public void OnMouseClick(Vector2 pos)

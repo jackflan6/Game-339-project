@@ -22,7 +22,6 @@ public class GameObjectManager : MonoBehaviour
     {
         allCreatedEnemys = new Dictionary<Enemy, GameObject>(); 
         allCreatedCards = new List<GameObject>();
-        staticCardPrefabList = new List<GameObject>();
     }
     public void UpdateCardPos()
     {

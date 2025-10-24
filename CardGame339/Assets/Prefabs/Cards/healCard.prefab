@@ -153,4 +153,4 @@ MonoBehaviour:
   cardID: 5
   cardPosition: {x: 0, y: 0}
   acceleration: 1
-  originalCol: {r: 0.009433806, g: 1, b: 0.08190167, a: 1}
+  originalCol: {r: 1, g: 1, b: 1, a: 1}

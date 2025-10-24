@@ -18,5 +18,6 @@ public class BillowingAss : Card
 
     public override void Effect(Enemy enemy)
     {
+        Burn(enemy);
     }
 }

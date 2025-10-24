@@ -78,6 +78,7 @@ public class CardManager : IManager
     {
         logger.print("cardPlayed!");
         int totalShock=1;
+        CombatSystem.ApplyBurnDamageToEnemy(enemy, card);
         if (card.Element.Equals("Shock"))
         {
             foreach (Card discardCard in DiscardPile)
