@@ -248,6 +248,10 @@ PrefabInstance:
       value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
       value: 
       objectReference: {fileID: 1259959860}
@@ -400,6 +404,10 @@ PrefabInstance:
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: ID
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle2
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
@@ -565,6 +573,10 @@ PrefabInstance:
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: ID
       value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle9
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
@@ -879,6 +891,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
       value: 
       objectReference: {fileID: 1259959860}
@@ -1042,6 +1058,10 @@ PrefabInstance:
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: ID
       value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle8
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
@@ -1277,6 +1297,10 @@ PrefabInstance:
       value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
       value: 
       objectReference: {fileID: 1259959860}
@@ -1425,6 +1449,10 @@ PrefabInstance:
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: ID
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle6
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
@@ -1592,6 +1620,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
       value: 
       objectReference: {fileID: 1259959860}
@@ -1744,6 +1776,10 @@ PrefabInstance:
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: ID
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Boss1
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
@@ -1992,6 +2028,10 @@ PrefabInstance:
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: ID
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle2
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
@@ -2258,6 +2298,10 @@ PrefabInstance:
       value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
       value: 
       objectReference: {fileID: 1259959860}
@@ -2324,8 +2368,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocationManager
   mapPlayer: {fileID: 0}
-  StartingLocationID: 0
   playerIcon: {fileID: 375603742}
+  StartingLocationID: 0
 --- !u!4 &811540393
 Transform:
   m_ObjectHideFlags: 0
@@ -2468,6 +2512,10 @@ PrefabInstance:
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: ID
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle3
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
@@ -2646,6 +2694,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
       value: 
       objectReference: {fileID: 1259959860}
@@ -2817,6 +2869,10 @@ PrefabInstance:
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: ID
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle9
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
@@ -3040,6 +3096,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
       value: 
       objectReference: {fileID: 1259959860}
@@ -3207,6 +3267,10 @@ PrefabInstance:
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: ID
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle5
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
@@ -3487,6 +3551,10 @@ PrefabInstance:
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
       value: 
       objectReference: {fileID: 1259959860}
@@ -3652,6 +3720,10 @@ PrefabInstance:
       value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Boss2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
       value: 
       objectReference: {fileID: 1259959860}
@@ -3800,6 +3872,10 @@ PrefabInstance:
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: ID
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle6
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
@@ -3973,6 +4049,10 @@ PrefabInstance:
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: ID
       value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle3
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
@@ -4243,6 +4323,10 @@ PrefabInstance:
       value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
       value: 
       objectReference: {fileID: 1259959860}
@@ -4408,6 +4492,10 @@ PrefabInstance:
       value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Boss2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
       value: 
       objectReference: {fileID: 1259959860}
@@ -4567,6 +4655,10 @@ PrefabInstance:
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: ID
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle3
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
@@ -4732,6 +4824,10 @@ PrefabInstance:
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: ID
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: FinalBoss
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
@@ -4932,6 +5028,10 @@ PrefabInstance:
       value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
+      propertyPath: sceneToLoad
+      value: Battle2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger
       value: 
       objectReference: {fileID: 1259959860}
@@ -5094,7 +5194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneToLoad
-      value: Battle1
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 9177021130028846149, guid: a27b1e11b590a5f46a3cfbe628930e5d, type: 3}
       propertyPath: sceneChanger

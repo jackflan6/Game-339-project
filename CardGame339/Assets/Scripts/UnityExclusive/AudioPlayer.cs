@@ -1,10 +1,14 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioPlayer : MonoBehaviour
 {
     public static AudioPlayer Instance;
+
+    public List<AudioClip> audioClips = new List<AudioClip>();
     
-    private AudioSource audioSource;
+    private AudioSource audioSource1;
+    private AudioSource audioSource2;
     private void Awake()
     {
         if (Instance == null)
@@ -18,11 +22,16 @@ public class AudioPlayer : MonoBehaviour
             return;
         }
         
-        audioSource = GetComponent<AudioSource>();
+        audioSource1 = GetComponent<AudioSource>();
     }
 
-    public void PlayAudio()
+    public void PlayAudio1()
     {
-        audioSource.Play();
+        audioSource1.Play();
+    }
+
+    public void PlayAudio2()
+    {
+        audioSource2.Play();
     }
 }
