@@ -905,7 +905,7 @@ MonoBehaviour:
   - Foolish Human
   battleDialogue: {fileID: 999748947}
   battleDialogueCharacterNames: {fileID: 1547961915}
-  sceneChanger: {fileID: 0}
+  sceneChanger: {fileID: 1717494978}
 --- !u!1 &866089362
 GameObject:
   m_ObjectHideFlags: 0
