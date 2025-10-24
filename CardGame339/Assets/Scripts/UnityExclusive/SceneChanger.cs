@@ -24,4 +24,19 @@ public class SceneChanger : MonoBehaviour
         else
             print("no scene to load.");
     }
+
+    public void TryAgain()
+    {
+        MapPlayer.Instance?.ResetPlayer();
+        LocationManager.Instance?.ResetLocation();
+        
+        ChangeSceneToSpecificScene("Map");
+    }
+    
+    public void QuitGameButton()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+    }
 }

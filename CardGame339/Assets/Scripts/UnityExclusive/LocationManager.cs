@@ -172,4 +172,9 @@ public class LocationManager : MonoBehaviour
                 location.button.interactable = false;
         }
     }
+
+    public void ResetLocation()
+    {
+        completedBattles.Clear();
+    }
 }

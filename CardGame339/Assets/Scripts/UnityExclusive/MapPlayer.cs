@@ -63,4 +63,10 @@ public class MapPlayer : MonoBehaviour
             itemsAtLocation.Clear();
         }
     }
+
+    public void ResetPlayer()
+    {
+        currentLocationID = 0;
+        collectedItems.Clear();
+    }
 }
