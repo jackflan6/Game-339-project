@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -42,11 +43,16 @@ public class CardDropDown : Editor
         _choiceIndex = EditorGUILayout.Popup(_choiceIndex, _choices.Value.Keys.ToArray());
         var someClass = target as SelectableCard;
         int cardID = _choices.Value[_choices.Value.Keys.ToArray()[_choiceIndex]];
-        someClass.cardID = cardID;
+
+        if (someClass.cardID != cardID)
+        {
+            someClass.cardID = cardID;
+            EditorUtility.SetDirty(target);
+        }
         //if (someClass.cardID != cardID)
         //{
-        //    serializedObject.FindProperty("cardID").intValue = cardID;
-        //    serializedObject.ApplyModifiedProperties();
+        //serializedObject.FindProperty("cardID").intValue = cardID;
+        //serializedObject.ApplyModifiedProperties();
         //}
         // Draw the default inspector
         DrawDefaultInspector();

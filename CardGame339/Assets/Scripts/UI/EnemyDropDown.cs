@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -22,7 +24,7 @@ public class EnemyDropDown : Editor
                 (int)t.GetField("enemyID").GetValue(null));
             ++i;
         }
-
+        ret.OrderBy(inp => inp.Value);
         return ret;
     }
     );
@@ -30,8 +32,10 @@ public class EnemyDropDown : Editor
 
     public override void OnInspectorGUI()
     {
+        string[] keys = _choices.Value.Keys.ToArray();
+        Array.Sort(keys, _choices.Value.Values.ToArray());
         int i = 0;
-        foreach (string choice in _choices.Value.Keys)
+        foreach (string choice in keys)
         {
             if (((SelectableEnemy)target).enemyID == _choices.Value[choice])
             {
@@ -39,10 +43,18 @@ public class EnemyDropDown : Editor
             }
             i++;
         }
-        _choiceIndex = EditorGUILayout.Popup(_choiceIndex, _choices.Value.Keys.ToArray());
+        _choiceIndex = EditorGUILayout.Popup(_choiceIndex, keys);
         var someClass = target as SelectableEnemy;
-        int enemyID = _choices.Value[_choices.Value.Keys.ToArray()[_choiceIndex]];
-        someClass.enemyID = enemyID;
+        int enemyID = _choices.Value[keys[_choiceIndex]];
+        if (someClass.enemyID != enemyID)
+        {
+            someClass.enemyID = enemyID;
+            EditorUtility.SetDirty(target);
+        }
+
+
+        //serializedObject.FindProperty("enemyID").intValue = enemyID;
+        //serializedObject.ApplyModifiedProperties();
         DrawDefaultInspector();
     }
 }

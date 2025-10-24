@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32017dde588292846a09cfde6fa5ce92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectableEnemy
-  enemyID: 6
+  enemyID: 9
   EnemyPosition: {x: 0, y: 0}
   acceleration: 10
 --- !u!1 &2720405336860589285
