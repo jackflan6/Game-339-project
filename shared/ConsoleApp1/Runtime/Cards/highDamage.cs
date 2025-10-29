@@ -6,9 +6,9 @@ public class highDamage : Card
     //This need to be called "cardID" and reflected in the selectableCard object.
     //It is not forced by the interface so you just need to remember
     public static int cardID = 3;
-
-    public override int ManaCost { get; } = 3;
-    public override int Damage { get; } = 5;
+    public override int rarity { get; set; }
+    public override int ManaCost { get; set; } = 3;
+    public override int Damage { get; set; } = 5;
 
 
     public override void Effect(Enemy enemy)

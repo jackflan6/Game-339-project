@@ -7,9 +7,10 @@ public class shieldCard : Card
     //It is not forced by the interface so you just need to remember
     public static int cardID = 4;
 
+    public override int rarity { get; set; }
     public override int ShieldValue { get; set; } = 5;
-    public override int ManaCost { get; } = 2;
-    public override int Damage { get; } = 0;
+    public override int ManaCost { get; set; } = 2;
+    public override int Damage { get; set; } = 0;
 
 
     public override void Effect(Enemy enemy)
