@@ -31,8 +31,10 @@ public class CardDropDown : Editor
 
     public override void OnInspectorGUI()
     {
+        string[] keys = _choices.Value.Keys.ToArray();
+        Array.Sort(keys, _choices.Value.Values.ToArray());
         int i = 0;
-        foreach (string choice in _choices.Value.Keys)
+        foreach (string choice in keys)
         {
             if (((SelectableCard)target).cardID == _choices.Value[choice])
             {
@@ -40,9 +42,9 @@ public class CardDropDown : Editor
             }
             i++;
         }
-        _choiceIndex = EditorGUILayout.Popup(_choiceIndex, _choices.Value.Keys.ToArray());
+        _choiceIndex = EditorGUILayout.Popup(_choiceIndex,keys);
         var someClass = target as SelectableCard;
-        int cardID = _choices.Value[_choices.Value.Keys.ToArray()[_choiceIndex]];
+        int cardID = _choices.Value[keys[_choiceIndex]];
 
         if (someClass.cardID != cardID)
         {

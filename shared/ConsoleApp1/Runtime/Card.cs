@@ -10,8 +10,9 @@ public abstract class Card : ICard
     public virtual int Heal { get; set; }
 
     //you do need to implement these though
-    public abstract int ManaCost { get;}
-    public abstract int Damage { get; }
+    public abstract int rarity { get; set; }
+    public abstract int ManaCost { get; set; }
+    public abstract int Damage { get; set; }
     public abstract void Effect(Enemy enemy);
 
     
@@ -28,5 +29,7 @@ public abstract class Card : ICard
     {
         ManagerManager.Resolve<CombatSystem>().ApplyBurnDamageToEnemy(enemy,this);
     }
+
+    p
 
 }
