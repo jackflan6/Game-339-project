@@ -30,6 +30,6 @@ public abstract class Card : ICard
         ManagerManager.Resolve<CombatSystem>().ApplyBurnDamageToEnemy(enemy,this);
     }
 
-    p
+    
 
 }
