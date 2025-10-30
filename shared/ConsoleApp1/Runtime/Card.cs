@@ -10,7 +10,7 @@ public abstract class Card : ICard
     public virtual int Heal { get; set; }
 
     //you do need to implement these though
-    public abstract int rarity { get; set; }
+    public abstract int rarity { get; }
     public abstract int ManaCost { get; set; }
     public abstract int Damage { get; set; }
     public abstract void Effect(Enemy enemy);

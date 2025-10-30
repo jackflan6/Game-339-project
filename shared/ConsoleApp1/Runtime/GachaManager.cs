@@ -3,21 +3,24 @@
 public class GachaManager
 {
     public readonly IRandom Random;
-    public List<GachaItem> gachaItems = new List<GachaItem>()
+    public List<Card> gachaItems = new List<Card>()
     {
-        new GachaItem(3, "Prius"),
-        new GachaItem(4,"Cadillac"),
-        new GachaItem(3, "CRV"),
-        new GachaItem(3, "Hyundai"),
-        new GachaItem(4, "Mustang"),
-        new GachaItem(5, "Maserati",false,true),
-        new GachaItem(5, "Corvette", true),
-        new GachaItem(5, "Rolls Royce", true),
-        new GachaItem(5, "Tesla", true)
+        new BillowingAss(),
+        new BillowingAss(),
+        new BillowingAss(),
+        new healCard(),
+        new healCard(),
+        new highDamage(),
+        new BurningSlash(),
+        new BurningSlash(),
+        new BurningSlash(),
+        new shieldCard(),
+        new shieldCard(),
+        new shieldCard()
     };
 
-    private int premiumPityCounter;
-    private int fourStarPityCounter;
+    private int legendaryPityCounter;
+    private int rarePityCounter;
     private int hardPity;
     private bool hasGuarantee;
 
@@ -26,89 +29,136 @@ public class GachaManager
         Random = random;
     }
 
-    public GachaItem Pull()
+    public Card Pull(List<Card> allCards)
     {
         int chance=Random.RandomNumber(100);
-        if (chance == 0 || premiumPityCounter==89)
+        if (chance < 5 || legendaryPityCounter==89)
         {
-            int fiveStarFiftyFifty = Random.RandomNumber(2);
-            if (fiveStarFiftyFifty == 0)
-            {
-                hasGuarantee = false;
-                premiumPityCounter = 0;
-                foreach (GachaItem item in gachaItems)
-                {
-                    if (item.isOnBanner)
-                    {
-                        return item;
-                    }
-                }
-            }
-            else
-            {
-                List<GachaItem> standardItems = CollectStandardFiveStars();
-                int standardFiveStar = Random.RandomNumber(standardItems.Count);
-                hasGuarantee = true;
-                premiumPityCounter = 0;
-                return standardItems[standardFiveStar];
-            }
+            
+            List<Card> legendaryItems = CollectLegendaryCards(allCards);
+            int legendaryItem = Random.RandomNumber(legendaryItems.Count);
+            rarePityCounter = 0;
+            legendaryPityCounter = 0;
+            return legendaryItems[legendaryItem];
         }
-        else if(chance==1 || chance==2 || chance==3 || chance==4 || chance==5 || fourStarPityCounter==9)
+        else if(chance<30 || rarePityCounter==9)
         {
-            List<GachaItem> fourStars = CollectFourStarItems();
-            int fourStar = Random.RandomNumber(fourStars.Count);
-            fourStarPityCounter = 0;
-            premiumPityCounter++;
-            return fourStars[fourStar];
+            List<Card> rareCards = CollectRareCards(allCards);
+            int rareCard = Random.RandomNumber(rareCards.Count);
+            rarePityCounter = 0;
+            legendaryPityCounter++;
+            return rareCards[rareCard];
+        }
+        else if(chance<40)
+        {
+            List<Card> epicCards = CollectEpicCards(allCards);
+            int epicCard = Random.RandomNumber(epicCards.Count);
+            rarePityCounter = 0;
+            legendaryPityCounter++;
+            return epicCards[epicCard];
         }
         
-        List<GachaItem> threeStars = CollectThreeStarItems();
-        int threeStar = Random.RandomNumber(threeStars.Count);
-        premiumPityCounter++;
-        fourStarPityCounter++;
-        return threeStars[threeStar];
+        List<Card> commonCards = CollectCommonCards(allCards);
+        int commonCard = Random.RandomNumber(commonCards.Count);
+        legendaryPityCounter++;
+        rarePityCounter++;
+        return commonCards[commonCard];
         
     }
 
-    private List<GachaItem> CollectStandardFiveStars()
+    public Card PullFireCard(List<Card> allCards)
     {
-        List<GachaItem> standardItems = new List<GachaItem>();
-        foreach (GachaItem item in gachaItems)
-        {
-            if (item.isStandard)
-            {
-                standardItems.Add(item);
-            }
-        }
-
-        return standardItems;
-    }
-
-    private List<GachaItem> CollectFourStarItems()
-    {
-        List<GachaItem> fourStarItems = new List<GachaItem>();
-        foreach (GachaItem item in gachaItems)
-        {
-            if (item.Rarity==4)
-            {
-                fourStarItems.Add(item);
-            }
-        }
-
-        return fourStarItems;
+        List<Card> fireCards = CollectFireCards(allCards);
+        return Pull(fireCards);
     }
     
-    private List<GachaItem> CollectThreeStarItems()
+    public Card PullLightningCard(List<Card> allCards)
     {
-        List<GachaItem> threeStarItems = new List<GachaItem>();
-        foreach (GachaItem item in gachaItems)
+        List<Card> lightningCards = CollectLightningCards(allCards);
+        return Pull(lightningCards);
+    }
+
+    private List<Card> CollectFireCards(List<Card> allCards)
+    {
+        List<Card> fireCards = new List<Card>();
+        foreach (Card card in gachaItems)
         {
-            if (item.Rarity==3)
+            if (card.Element.ToLower().Equals("fire"))
             {
-                threeStarItems.Add(item);
+                fireCards.Add(card);
             }
         }
 
-        return threeStarItems;
+        return fireCards;
+    }
+    
+    private List<Card> CollectLightningCards(List<Card> allCards)
+    {
+        List<Card> fireCards = new List<Card>();
+        foreach (Card card in gachaItems)
+        {
+            if (card.Element.ToLower().Equals("lightning"))
+            {
+                fireCards.Add(card);
+            }
+        }
+
+        return fireCards;
+    }
+
+    private List<Card> CollectLegendaryCards(List<Card> allCards)
+    {
+        List<Card> legendaryCards = new List<Card>();
+        foreach (Card card in allCards)
+        {
+            if (card.rarity==4)
+            {
+                legendaryCards.Add(card);
+            }
+        }
+
+        return legendaryCards;
+    }
+
+    private List<Card> CollectRareCards(List<Card> allCards)
+    {
+        List<Card> rareCards = new List<Card>();
+        foreach (Card card in allCards)
+        {
+            if (card.rarity==2)
+            {
+                rareCards.Add(card);
+            }
+        }
+
+        return rareCards;
+    }
+    
+    private List<Card> CollectEpicCards(List<Card> allCards)
+    {
+        List<Card> epicCards = new List<Card>();
+        foreach (Card card in allCards)
+        {
+            if (card.rarity==3)
+            {
+                epicCards.Add(card);
+            }
+        }
+
+        return epicCards;
+    }
+    
+    private List<Card> CollectCommonCards(List<Card> allCards)
+    {
+        List<Card> commonCards = new List<Card>();
+        foreach (Card card in allCards)
+        {
+            if (card.rarity==1)
+            {
+                commonCards.Add(card);
+            }
+        }
+
+        return commonCards;
     }
 }
