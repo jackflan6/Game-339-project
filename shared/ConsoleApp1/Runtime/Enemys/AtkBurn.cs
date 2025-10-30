@@ -9,6 +9,7 @@ public class AtkBurn : Enemy
     readonly IRandom random;
 
     private int processionOfActions;
+    public override ValueHolder<int> dropCurrency { get; } = 5;
     //::::Important::::
     //It is nessasary to have every card have a static int for its ID.
     //This need to be called "enemyID" and reflected in the selectableCard object.

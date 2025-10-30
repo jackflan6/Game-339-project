@@ -1,3 +1,5 @@
+using ConsoleApp1;
+
 namespace TestProject1
 {
     public class Tests
@@ -11,10 +13,11 @@ namespace TestProject1
         public void PlayerDamageToEnemy()
         {
             IGameLogger logger=new ConsoleGameLogger();
+            CurrencyManager currencyManager = new CurrencyManager();
             IDialog dialogue = new ConsoleDialogue();
             IRandom notSoRandom = new FakeRandom();
             EnemyManager enemyManager = new EnemyManager(logger);
-            CombatSystem combatSystem = new CombatSystem(enemyManager, logger);
+            CombatSystem combatSystem = new CombatSystem(enemyManager, logger,currencyManager);
             Card card = new BillowingAss();
             Enemy enemy = new TheBillowedAss(combatSystem, dialogue, enemyManager, notSoRandom);
             combatSystem.DealDamageToEnemy(card, enemy);
@@ -26,10 +29,11 @@ namespace TestProject1
         public void BurnDamageToPlayer()
         {
             IGameLogger logger = new ConsoleGameLogger();
+            CurrencyManager currencyManager = new CurrencyManager();
             Player player = new Player(10,10,"testPlayer", logger);
             player.currentBurnDamage = 2;
             EnemyManager enemyManager = new EnemyManager(logger);
-            CombatSystem combatSystem = new CombatSystem(enemyManager, logger);
+            CombatSystem combatSystem = new CombatSystem(enemyManager, logger, currencyManager);
             combatSystem.BurnDamageToPlayer(player);
             combatSystem.BurnDamageToPlayer(player);
             combatSystem.BurnDamageToPlayer(player);

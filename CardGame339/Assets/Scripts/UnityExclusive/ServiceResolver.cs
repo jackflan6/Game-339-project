@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ConsoleApp1;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -38,6 +39,7 @@ public class ServiceResolver : MonoBehaviour
         ManagerManager.register(locationManager);
         ManagerManager.registerDependency(() => new EnemyManager());
         ManagerManager.registerDependency(() => new CombatSystem());
+        ManagerManager.registerDependency(()=> new CurrencyManager());
         ManagerManager.registerDependency(() => new TurnSystem(maxMana));
         ManagerManager.registerDependency(() => new GameManager());
         ManagerManager.registerDependency(() => new Player(playerHP, 0, playerName));
