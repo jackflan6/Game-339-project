@@ -22,4 +22,6 @@ public class BillowingAss : Card
         Damage = 1 + rarity;
         Burn(enemy);
     }
+
+    public override int rarity { get; } = 4;
 }

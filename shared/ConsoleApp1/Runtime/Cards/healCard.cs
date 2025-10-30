@@ -15,4 +15,6 @@ public class healCard : Card
     public override void Effect(Enemy enemy)
     {
     }
+
+    public override int rarity { get; } = 1;
 }

@@ -19,4 +19,6 @@ public class BurningSlash : Card
         Burn(enemy);
 
     }
+
+    public override int rarity { get; } = 2;
 }
