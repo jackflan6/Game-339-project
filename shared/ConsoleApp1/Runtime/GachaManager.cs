@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-public class GachaManager
+public class GachaManager : IManager
 {
     public readonly IRandom Random;
     public List<Card> gachaItems = new List<Card>()
@@ -160,5 +160,21 @@ public class GachaManager
         }
 
         return commonCards;
+    }
+
+    public IGameLogger logger { get; }
+    public void Start()
+    {
+        
+    }
+
+    public void Awake()
+    {
+        
+    }
+
+    public void Update()
+    {
+        
     }
 }
