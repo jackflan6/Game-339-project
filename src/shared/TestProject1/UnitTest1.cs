@@ -1,3 +1,5 @@
+using ConsoleApp1;
+
 namespace TestProject1
 {
     public class Tests
@@ -11,10 +13,11 @@ namespace TestProject1
         public void PlayerDamageToEnemy()
         {
             IGameLogger logger=new ConsoleGameLogger();
+            CurrencyManager currencyManager = new CurrencyManager();
             IDialog dialogue = new ConsoleDialogue();
             IRandom notSoRandom = new FakeRandom();
             EnemyManager enemyManager = new EnemyManager(logger);
-            CombatSystem combatSystem = new CombatSystem(enemyManager, logger);
+            CombatSystem combatSystem = new CombatSystem(enemyManager, logger,currencyManager);
             Card card = new BillowingAss();
             Enemy enemy = new TheBillowedAss(combatSystem, dialogue, enemyManager, notSoRandom);
             combatSystem.DealDamageToEnemy(card, enemy);
@@ -26,10 +29,11 @@ namespace TestProject1
         public void BurnDamageToPlayer()
         {
             IGameLogger logger = new ConsoleGameLogger();
+            CurrencyManager currencyManager = new CurrencyManager();
             Player player = new Player(10,10,"testPlayer", logger);
             player.currentBurnDamage = 2;
             EnemyManager enemyManager = new EnemyManager(logger);
-            CombatSystem combatSystem = new CombatSystem(enemyManager, logger);
+            CombatSystem combatSystem = new CombatSystem(enemyManager, logger, currencyManager);
             combatSystem.BurnDamageToPlayer(player);
             combatSystem.BurnDamageToPlayer(player);
             combatSystem.BurnDamageToPlayer(player);
@@ -44,66 +48,66 @@ namespace TestProject1
             IRandom fakeRandom= new RealRandom();
             IGameLogger logger = new ConsoleGameLogger();
             GachaManager gachaManager = new GachaManager(fakeRandom);
-            logger.print(gachaManager.Pull().ToString());
+            logger.print(gachaManager.Pull(gachaManager.gachaItems).ToString());
         }
         
         [Test]
         public void GachaPull10x()
         {
-            List<GachaItem> itemsPulled = new List<GachaItem>();
+            List<Card> itemsPulled = new List<Card>();
             IRandom fakeRandom= new RealRandom();
             IGameLogger logger = new ConsoleGameLogger();
             GachaManager gachaManager = new GachaManager(fakeRandom);
             for (int a = 0; a < 10; a++)
             {
-                GachaItem newItem = gachaManager.Pull();
+                Card newItem = gachaManager.Pull(gachaManager.gachaItems);
                 logger.print(newItem.ToString());
                 itemsPulled.Add(newItem);
             }
 
-            bool containsFourStar = false;
-            foreach (GachaItem item in itemsPulled)
+            bool containsRareCard = false;
+            foreach (Card item in itemsPulled)
             {
-                if (item.Rarity == 4)
+                if (item.rarity >= 2)
                 {
-                    containsFourStar = true;
+                     containsRareCard = true;
                 }
             }
-            Assert.That(containsFourStar);
+            Assert.That(containsRareCard);
         }
 
         [Test]
         public void GachaPullx90()
         {
-            List<GachaItem> itemsPulled = new List<GachaItem>();
+            List<Card> itemsPulled = new List<Card>();
             IRandom fakeRandom= new RealRandom();
             IGameLogger logger = new ConsoleGameLogger();
             GachaManager gachaManager = new GachaManager(fakeRandom);
             for (int a = 0; a < 90; a++)
             {
-                GachaItem newItem = gachaManager.Pull();
+                Card newItem = gachaManager.Pull(gachaManager.gachaItems);
                 logger.print(newItem.ToString());
                 itemsPulled.Add(newItem);
             }
 
-            int fourStars = 0;
-            foreach (GachaItem item in itemsPulled)
+            int rareCards = 0;
+            foreach (Card item in itemsPulled)
             {
-                if (item.Rarity == 4)
+                if (item.rarity >= 2)
                 {
-                    fourStars++;
+                    rareCards++;
                 }
             }
 
-            bool containsFiveStar = false;
-            foreach (GachaItem item in itemsPulled)
+            bool containsLegendaryCard = false;
+            foreach (Card item in itemsPulled)
             {
-                if (item.Rarity == 5)
+                if (item.rarity == 4)
                 {
-                    containsFiveStar = true;
+                    containsLegendaryCard = true;
                 }
             }
-            Assert.That(fourStars>=9&&containsFiveStar);
+            Assert.That(rareCards>=9&&containsLegendaryCard);
         }
         
 

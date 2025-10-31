@@ -9,7 +9,7 @@ public class BurningSlash : Card
     //It is not forced by the interface so you just need to remember
     public static int cardID = 2;
 
-    public override int rarity {set; get;}
+    public override int rarity { get; } = 2;
     public override int ManaCost { get; set; } = 1;
     public override int Damage { get; set; } = 3;
     public override int BurnDamage { get; set; } = 2;
@@ -19,4 +19,5 @@ public class BurningSlash : Card
         Burn(enemy);
 
     }
+    
 }
