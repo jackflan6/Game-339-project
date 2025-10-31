@@ -8,6 +8,7 @@ public abstract class Card : ICard
     public virtual int ShieldValue { get; set; }
     public virtual int BurnDamage { get; set; }
     public virtual int Heal { get; set; }
+    public virtual int pack {  get; set; }
 
     //you do need to implement these though
     public abstract int rarity { get; set; }

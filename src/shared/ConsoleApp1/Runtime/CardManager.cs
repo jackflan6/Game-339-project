@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Linq;
 using Random = System.Random;
 
@@ -46,15 +47,17 @@ public class CardManager : IManager
         startingHandSize = handsize;
         random = ManagerManager.Resolve<IRandom>();
         logger=ManagerManager.Resolve<IGameLogger>();
+        AllCards = ManagerManager.Resolve<Inventory>().GetAllCardsInInventory();
         this.maxHandSize = maxHandSize;
     }
 #endif
-    public CardManager(IGameLogger log, IRandom rand, int handsize, int maxHandSize)
+    public CardManager(IGameLogger log, IRandom rand, int handsize, int maxHandSize,Inventory inventory)
     {
         startingHandSize = handsize;
         logger = log;
         random = rand;
         this.maxHandSize = maxHandSize;
+        AllCards = inventory.GetAllCardsInInventory();
     }
 
     public event Action<Card> CardDraw;
@@ -62,13 +65,17 @@ public class CardManager : IManager
     public void SetUpStartingHand()
     {
         int shuffleNum = AllCards.Count;
-        for(int a=0;a<shuffleNum;a++)
+        //for(int a=0;a<shuffleNum;a++)
+        //{
+        //    int cardIndex = random.RandomNumber(AllCards.Count);
+        //    Deck.Add(AllCards[cardIndex]);
+        //    AllCards.Remove(AllCards[cardIndex]);
+        //}
+        foreach (Card card in AllCards)
         {
-            int cardIndex = random.RandomNumber(AllCards.Count);
-            Deck.Add(AllCards[cardIndex]);
-            AllCards.Remove(AllCards[cardIndex]);
+            Deck.Add(card);
         }
-        logger.print("num of cards in deck " + Deck.Count);
+        Deck = Deck.OrderBy(_ => random.RandomNumber(Deck.Count)).ToList();
 
         for (int a = 0; a < startingHandSize; a++)
         {
