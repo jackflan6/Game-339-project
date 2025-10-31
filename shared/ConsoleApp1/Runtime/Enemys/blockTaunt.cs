@@ -38,6 +38,7 @@ public class blockTaunt : Enemy
     public override int Attack { get; set; } = 5;
     public override int Defense { get; set; } = 5;
     public override int burnAttackDamage { get; } = 0;
+    public override ValueHolder<int> currentShield { get; set; } = 0;
     public override ValueHolder<int> HP { get; set; } = 5;
 
     public override void DoAction(Player player, Enemy enemy)

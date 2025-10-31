@@ -36,6 +36,7 @@ public class shieldAttackBoss : Enemy
     public override int Attack { get; set; } = 7;
     public override int Defense { get; set; } = 10;
     public override int burnAttackDamage { get; } = 0;
+    public override ValueHolder<int> currentShield { get; set; } = 0;
     public override ValueHolder<int> HP { get; set; } = 40;
 
     public override void DoAction(Player player, Enemy enemy)

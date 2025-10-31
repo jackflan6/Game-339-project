@@ -36,6 +36,8 @@ public class TheBillowedAss : Enemy
     public override int burnAttackDamage { get; } = 2;
     public override ValueHolder<int> HP { get; set; } = 5;
 
+    public override ValueHolder<int> currentShield { get; set; } = 0;
+
     public override void DoAction(Player player, Enemy enemy)
     {
         int chooseAction = random.RandomNumber(4);

@@ -17,6 +17,8 @@ public class BillowingAss : Card
 
     public override int BurnDamage { get; set; } = 1;
 
+    public override string Description { get; } = "Mana cost: 2\nThis card gives you 1 shield, heals 1 HP, deals 1 damage, and 1 burn damage";
+
     public override void Effect(Enemy enemy)
     {
         Damage = 1 + rarity;

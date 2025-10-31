@@ -14,6 +14,8 @@ public class BurningSlash : Card
     public override int Damage { get; set; } = 3;
     public override int BurnDamage { get; set; } = 2;
 
+    public override string Description { get; } = "Mana Cost: 1\nThis card deals 3 damage and inflicts burn 2";
+
     public override void Effect(Enemy enemy)
     {
         Burn(enemy);
