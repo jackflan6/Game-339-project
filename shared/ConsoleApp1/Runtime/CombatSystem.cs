@@ -31,11 +31,11 @@ public class CombatSystem : IManager
     public int DealDamageToEnemy(Card card, Enemy enemy)
     {
         int damageDealt = card.Damage;
-        damageDealt -= enemy.currentShield;
-        enemy.currentShield -= card.Damage;
-        if (enemy.currentShield < 0)
+        damageDealt -= enemy.currentShield.Value;
+        enemy.currentShield.Value -= card.Damage;
+        if (enemy.currentShield.Value < 0)
         {
-            enemy.currentShield = 0;
+            enemy.currentShield.Value = 0;
         }
         if (damageDealt < 0)
         {
@@ -70,9 +70,9 @@ public class CombatSystem : IManager
     
     public int GenerateEnemyShield(Enemy enemy)
     {
-        enemy.currentShield += enemy.Defense;
-        logger.print("Enemy shield is at " + enemy.currentShield + " points!");
-        return enemy.currentShield;
+        enemy.currentShield.Value += enemy.Defense;
+        logger.print("Enemy shield is at " + enemy.currentShield.Value + " points!");
+        return enemy.currentShield.Value;
     }
 
     public int GeneratePlayerShield(Player player, Card card)

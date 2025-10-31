@@ -13,6 +13,8 @@ public class shieldCard : Card
     public override int Damage { get; set; } = 0;
 
 
+    public override string Description { get; } = "Mana Cost:2\nThis card gives 5 shield";
+
     public override void Effect(Enemy enemy)
     {
     }

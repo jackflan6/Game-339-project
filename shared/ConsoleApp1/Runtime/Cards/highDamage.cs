@@ -11,6 +11,8 @@ public class highDamage : Card
     public override int Damage { get; set; } = 5;
 
 
+    public override string Description { get; } = "Mana Cost:3 \nThis card deals 5 damage";
+
     public override void Effect(Enemy enemy)
     {
     }

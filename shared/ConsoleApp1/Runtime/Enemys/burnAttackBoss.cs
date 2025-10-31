@@ -36,6 +36,7 @@ public class BurnAttackBoss : Enemy
     public override int Attack { get; set; } = 5;
     public override int Defense { get; set; } = 0;
     public override int burnAttackDamage { get; } = 4;
+    public override ValueHolder<int> currentShield { get; set; } = 0;
     public override ValueHolder<int> HP { get; set; } = 20;
 
     public override void DoAction(Player player, Enemy enemy)

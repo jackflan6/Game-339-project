@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb468ae913290304d94c943b7bae9644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectableCard
+  infoPanelPrefab: {fileID: 7639896622315724315, guid: 2c0f2e65fa775fc4d8ab0245c3dbc6f1, type: 3}
   cardID: 5
   cardPosition: {x: 0, y: 0}
   acceleration: 1

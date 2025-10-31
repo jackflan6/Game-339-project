@@ -13,7 +13,7 @@ public abstract class Enemy : IEnemy
     public string Name;
 
 
-    public int currentShield;
+    public abstract ValueHolder<int> currentShield { get; set; }
 
     public bool isBurning;
 

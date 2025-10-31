@@ -7,6 +7,7 @@ TagManager:
   - UIManager
   - ServiceResolver
   - GameObjectManager
+  - CardInfoPanel
   layers:
   - Default
   - TransparentFX

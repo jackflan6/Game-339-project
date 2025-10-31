@@ -35,6 +35,7 @@ public class DefenderEnemy : Enemy
 
     public override int Defense { get; set; } = 4;
     public override int burnAttackDamage { get; } = 0;
+    public override ValueHolder<int> currentShield { get; set; } = 0;
     public override ValueHolder<int> HP { get; set; } = 5;
 
     public override void DoAction(Player player, Enemy enemy)

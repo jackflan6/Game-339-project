@@ -1,4 +1,6 @@
 using System;
+using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class SelectableCard : MonoBehaviour
@@ -53,11 +55,15 @@ public class SelectableCard : MonoBehaviour
         if (GetComponent<Collider2D>().bounds.Contains((Vector2)Camera.main.ScreenToWorldPoint(pos)))
         {
             hover = true;
+            GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().alpha=1;
+            GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().text =
+                origionalCard.Description;
             GetComponent<SpriteRenderer>().color = Color.yellow;
             transform.localScale = new Vector3(normscale*1.5f, normscale*1.5f, 1);
         } else
         {
             hover = false;
+            GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().alpha=0;
             GetComponent<SpriteRenderer>().color = normCol;
             transform.localScale = new Vector3(normscale, normscale, 1);
         }
