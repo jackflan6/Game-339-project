@@ -5,11 +5,9 @@ using System.Collections.Generic;
 public class Inventory
 {
     List<Card> cards;
-    CardManager cardManager;
     List<Card> unlockedCards;
-    public Inventory(CardManager c)
+    public Inventory()
     {
-        cardManager = c;
     }
 
     public List<Card> GetAllCardsInInventory()
