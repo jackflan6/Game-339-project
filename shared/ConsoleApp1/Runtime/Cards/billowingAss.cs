@@ -10,18 +10,17 @@ public class BillowingAss : Card
     public static int cardID = 1;
     public override int rarity { get; } = 4;
 
-    public override int ShieldValue { get; set; } = 1;
-    public override int Heal { get; set; } = 1;
-    public override int ManaCost { get; set; } = 2;
-    public override int Damage { get; set; } = 1;
+    public override int ShieldValue { get; set; } = 5;
+    public override int Heal { get; set; } = 5;
+    public override int ManaCost { get; set; } = 4;
+    public override int Damage { get; set; } = 5;
 
-    public override int BurnDamage { get; set; } = 1;
+    public override int BurnDamage { get; set; } = 5;
 
-    public override string Description { get; } = "Mana cost: 2\nThis card gives you 1 shield, heals 1 HP, deals 1 damage, and 1 burn damage";
+    public override string Description { get; } = "Mana cost: 4\nThis card gives you 5 shield, heals 5 HP, deals 5 damage, and 5 burn damage";
 
     public override void Effect(Enemy enemy)
     {
-        Damage = 1 + rarity;
         Burn(enemy);
     }
     

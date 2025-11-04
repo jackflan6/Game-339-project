@@ -18,7 +18,7 @@ namespace TestProject1
             IRandom notSoRandom = new FakeRandom();
             EnemyManager enemyManager = new EnemyManager(logger);
             CombatSystem combatSystem = new CombatSystem(enemyManager, logger,currencyManager);
-            Card card = new BillowingAss();
+            Card card = new lowDamage();
             Enemy enemy = new TheBillowedAss(combatSystem, dialogue, enemyManager, notSoRandom);
             combatSystem.DealDamageToEnemy(card, enemy);
             logger.print("enemy HP: " + enemy.HP.Value);
@@ -40,6 +40,55 @@ namespace TestProject1
             logger.print("Player HP: " + player.HP.Value);
             Assert.That(player.HP.Value==7);
 
+        }
+
+        [Test]
+        public void lowDamageCard()
+        {
+            IGameLogger logger=new ConsoleGameLogger();
+            CurrencyManager currencyManager = new CurrencyManager();
+            IDialog dialogue = new ConsoleDialogue();
+            IRandom notSoRandom = new FakeRandom();
+            EnemyManager enemyManager = new EnemyManager(logger);
+            CombatSystem combatSystem = new CombatSystem(enemyManager, logger,currencyManager);
+            Card card = new lowDamage();
+            Enemy enemy = new TheBillowedAss(combatSystem, dialogue, enemyManager, notSoRandom);
+            combatSystem.DealDamageToEnemy(card, enemy);
+            logger.print("enemy HP: " + enemy.HP.Value);
+            Assert.That(enemy.HP==4);
+        }
+        
+        [Test]
+        public void mediumDamageCard()
+        {
+            IGameLogger logger=new ConsoleGameLogger();
+            CurrencyManager currencyManager = new CurrencyManager();
+            IDialog dialogue = new ConsoleDialogue();
+            IRandom notSoRandom = new FakeRandom();
+            EnemyManager enemyManager = new EnemyManager(logger);
+            CombatSystem combatSystem = new CombatSystem(enemyManager, logger,currencyManager);
+            Card card = new mediumDamage();
+            Enemy enemy = new TheBillowedAss(combatSystem, dialogue, enemyManager, notSoRandom);
+            combatSystem.DealDamageToEnemy(card, enemy);
+            logger.print("enemy HP: " + enemy.HP.Value);
+            Assert.That(enemy.HP==1);
+        }
+        
+        [Test]
+        public void mediumShieldCard()
+        {
+            IGameLogger logger=new ConsoleGameLogger();
+            CurrencyManager currencyManager = new CurrencyManager();
+            IDialog dialogue = new ConsoleDialogue();
+            IRandom notSoRandom = new FakeRandom();
+            EnemyManager enemyManager = new EnemyManager(logger);
+            CombatSystem combatSystem = new CombatSystem(enemyManager, logger,currencyManager);
+            Card card = new mediumShield();
+            Enemy enemy = new TheBillowedAss(combatSystem, dialogue, enemyManager, notSoRandom);
+            Player player = new Player(10,10,"testPlayer", logger);
+            combatSystem.GeneratePlayerShield(player, card);
+            logger.print("player shield: " + player.currentShield.Value);
+            Assert.That(player.currentShield.Value==5);
         }
 
         [Test]
