@@ -6,17 +6,21 @@ public class GachaManager : IManager
     public List<Card> gachaItems = new List<Card>()
     {
         new BillowingAss(),
-        new BillowingAss(),
-        new BillowingAss(),
+        new instantKill(),
+        new ultraDefense(),
+        new BurningSlash(),
         new healCard(),
-        new healCard(),
+        new mediumHeal(),
+        new highHeal(),
+        new shieldCard(),
+        new mediumShield(),
+        new highShield(),
+        new lowDamage(),
+        new mediumDamage(),
         new highDamage(),
-        new BurningSlash(),
-        new BurningSlash(),
-        new BurningSlash(),
-        new shieldCard(),
-        new shieldCard(),
-        new shieldCard()
+        new lowBurn(),
+        new mediumBurn(),
+        new highBurn()
     };
 
     private int legendaryPityCounter;

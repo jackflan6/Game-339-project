@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2485553409630616884}
   - component: {fileID: 2721450588126600007}
   m_Layer: 0
-  m_Name: healCard
+  m_Name: mediumHeal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,8 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb468ae913290304d94c943b7bae9644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectableCard
-  infoPanelPrefab: {fileID: 7639896622315724315, guid: 2c0f2e65fa775fc4d8ab0245c3dbc6f1, type: 3}
-  cardID: 5
+  cardID: 10
   cardPosition: {x: 0, y: 0}
   acceleration: 1
   originalCol: {r: 1, g: 1, b: 1, a: 1}
