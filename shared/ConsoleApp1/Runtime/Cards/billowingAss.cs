@@ -8,6 +8,7 @@ public class BillowingAss : Card
     //This need to be called "cardID" and reflected in the selectableCard object.
     //It is not forced by the interface so you just need to remember
     public static int cardID = 1;
+    public override string Element { get; set; }= "Omni";
     public override int rarity { get; } = 4;
 
     public override int ShieldValue { get; set; } = 5;
@@ -17,10 +18,11 @@ public class BillowingAss : Card
 
     public override int BurnDamage { get; set; } = 5;
 
-    public override string Description { get; } = "Mana cost: 4\nThis card gives you 5 shield, heals 5 HP, deals 5 damage, and 5 burn damage";
+    public override string Description { get; } = "Mana cost: 4\nThis card gives you 5 shield, heals 5 HP, deals 5 damage, 5 burn damage, and draws a card";
 
     public override void Effect(Enemy enemy)
     {
+        DrawCard();
         Burn(enemy);
     }
     

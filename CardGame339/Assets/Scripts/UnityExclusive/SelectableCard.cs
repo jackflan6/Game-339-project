@@ -2,8 +2,9 @@ using System;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class SelectableCard : MonoBehaviour
+public class SelectableCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
 
     //UnityEvent SelectedCard;
@@ -55,15 +56,11 @@ public class SelectableCard : MonoBehaviour
         if (GetComponent<Collider2D>().bounds.Contains((Vector2)Camera.main.ScreenToWorldPoint(pos)))
         {
             hover = true;
-            GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().alpha=1;
-            GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().text =
-                origionalCard.Description;
             GetComponent<SpriteRenderer>().color = Color.yellow;
             transform.localScale = new Vector3(normscale*1.5f, normscale*1.5f, 1);
         } else
         {
             hover = false;
-            GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().alpha=0;
             GetComponent<SpriteRenderer>().color = normCol;
             transform.localScale = new Vector3(normscale, normscale, 1);
         }
@@ -82,5 +79,33 @@ public class SelectableCard : MonoBehaviour
             normCol = originalCol;
 
         }
+    }
+
+    void OnMouseEnter()
+    {
+        Debug.Log("mouse entered");
+        GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().alpha=1;
+        GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().text =
+            origionalCard.Description;
+    }
+
+    private void OnMouseExit()
+    {
+        Debug.Log("Mouse exited");
+        GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().alpha=0;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Debug.Log("pointer entered");
+        GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().alpha=1;
+        GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().text =
+            origionalCard.Description;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Debug.Log("pointer exited");
+        GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().alpha=0;
     }
 }
