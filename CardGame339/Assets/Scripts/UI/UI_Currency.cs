@@ -1,4 +1,5 @@
 using ConsoleApp1;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +13,7 @@ public class UI_Currency : MonoBehaviour
 
     public void UpdateValue(int val)
     {
-        GetComponent<Text>().text = "Currency: " + val.ToString();
+        GetComponent<TextMeshProUGUI>().text = "Gold: " + val.ToString();
     }
 
 }

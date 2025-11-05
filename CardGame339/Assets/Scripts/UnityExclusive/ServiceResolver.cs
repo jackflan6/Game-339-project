@@ -28,6 +28,7 @@ public class ServiceResolver : MonoBehaviour
     public LocationManager locationManager;
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         print("Service Resolver is awake");
         //you can only register one thing of each type
         ManagerManager.reload();
@@ -37,6 +38,7 @@ public class ServiceResolver : MonoBehaviour
         ManagerManager.register(UImanager);
         ManagerManager.register(sceneChanger);
         ManagerManager.register(locationManager);
+        ManagerManager.registerDependency(()=> new GachaManager(unityRandom));
         ManagerManager.registerDependency(() => new EnemyManager());
         ManagerManager.registerDependency(() => new Inventory());
         ManagerManager.registerDependency(() => new CombatSystem());
@@ -46,6 +48,7 @@ public class ServiceResolver : MonoBehaviour
         ManagerManager.registerDependency(() => new Player(playerHP, 0, playerName));
         ManagerManager.registerDependency(() => new CardManager(handSize,maxHandSize));
         ManagerManager.registerDependency(()=> unityDialog);
+        
 
         List<Card> allCards = new List<Card>();
         foreach (GameObject gam in allCardsPrefabs)
