@@ -38,6 +38,7 @@ public class SelectableCard : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     private float speed;
     private void Update()
     {
+        
         if ((cardPosition - (Vector2)transform.position).magnitude < speed)
         {
             speed = (cardPosition - (Vector2)transform.position).magnitude / (speed) * Time.deltaTime;
@@ -79,20 +80,6 @@ public class SelectableCard : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             normCol = originalCol;
 
         }
-    }
-
-    void OnMouseEnter()
-    {
-        Debug.Log("mouse entered");
-        GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().alpha=1;
-        GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().text =
-            origionalCard.Description;
-    }
-
-    private void OnMouseExit()
-    {
-        Debug.Log("Mouse exited");
-        GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().alpha=0;
     }
 
     public void OnPointerEnter(PointerEventData eventData)

@@ -170,6 +170,21 @@ namespace TestProject1
             Assert.That(resultCard.Element.ToLower().Equals("fire") || resultCard.Element.ToLower().Equals("omni"));
 
         }
+
+        [Test]
+        public void PullFiveTimesWithMethod()
+        {
+            List<Card> itemsPulled = new List<Card>();
+            IRandom fakeRandom= new RealRandom();
+            IGameLogger logger = new ConsoleGameLogger();
+            GachaManager gachaManager = new GachaManager(fakeRandom);
+            itemsPulled=gachaManager.PullFiveTimes(gachaManager.gachaItems);
+            for (int a = 0; a < itemsPulled.Count; a++)
+            {
+                logger.print(itemsPulled[a].ToString());
+            }
+            Assert.That(itemsPulled.Count==5);
+        }
         
 
 

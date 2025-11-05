@@ -13,7 +13,7 @@ public class UI_Currency : MonoBehaviour
 
     public void UpdateValue(int val)
     {
-        GetComponent<TextMeshProUGUI>().text = "Gold: " + val.ToString();
+        GameObject.FindGameObjectWithTag("UICurrency").GetComponent<TextMeshProUGUI>().text = "Gold: " + val.ToString();
     }
 
 }

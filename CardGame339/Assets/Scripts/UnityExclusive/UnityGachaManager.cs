@@ -21,11 +21,19 @@ public class UnityGachaManager : MonoBehaviour
 
     public void PullOneCard()
     {
-        if (_currencyManager.currencyAmount >= 5)
+        if (_currencyManager.currencyAmount.Value >= 5)
         {
-            _currencyManager.currencyAmount -= 5;
+            _currencyManager.currencyAmount.Value -= 5;
             //pull card and put in inventory
             Debug.Log("Received card: " + _gachaManager.Pull(_gachaManager.gachaItems));
+        }
+    }
+
+    public void PullPackOfCards()
+    {
+        if (_currencyManager.currencyAmount.Value >= 15)
+        {
+            Debug.Log("Received cards: " +_gachaManager.PullFiveTimes(_gachaManager.PullFiveTimes(_gachaManager.gachaItems)));
         }
     }
 }

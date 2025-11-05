@@ -8,6 +8,7 @@ TagManager:
   - ServiceResolver
   - GameObjectManager
   - CardInfoPanel
+  - UICurrency
   layers:
   - Default
   - TransparentFX
