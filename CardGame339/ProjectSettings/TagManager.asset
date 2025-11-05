@@ -8,6 +8,8 @@ TagManager:
   - ServiceResolver
   - GameObjectManager
   - CardInfoPanel
+  - inventory viewport
+  - inventory
   layers:
   - Default
   - TransparentFX
