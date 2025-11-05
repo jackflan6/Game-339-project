@@ -6,6 +6,7 @@ public class highHeal : Card
     //This need to be called "cardID" and reflected in the selectableCard object.
     //It is not forced by the interface so you just need to remember
     public static int cardID = 11;
+    public override string Element { get; set; }= "Omni";
 
     public override int rarity { get; } = 3;
     public override int Heal { get; set; } = 12;

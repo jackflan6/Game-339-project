@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2485553409630616884}
   - component: {fileID: 2721450588126600007}
   m_Layer: 0
-  m_Name: billowingass
+  m_Name: lowDraw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.10000001, y: 0.10000001, z: 0.10000001}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8274915760802575496, guid: 52c3ac53b75a6cf42816a75434d03549, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bdc8820bb71654b40968a04928de489d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -126,17 +126,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.09677315, y: -0.14516163}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.68, y: 2.99}
+    oldSize: {x: 20.101963, y: 28.140001}
     newSize: {x: 1.68, y: 2.99}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.68, y: 2.99}
+  m_Size: {x: 20.647697, y: 28.635107}
   m_EdgeRadius: 0
 --- !u!114 &2721450588126600007
 MonoBehaviour:
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb468ae913290304d94c943b7bae9644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectableCard
-  cardID: 1
+  cardID: 17
   cardPosition: {x: 0, y: 0}
   acceleration: 1
   originalCol: {r: 1, g: 1, b: 1, a: 1}

@@ -17,6 +17,8 @@ public class GameObjectManager : MonoBehaviour
     private static List<GameObject> staticEnemyPrefabList;
     public static Dictionary<Enemy,GameObject> allCreatedEnemys = new Dictionary<Enemy,GameObject>();
 
+    public Canvas canvas;
+
 
     public void OnDestroy()
     {
@@ -50,6 +52,7 @@ public class GameObjectManager : MonoBehaviour
     {
         Debug.Log("created card");
         GameObject c = Instantiate(CardToPrefab.Value[card.GetType()]);
+        //c.transform.SetParent(canvas.transform, true);
         allCreatedCards.Add(c);
         c.GetComponent<SelectableCard>().origionalCard = card;
         UpdateCardPos();

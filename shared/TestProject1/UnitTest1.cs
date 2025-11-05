@@ -158,6 +158,18 @@ namespace TestProject1
             }
             Assert.That(rareCards>=9&&containsLegendaryCard);
         }
+
+        [Test]
+        public void PullFireCardOnce()
+        {
+            IRandom tempRandom= new RealRandom();
+            IGameLogger logger = new ConsoleGameLogger();
+            GachaManager gachaManager = new GachaManager(tempRandom);
+            Card resultCard = gachaManager.PullFireCard(gachaManager.gachaItems);
+            logger.print(resultCard.ToString());
+            Assert.That(resultCard.Element.ToLower().Equals("fire") || resultCard.Element.ToLower().Equals("omni"));
+
+        }
         
 
 

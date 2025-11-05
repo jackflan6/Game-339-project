@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public abstract class Card : ICard
 {
-    public string Element = "";
+    public abstract string Element { get; set; }
     //if one of these attributs are not used you no not need to implement it into a card
     public virtual int ShieldValue { get; set; }
     public virtual int BurnDamage { get; set; }

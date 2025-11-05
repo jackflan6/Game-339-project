@@ -5,13 +5,14 @@ public class GachaManager : IManager
     public readonly IRandom Random;
     public List<Card> gachaItems = new List<Card>()
     {
-        new BillowingAss(), //ultra rare special (appears in all packs)
+        new BillowingAss(), //omni (appears in all packs)
         new instantKill(), //lightning
         new ultraDefense(), //earth
         new BurningSlash(), //fire
-        new healCard(), //common (appears in all packs)
-        new mediumHeal(), //common (appears in all packs)
-        new highHeal(), //common (appears in all packs)
+        new completeRefresh(), //wind
+        new healCard(), //omni (appears in all packs)
+        new mediumHeal(), //omni (appears in all packs)
+        new highHeal(), //omni (appears in all packs)
         new shieldCard(), //earth
         new mediumShield(), //earth
         new highShield(), //earth
@@ -20,14 +21,15 @@ public class GachaManager : IManager
         new highDamage(), //lightning
         new lowBurn(), //fire
         new mediumBurn(), //fire
-        new highBurn() //fire
-        //draw card variants (low, mid, high)
+        new highBurn(), //fire
+        new lowDraw(), //wind
+        new mediumDraw(), //wind
+        new highDraw() //wind
     };
 
     private int legendaryPityCounter;
     private int rarePityCounter;
     private int hardPity;
-    private bool hasGuarantee;
 
     public GachaManager(IRandom random)
     {
@@ -82,13 +84,80 @@ public class GachaManager : IManager
         List<Card> lightningCards = CollectLightningCards(allCards);
         return Pull(lightningCards);
     }
+    
+    public Card PullWindCard(List<Card> allCards)
+    {
+        List<Card> windCards = CollectWindCards(allCards);
+        return Pull(windCards);
+    }
+    
+    public Card PullEarthCard(List<Card> allCards)
+    {
+        List<Card> earthCards = CollectEarthCards(allCards);
+        return Pull(earthCards);
+    }
+
+    public List<Card> PullFiveTimes(List<Card> allCards)
+    {
+        List<Card> pullResults = new List<Card>();
+        for (int a = 0; a < 5; a++)
+        {
+            pullResults.Add(Pull(allCards));
+        }
+
+        return pullResults;
+    }
+    
+    public List<Card> PullFireFiveTimes(List<Card> allCards)
+    {
+        List<Card> pullResults = new List<Card>();
+        for (int a = 0; a < 5; a++)
+        {
+            pullResults.Add(PullFireCard(allCards));
+        }
+
+        return pullResults;
+    }
+    
+    public List<Card> PullLightningFiveTimes(List<Card> allCards)
+    {
+        List<Card> pullResults = new List<Card>();
+        for (int a = 0; a < 5; a++)
+        {
+            pullResults.Add(PullLightningCard(allCards));
+        }
+
+        return pullResults;
+    }
+    
+    public List<Card> PullWindFiveTimes(List<Card> allCards)
+    {
+        List<Card> pullResults = new List<Card>();
+        for (int a = 0; a < 5; a++)
+        {
+            pullResults.Add(PullWindCard(allCards));
+        }
+
+        return pullResults;
+    }
+    
+    public List<Card> PullFiveEarthTimes(List<Card> allCards)
+    {
+        List<Card> pullResults = new List<Card>();
+        for (int a = 0; a < 5; a++)
+        {
+            pullResults.Add(PullEarthCard(allCards));
+        }
+
+        return pullResults;
+    }
 
     private List<Card> CollectFireCards(List<Card> allCards)
     {
         List<Card> fireCards = new List<Card>();
         foreach (Card card in gachaItems)
         {
-            if (card.Element.ToLower().Equals("fire"))
+            if (card.Element.ToLower().Equals("fire") || card.Element.ToLower().Equals("omni"))
             {
                 fireCards.Add(card);
             }
@@ -97,12 +166,40 @@ public class GachaManager : IManager
         return fireCards;
     }
     
+    private List<Card> CollectWindCards(List<Card> allCards)
+    {
+        List<Card> windCards = new List<Card>();
+        foreach (Card card in gachaItems)
+        {
+            if (card.Element.ToLower().Equals("wind") || card.Element.ToLower().Equals("omni"))
+            {
+                windCards.Add(card);
+            }
+        }
+
+        return windCards;
+    }
+    
+    private List<Card> CollectEarthCards(List<Card> allCards)
+    {
+        List<Card> earthCards = new List<Card>();
+        foreach (Card card in gachaItems)
+        {
+            if (card.Element.ToLower().Equals("earth") || card.Element.ToLower().Equals("omni"))
+            {
+                earthCards.Add(card);
+            }
+        }
+
+        return earthCards;
+    }
+    
     private List<Card> CollectLightningCards(List<Card> allCards)
     {
         List<Card> fireCards = new List<Card>();
         foreach (Card card in gachaItems)
         {
-            if (card.Element.ToLower().Equals("lightning"))
+            if (card.Element.ToLower().Equals("lightning") || card.Element.ToLower().Equals("omni"))
             {
                 fireCards.Add(card);
             }
