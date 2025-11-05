@@ -5,22 +5,23 @@ public class GachaManager : IManager
     public readonly IRandom Random;
     public List<Card> gachaItems = new List<Card>()
     {
-        new BillowingAss(),
-        new instantKill(),
-        new ultraDefense(),
-        new BurningSlash(),
-        new healCard(),
-        new mediumHeal(),
-        new highHeal(),
-        new shieldCard(),
-        new mediumShield(),
-        new highShield(),
-        new lowDamage(),
-        new mediumDamage(),
-        new highDamage(),
-        new lowBurn(),
-        new mediumBurn(),
-        new highBurn()
+        new BillowingAss(), //ultra rare special (appears in all packs)
+        new instantKill(), //lightning
+        new ultraDefense(), //earth
+        new BurningSlash(), //fire
+        new healCard(), //common (appears in all packs)
+        new mediumHeal(), //common (appears in all packs)
+        new highHeal(), //common (appears in all packs)
+        new shieldCard(), //earth
+        new mediumShield(), //earth
+        new highShield(), //earth
+        new lowDamage(), //lightning
+        new mediumDamage(), //lightning
+        new highDamage(), //lightning
+        new lowBurn(), //fire
+        new mediumBurn(), //fire
+        new highBurn() //fire
+        //draw card variants (low, mid, high)
     };
 
     private int legendaryPityCounter;
