@@ -1900,11 +1900,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4982edeeb9ffc4489ff9ec53bc17bf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnityInventory
-  allCardsPrefabs:
+  allCardsPrefabsInspector:
   - {fileID: 3555370440800643982, guid: 7d8f44e7fcfdea44f89778cbca1113bf, type: 3}
   - {fileID: 3555370440800643982, guid: 49a75dd006441c44d876f5558ef44a8d, type: 3}
-  - {fileID: 3555370440800643982, guid: 4420943fafbffe446a55db1d6c83a2b8, type: 3}
   - {fileID: 3555370440800643982, guid: 8a6177315fdecf943b063b84945451c8, type: 3}
+  - {fileID: 3555370440800643982, guid: c8cdc013afb880c4c8d103d65de5d78f, type: 3}
   inventorybutton: {fileID: 570190985648385327, guid: 5d86f4e76b90b274880a01ee9536f8b3, type: 3}
   buttons: []
 --- !u!4 &438851524
