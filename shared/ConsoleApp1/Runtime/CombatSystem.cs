@@ -13,20 +13,23 @@ public class CombatSystem : IManager
     readonly EnemyManager enemyManager;
     //public CurrencyManager CurrencyManager;
     public IGameLogger logger { get; }
+    public IEffects Effects {get;}
     
     #if !NOT_UNITY
     public CombatSystem()
     {
         enemyManager = ManagerManager.Resolve<EnemyManager>();
         logger=ManagerManager.Resolve<IGameLogger>();
-      //  CurrencyManager = ManagerManager.Resolve<CurrencyManager>();
+        Effects = ManagerManager.Resolve<IEffects>();
+        //  CurrencyManager = ManagerManager.Resolve<CurrencyManager>();
     }
     #endif
-    public CombatSystem(EnemyManager enemyManager, IGameLogger log)
+    public CombatSystem(EnemyManager enemyManager, IGameLogger log, IEffects effects)
     {
         this.enemyManager = enemyManager;
        // CurrencyManager = currencyManager;
         logger = log;
+        Effects = effects;
     }
     public int DealDamageToEnemy(Card card, Enemy enemy)
     {
@@ -84,6 +87,7 @@ public class CombatSystem : IManager
 
     public int BurnDamageToEnemy(Enemy enemy)
     {
+        Effects.ShowBurn(enemy);
         enemy.HP.Value -= enemy.currentBurnDamage;
         enemy.currentBurnDamage /= 2;
         if (enemy.currentBurnDamage == 0)
