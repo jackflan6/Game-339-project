@@ -266,9 +266,10 @@ GameObject:
   - component: {fileID: 42108057}
   - component: {fileID: 42108059}
   - component: {fileID: 42108058}
+  - component: {fileID: 42108060}
   m_Layer: 5
   m_Name: Gold
-  m_TagString: Untagged
+  m_TagString: UICurrency
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -391,6 +392,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 42108056}
   m_CullTransparentMesh: 1
+--- !u!114 &42108060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42108056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a56a4274c3eb784887c3d2cda432c1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_Currency
 --- !u!1 &51438592
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,7 +486,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 51438595}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1237390661}
+        m_TargetAssemblyTypeName: UnityGachaManager, Assembly-CSharp
+        m_MethodName: PullOneCard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &51438595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1148,6 +1173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1237390660}
+  - component: {fileID: 1237390661}
   m_Layer: 0
   m_Name: GachaManager
   m_TagString: Untagged
@@ -1170,6 +1196,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1237390661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237390659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72aa746114050a04b87cb422936b8735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnityGachaManager
 --- !u!1 &1471656069
 GameObject:
   m_ObjectHideFlags: 0
@@ -1467,7 +1505,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1747567456}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1237390661}
+        m_TargetAssemblyTypeName: UnityGachaManager, Assembly-CSharp
+        m_MethodName: PullPackOfCards
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1747567456
 MonoBehaviour:
   m_ObjectHideFlags: 0

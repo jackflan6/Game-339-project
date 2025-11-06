@@ -11,7 +11,7 @@ public class CombatSystem : IManager
     // TODO: make class variables properly private / public, build out enemy damage to player (unit tests!), build round system, status effects per round 
 
     readonly EnemyManager enemyManager;
-    public CurrencyManager CurrencyManager;
+    //public CurrencyManager CurrencyManager;
     public IGameLogger logger { get; }
     
     #if !NOT_UNITY
@@ -19,13 +19,13 @@ public class CombatSystem : IManager
     {
         enemyManager = ManagerManager.Resolve<EnemyManager>();
         logger=ManagerManager.Resolve<IGameLogger>();
-        CurrencyManager = ManagerManager.Resolve<CurrencyManager>();
+      //  CurrencyManager = ManagerManager.Resolve<CurrencyManager>();
     }
     #endif
-    public CombatSystem(EnemyManager enemyManager, IGameLogger log, CurrencyManager currencyManager)
+    public CombatSystem(EnemyManager enemyManager, IGameLogger log)
     {
         this.enemyManager = enemyManager;
-        CurrencyManager = currencyManager;
+       // CurrencyManager = currencyManager;
         logger = log;
     }
     public int DealDamageToEnemy(Card card, Enemy enemy)

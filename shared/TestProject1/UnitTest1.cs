@@ -13,11 +13,10 @@ namespace TestProject1
         public void PlayerDamageToEnemy()
         {
             IGameLogger logger=new ConsoleGameLogger();
-            CurrencyManager currencyManager = new CurrencyManager();
             IDialog dialogue = new ConsoleDialogue();
             IRandom notSoRandom = new FakeRandom();
             EnemyManager enemyManager = new EnemyManager(logger);
-            CombatSystem combatSystem = new CombatSystem(enemyManager, logger,currencyManager);
+            CombatSystem combatSystem = new CombatSystem(enemyManager, logger);
             Card card = new lowDamage();
             Enemy enemy = new TheBillowedAss(combatSystem, dialogue, enemyManager, notSoRandom);
             combatSystem.DealDamageToEnemy(card, enemy);
@@ -29,11 +28,10 @@ namespace TestProject1
         public void BurnDamageToPlayer()
         {
             IGameLogger logger = new ConsoleGameLogger();
-            CurrencyManager currencyManager = new CurrencyManager();
             Player player = new Player(10,10,"testPlayer", logger);
             player.currentBurnDamage = 2;
             EnemyManager enemyManager = new EnemyManager(logger);
-            CombatSystem combatSystem = new CombatSystem(enemyManager, logger, currencyManager);
+            CombatSystem combatSystem = new CombatSystem(enemyManager, logger);
             combatSystem.BurnDamageToPlayer(player);
             combatSystem.BurnDamageToPlayer(player);
             combatSystem.BurnDamageToPlayer(player);
@@ -46,11 +44,10 @@ namespace TestProject1
         public void lowDamageCard()
         {
             IGameLogger logger=new ConsoleGameLogger();
-            CurrencyManager currencyManager = new CurrencyManager();
             IDialog dialogue = new ConsoleDialogue();
             IRandom notSoRandom = new FakeRandom();
             EnemyManager enemyManager = new EnemyManager(logger);
-            CombatSystem combatSystem = new CombatSystem(enemyManager, logger,currencyManager);
+            CombatSystem combatSystem = new CombatSystem(enemyManager, logger);
             Card card = new lowDamage();
             Enemy enemy = new TheBillowedAss(combatSystem, dialogue, enemyManager, notSoRandom);
             combatSystem.DealDamageToEnemy(card, enemy);
@@ -62,11 +59,10 @@ namespace TestProject1
         public void mediumDamageCard()
         {
             IGameLogger logger=new ConsoleGameLogger();
-            CurrencyManager currencyManager = new CurrencyManager();
             IDialog dialogue = new ConsoleDialogue();
             IRandom notSoRandom = new FakeRandom();
             EnemyManager enemyManager = new EnemyManager(logger);
-            CombatSystem combatSystem = new CombatSystem(enemyManager, logger,currencyManager);
+            CombatSystem combatSystem = new CombatSystem(enemyManager, logger);
             Card card = new mediumDamage();
             Enemy enemy = new TheBillowedAss(combatSystem, dialogue, enemyManager, notSoRandom);
             combatSystem.DealDamageToEnemy(card, enemy);
@@ -78,11 +74,10 @@ namespace TestProject1
         public void mediumShieldCard()
         {
             IGameLogger logger=new ConsoleGameLogger();
-            CurrencyManager currencyManager = new CurrencyManager();
             IDialog dialogue = new ConsoleDialogue();
             IRandom notSoRandom = new FakeRandom();
             EnemyManager enemyManager = new EnemyManager(logger);
-            CombatSystem combatSystem = new CombatSystem(enemyManager, logger,currencyManager);
+            CombatSystem combatSystem = new CombatSystem(enemyManager, logger);
             Card card = new mediumShield();
             Enemy enemy = new TheBillowedAss(combatSystem, dialogue, enemyManager, notSoRandom);
             Player player = new Player(10,10,"testPlayer", logger);
@@ -169,6 +164,21 @@ namespace TestProject1
             logger.print(resultCard.ToString());
             Assert.That(resultCard.Element.ToLower().Equals("fire") || resultCard.Element.ToLower().Equals("omni"));
 
+        }
+
+        [Test]
+        public void PullFiveTimesWithMethod()
+        {
+            List<Card> itemsPulled = new List<Card>();
+            IRandom fakeRandom= new RealRandom();
+            IGameLogger logger = new ConsoleGameLogger();
+            GachaManager gachaManager = new GachaManager(fakeRandom);
+            itemsPulled=gachaManager.PullFiveTimes(gachaManager.gachaItems);
+            for (int a = 0; a < itemsPulled.Count; a++)
+            {
+                logger.print(itemsPulled[a].ToString());
+            }
+            Assert.That(itemsPulled.Count==5);
         }
         
 
