@@ -375,6 +375,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 163159963}
   m_CullTransparentMesh: 1
+--- !u!1 &244527785
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 244527787}
+  - component: {fileID: 244527786}
+  m_Layer: 0
+  m_Name: UnityEffects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &244527786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244527785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1eeaf5a35c73444da799adfae958186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnityEffects
+  GameObjectManager: {fileID: 1554487089}
+--- !u!4 &244527787
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244527785}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 727.11456, y: 474.51233, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &358074944
 GameObject:
   m_ObjectHideFlags: 0
@@ -2073,7 +2118,6 @@ MonoBehaviour:
   - {fileID: 1945363342640210897, guid: 3b07aef85a4e05e439299e83ba55d459, type: 3}
   - {fileID: 1945363342640210897, guid: 3ed135f708d7ebc468e3aa9696ed5b75, type: 3}
   - {fileID: 1945363342640210897, guid: c75aa1c94f2158444810b6ae7e050e81, type: 3}
-  canvas: {fileID: 0}
 --- !u!4 &1554487090
 Transform:
   m_ObjectHideFlags: 0
@@ -2146,6 +2190,7 @@ MonoBehaviour:
   unityDialog: {fileID: 741721543}
   sceneChanger: {fileID: 578898983}
   locationManager: {fileID: 677118057}
+  UnityEffects: {fileID: 244527786}
 --- !u!4 &1607715861
 Transform:
   m_ObjectHideFlags: 0
@@ -2495,3 +2540,4 @@ SceneRoots:
   - {fileID: 578898984}
   - {fileID: 677118058}
   - {fileID: 376679330}
+  - {fileID: 244527787}

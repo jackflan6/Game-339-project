@@ -26,6 +26,7 @@ public class ServiceResolver : MonoBehaviour
     public UnityDialogSys unityDialog;
     public SceneChanger sceneChanger;
     public LocationManager locationManager;
+    public UnityEffects UnityEffects;
     private void Awake()
     {
         if (Instance == null)
@@ -47,6 +48,7 @@ public class ServiceResolver : MonoBehaviour
         ManagerManager.register(UImanager);
         ManagerManager.register(sceneChanger);
         ManagerManager.register(locationManager);
+        ManagerManager.register((IEffects)UnityEffects);
         ManagerManager.registerDependency(()=> new GachaManager(unityRandom));
         ManagerManager.registerDependency(() => new EnemyManager());
         ManagerManager.registerDependency(() => new Inventory());

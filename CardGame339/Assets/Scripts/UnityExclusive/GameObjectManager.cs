@@ -17,8 +17,6 @@ public class GameObjectManager : MonoBehaviour
     private static List<GameObject> staticEnemyPrefabList;
     public static Dictionary<Enemy,GameObject> allCreatedEnemys = new Dictionary<Enemy,GameObject>();
 
-    public Canvas canvas;
-
 
     public void OnDestroy()
     {
