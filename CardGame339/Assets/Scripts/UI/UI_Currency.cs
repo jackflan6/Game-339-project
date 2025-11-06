@@ -7,8 +7,8 @@ public class UI_Currency : MonoBehaviour
 {
     void Start()
     {
-        ManagerManager.Resolve<CurrencyManager>().currencyAmount.ValueChanged += UpdateValue;
-        UpdateValue(ManagerManager.Resolve<CurrencyManager>().currencyAmount.Value);
+        CurrencyManager.currencyAmount.ValueChanged += UpdateValue;
+        UpdateValue(CurrencyManager.currencyAmount.Value);
     }
 
     public void UpdateValue(int val)

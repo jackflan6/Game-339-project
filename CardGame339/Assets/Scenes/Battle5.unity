@@ -2001,9 +2001,24 @@ MonoBehaviour:
   CardPrefabList:
   - {fileID: 3555370440800643982, guid: 7d8f44e7fcfdea44f89778cbca1113bf, type: 3}
   - {fileID: 3555370440800643982, guid: e18137c4c3d3a2b47993bf862da7c119, type: 3}
-  - {fileID: 3555370440800643982, guid: 8a6177315fdecf943b063b84945451c8, type: 3}
-  - {fileID: 3555370440800643982, guid: 9844901619b60724ab8fd2c9e0b81ba1, type: 3}
+  - {fileID: 3555370440800643982, guid: 04708e30cb9289347aefb15df54ee5b1, type: 3}
+  - {fileID: 3555370440800643982, guid: 6e07b6369fca1024f8d19f69a016b50f, type: 3}
+  - {fileID: 3555370440800643982, guid: 7bf94ed98f999fb46ac34c0d7edc2c4f, type: 3}
+  - {fileID: 3555370440800643982, guid: 0f680db2a09cc804198f66fc3c93238a, type: 3}
+  - {fileID: 3555370440800643982, guid: d3bf788dc80a5b948b8edec7cc870dc4, type: 3}
+  - {fileID: 3555370440800643982, guid: 7fb0385d186234445bcb065ba20e1bae, type: 3}
   - {fileID: 3555370440800643982, guid: 77d9534baedaa5b49896c3704a2b50ea, type: 3}
+  - {fileID: 3555370440800643982, guid: 9844901619b60724ab8fd2c9e0b81ba1, type: 3}
+  - {fileID: 3555370440800643982, guid: 2ea999ea4daef2449a658ca86b5ab6ba, type: 3}
+  - {fileID: 3555370440800643982, guid: f05e1d00ea1953b4ebe79955b14900b2, type: 3}
+  - {fileID: 3555370440800643982, guid: a3acd3155365064438d86f5bfa42b77f, type: 3}
+  - {fileID: 3555370440800643982, guid: 95d504cdd9793d44faaf839ad032ef37, type: 3}
+  - {fileID: 3555370440800643982, guid: a1fe1a72d4cd56943bb3ef66a565f460, type: 3}
+  - {fileID: 3555370440800643982, guid: 4420943fafbffe446a55db1d6c83a2b8, type: 3}
+  - {fileID: 3555370440800643982, guid: 8a6177315fdecf943b063b84945451c8, type: 3}
+  - {fileID: 3555370440800643982, guid: 23948aa149aaf0d4f9e75ba52a7db072, type: 3}
+  - {fileID: 3555370440800643982, guid: c8cdc013afb880c4c8d103d65de5d78f, type: 3}
+  - {fileID: 3555370440800643982, guid: e95f514879e41604b9c1f86f18cb66eb, type: 3}
   EnemyPrefabList:
   - {fileID: 1945363342640210897, guid: ac577b0722c9c2443a601ff07f1e225f, type: 3}
   - {fileID: 1945363342640210897, guid: bc9426462b3849245acb3cf646ee1d35, type: 3}
@@ -2082,6 +2097,7 @@ MonoBehaviour:
   - {fileID: 1945363342640210897, guid: c75aa1c94f2158444810b6ae7e050e81, type: 3}
   - {fileID: 1945363342640210897, guid: bc9426462b3849245acb3cf646ee1d35, type: 3}
   - {fileID: 1945363342640210897, guid: ac577b0722c9c2443a601ff07f1e225f, type: 3}
+  Instance: {fileID: 0}
   UImanager: {fileID: 1868977203}
   gameObjectManager: {fileID: 1554487089}
   unityLogger: {fileID: 1905676379}

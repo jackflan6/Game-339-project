@@ -17,7 +17,7 @@ public class ServiceResolver : MonoBehaviour
     //They will eventualy need to be removed when the rest of the logic is created
     public List<GameObject> allCardsPrefabs;
     public List<GameObject> allEnemyPrefabs;
-
+    public ServiceResolver Instance;
 
     public UIManager UImanager;
     public GameObjectManager gameObjectManager;
@@ -28,7 +28,16 @@ public class ServiceResolver : MonoBehaviour
     public LocationManager locationManager;
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
         print("Service Resolver is awake");
         //you can only register one thing of each type
         ManagerManager.reload();
@@ -42,7 +51,7 @@ public class ServiceResolver : MonoBehaviour
         ManagerManager.registerDependency(() => new EnemyManager());
         ManagerManager.registerDependency(() => new Inventory());
         ManagerManager.registerDependency(() => new CombatSystem());
-        ManagerManager.registerDependency(()=> new CurrencyManager());
+      //  ManagerManager.registerDependency(()=> new CurrencyManager());
         ManagerManager.registerDependency(() => new TurnSystem(maxMana));
         ManagerManager.registerDependency(() => new GameManager());
         ManagerManager.registerDependency(() => new Player(playerHP, 0, playerName));
