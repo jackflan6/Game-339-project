@@ -12,6 +12,7 @@ public class highShield : Card
     public override int ShieldValue { get; set; } = 8;
     public override int ManaCost { get; set; } = 2;
     public override int Damage { get; set; } = 0;
+    public override string Name { get; set; } = "Rocky Fortress_0";
 
 
     public override string Description { get; } = "Mana Cost:2\nThis card gives 8 shield";

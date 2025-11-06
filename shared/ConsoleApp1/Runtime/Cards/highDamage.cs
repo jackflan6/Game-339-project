@@ -10,6 +10,7 @@ public class highDamage : Card
     public override int rarity { get; } = 3;
     public override int ManaCost { get; set; } = 1;
     public override int Damage { get; set; } = 7;
+    public override string Name { get; set; } = "Lightning Strike (1)_0";
 
 
     public override string Description { get; } = "Mana Cost:1 \nThis card deals 7 damage";

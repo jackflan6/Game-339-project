@@ -17,6 +17,7 @@ public class ultraDefense : Card
     public override int Damage { get; set; } = 0;
 
     public override int BurnDamage { get; set; } = 0;
+    public override string Name { get; set; } = "Ultra Defense_0";
 
     public override string Description { get; } = "Mana cost: 3\nThis card gives you 5 shield and heals 5 HP";
 

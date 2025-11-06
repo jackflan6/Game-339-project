@@ -14,6 +14,7 @@ public abstract class Card : ICard
     public abstract int rarity { get; }
     public abstract int ManaCost { get; set; }
     public abstract int Damage { get; set; }
+    public abstract string Name { get; set; }
     
     public abstract string Description { get; }
     public abstract void Effect(Enemy enemy);

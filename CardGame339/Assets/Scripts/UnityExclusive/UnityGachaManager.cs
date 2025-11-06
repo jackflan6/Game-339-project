@@ -4,6 +4,8 @@ using UnityEngine;
 public class UnityGachaManager : MonoBehaviour
 {
     private GachaManager _gachaManager;
+    public CardRoulette CardRoulette;
+    public string selectedCardName;
 
     //private CurrencyManager _currencyManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,7 +27,11 @@ public class UnityGachaManager : MonoBehaviour
         {
             CurrencyManager.currencyAmount.Value -= 5;
             //pull card and put in inventory
-            Debug.Log("Received card: " + _gachaManager.Pull(_gachaManager.gachaItems));
+            Card selectedCard = _gachaManager.Pull(_gachaManager.gachaItems);
+            selectedCardName = selectedCard.Name;
+            Debug.Log("List Count:" + CardRoulette.cardSprites.Count);
+            CardRoulette.Spin(selectedCardName);
+            Debug.Log("Received card: " + selectedCard);
         }
     }
 

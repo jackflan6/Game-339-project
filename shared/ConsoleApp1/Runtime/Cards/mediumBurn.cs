@@ -14,6 +14,7 @@ public class mediumBurn : Card
     public override int ManaCost { get; set; } = 3;
     public override int Damage { get; set; } = 0;
     public override int BurnDamage { get; set; } = 4;
+    public override string Name { get; set; } = "Burn_0";
 
     public override string Description { get; } = "Mana Cost: 3\nThis card deals inflicts burn 4";
 

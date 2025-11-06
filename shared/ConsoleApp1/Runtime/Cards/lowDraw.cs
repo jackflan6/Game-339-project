@@ -10,6 +10,7 @@ public class lowDraw : Card
     public override int rarity { get; } = 1;
     public override int ManaCost { get; set; } = 3;
     public override int Damage { get; set; } = 0;
+    public override string Name { get; set; } = "Light Gust_0";
 
 
     public override string Description { get; } = "Mana Cost:3 \nThis card draws 1 card";

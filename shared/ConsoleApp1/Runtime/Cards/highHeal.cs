@@ -12,6 +12,7 @@ public class highHeal : Card
     public override int Heal { get; set; } = 12;
     public override int ManaCost { get; set; } = 1;
     public override int Damage { get; set; } = 0;
+    public override string Name { get; set; } = "Major Health Potion_0";
 
     public override string Description { get; } = "Mana Cost: 1\nThis card heals 12 HP";
 
