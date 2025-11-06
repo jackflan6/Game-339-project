@@ -12,7 +12,7 @@ public class mediumDraw : Card
     public override int Damage { get; set; } = 0;
 
 
-    public override string Description { get; } = "Mana Cost:13 \nThis card draws 2 cards";
+    public override string Description { get; } = "Mana Cost:3 \nThis card draws 2 cards";
 
     public override void Effect(Enemy enemy)
     {
