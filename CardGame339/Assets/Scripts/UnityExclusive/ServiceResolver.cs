@@ -38,9 +38,9 @@ public class ServiceResolver : MonoBehaviour
         ManagerManager.register(sceneChanger);
         ManagerManager.register(locationManager);
         ManagerManager.registerDependency(() => new EnemyManager());
-        ManagerManager.registerDependency(() => new Inventory());
+        ManagerManager.registerPersistentDependency(() => new Inventory());
         ManagerManager.registerDependency(() => new CombatSystem());
-        ManagerManager.registerDependency(()=> new CurrencyManager());
+        ManagerManager.registerPersistentDependency(()=> new CurrencyManager());
         ManagerManager.registerDependency(() => new TurnSystem(maxMana));
         ManagerManager.registerDependency(() => new GameManager());
         ManagerManager.registerDependency(() => new Player(playerHP, 0, playerName));
