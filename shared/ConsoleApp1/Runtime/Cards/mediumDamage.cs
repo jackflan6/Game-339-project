@@ -10,6 +10,7 @@ public class mediumDamage : Card
     public override int rarity { get; } = 2;
     public override int ManaCost { get; set; } = 1;
     public override int Damage { get; set; } = 4;
+    public override string Name { get; set; } = "Electric Jolt (1)_0";
 
 
     public override string Description { get; } = "Mana Cost:1 \nThis card deals 4 damage";

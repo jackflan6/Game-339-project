@@ -4,17 +4,40 @@ using UnityEngine;
 
 public class CardRoulette : MonoBehaviour
 {
+    private CardRoulette Instance;
     public SpriteRenderer displayRenderer;
     public List<Sprite> cardSprites;
 
     private Sprite selectedCard;
 
-    public void Spin()
+    void Awake()
     {
-        StartCoroutine(SpinRoutine());
+        if (Instance == null)
+        {
+            Instance = this;
+
+            cardSprites = new List<Sprite>(Resources.LoadAll<Sprite>("New Cards"));
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
+    
+    public void Spin(string cardName)
+    {
+        Sprite targetCard = cardSprites.Find(sprite => sprite.name == cardName);
+
+        if (targetCard == null)
+        {
+            Debug.LogError($"No sprite found that matches the name: {cardName}");
+            return;
+        }
+        StartCoroutine(SpinRoutine(targetCard));
     }
 
-    IEnumerator SpinRoutine()
+    IEnumerator SpinRoutine(Sprite targetCard)
     {
         float totalSpinDuration = 5f;
         float minInterval = 0.03f;
@@ -32,8 +55,8 @@ public class CardRoulette : MonoBehaviour
             elapsed += currentInterval;
             yield return new WaitForSeconds(currentInterval);
         }
-        
-        //selected card comes from the gacha manacher
+
+        selectedCard = targetCard;
         displayRenderer.sprite = selectedCard;
     }
 }

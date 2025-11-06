@@ -12,6 +12,7 @@ public class shieldCard : Card
     public override int ShieldValue { get; set; } = 2;
     public override int ManaCost { get; set; } = 2;
     public override int Damage { get; set; } = 0;
+    public override string Name { get; set; } = "Rocky Defense_0";
 
 
     public override string Description { get; } = "Mana Cost:2\nThis card gives 2 shield";

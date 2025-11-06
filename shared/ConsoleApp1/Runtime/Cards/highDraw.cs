@@ -10,6 +10,7 @@ public class highDraw : Card
     public override int rarity { get; } = 3;
     public override int ManaCost { get; set; } = 3;
     public override int Damage { get; set; } = 0;
+    public override string Name { get; set; } = "Winds of Change_0";
 
 
     public override string Description { get; } = "Mana Cost:3 \nThis card draws 3 cards";

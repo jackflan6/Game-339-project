@@ -12,6 +12,7 @@ public class mediumHeal : Card
     public override int Heal { get; set; } = 7;
     public override int ManaCost { get; set; } = 1;
     public override int Damage { get; set; } = 0;
+    public override string Name { get; set; } = "Health Potion_0";
 
     public override string Description { get; } = "Mana Cost: 1\nThis card heals 7 HP";
 

@@ -10,6 +10,7 @@ public class lowDamage : Card
     public override int rarity { get; } = 1;
     public override int ManaCost { get; set; } = 1;
     public override int Damage { get; set; } = 1;
+    public override string Name { get; set; } = "Minor Shock (1)_0";
 
 
     public override string Description { get; } = "Mana Cost:1 \nThis card deals 1 damage";

@@ -13,6 +13,7 @@ public class BurningSlash : Card
     public override int ManaCost { get; set; } = 3;
     public override int Damage { get; set; } = 6;
     public override int BurnDamage { get; set; } = 4;
+    public override string Name { get; set; } = "Burning Slash (1)_0";
 
     public override string Description { get; } = "Mana Cost: 3\nThis card deals 6 damage and inflicts burn 4";
 

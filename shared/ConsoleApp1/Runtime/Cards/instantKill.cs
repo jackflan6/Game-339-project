@@ -15,6 +15,7 @@ public class instantKill : Card
     public override int Heal { get; set; } = 0;
     public override int ManaCost { get; set; } = 5;
     public override int Damage { get; set; } = 999;
+    public override string Name { get; set; } = "Instant Kill_0";
 
     public override int BurnDamage { get; set; } = 0;
 

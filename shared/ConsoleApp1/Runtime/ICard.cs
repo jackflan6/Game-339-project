@@ -3,6 +3,7 @@ public interface ICard
 {
     public int ManaCost{ get; }
     public int Damage { get; }
+    public string Name { get; }
     public abstract void Effect(Enemy enemy);
     
 }
