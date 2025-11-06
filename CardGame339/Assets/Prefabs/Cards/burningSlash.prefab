@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5bbbd7d4240383f4aada9d3533ad1553, type: 3}
+  m_Sprite: {fileID: 7646332002275353106, guid: fb86403446aa6014ea2d0f4b1f5e7b64, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,7 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb468ae913290304d94c943b7bae9644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectableCard
-  infoPanelPrefab: {fileID: 7639896622315724315, guid: 2c0f2e65fa775fc4d8ab0245c3dbc6f1, type: 3}
   cardID: 2
   cardPosition: {x: 0, y: 0}
   acceleration: 1
