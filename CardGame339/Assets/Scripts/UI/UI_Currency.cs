@@ -12,7 +12,7 @@ public class UI_Currency : MonoBehaviour
     }
     private void OnDestroy()
     {
-        ManagerManager.Resolve<CurrencyManager>().currencyAmount.ValueChanged -= UpdateValue;
+        CurrencyManager.currencyAmount.ValueChanged -= UpdateValue;
     }
 
     public void UpdateValue(int val)
