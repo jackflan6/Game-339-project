@@ -19,6 +19,10 @@ public class Inventory
     {
         cards.Add(c);
     }
+    public void RemoveCardsInInventory(Card c)
+    {
+        cards.Remove(c);
+    }
     public void SetAllCardsInInventory(List<Card> c)
     {
         cards = c;

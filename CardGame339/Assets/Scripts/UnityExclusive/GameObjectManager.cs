@@ -7,11 +7,8 @@ using UnityEngine;
 
 public class GameObjectManager : MonoBehaviour
 {
-    [SerializeField]
-    public List<GameObject> CardPrefabList;
-    public static List<GameObject> staticCardPrefabList = new List<GameObject>(); 
     private static List<GameObject> allCreatedCards = new List<GameObject>();
-
+    private UnityInventory inventory;
     [SerializeReference]
     public List<GameObject> EnemyPrefabList;
     private static List<GameObject> staticEnemyPrefabList;
@@ -36,9 +33,8 @@ public class GameObjectManager : MonoBehaviour
 
     private void Start()
     {
-        staticCardPrefabList = CardPrefabList;
         staticEnemyPrefabList = EnemyPrefabList;
-
+        inventory = GameObject.FindGameObjectWithTag("inventory").GetComponent<UnityInventory>();
         ManagerManager.Resolve<CardManager>().CardDraw += createCard;
         ManagerManager.Resolve<CardManager>().CardPlayed += DestroyCard;
         ManagerManager.Resolve<EnemyManager>().enemyAdded += createEnemy;
@@ -49,8 +45,7 @@ public class GameObjectManager : MonoBehaviour
     public void createCard(Card card)
     {
         Debug.Log("created card");
-        GameObject c = Instantiate(CardToPrefab.Value[card.GetType()]);
-        //c.transform.SetParent(canvas.transform, true);
+        GameObject c = Instantiate(inventory.CardToPrefab.Value[card.GetType()]);
         allCreatedCards.Add(c);
         c.GetComponent<SelectableCard>().origionalCard = card;
         UpdateCardPos();
@@ -102,17 +97,6 @@ public class GameObjectManager : MonoBehaviour
         public GameObject prefab;
     }
 
-    public Lazy<Dictionary<Type, GameObject>> CardToPrefab = new Lazy<Dictionary<Type, GameObject>>(() => {
-        Dictionary<Type, GameObject> dic = new Dictionary<Type, GameObject>();
-
-        Dictionary<int, Type> idToTypes = ManagerManager.Resolve<CardManager>().GetAllCardIDs.Value;
-
-        foreach (GameObject obj in staticCardPrefabList)
-        {
-            dic.TryAdd(idToTypes[obj.GetComponent<SelectableCard>().cardID], obj);
-        }
-        return dic;
-    });
     public Lazy<Dictionary<Type, GameObject>> EnemyToPrefab = new Lazy<Dictionary<Type, GameObject>>(() => {
         Dictionary<Type, GameObject> dic = new Dictionary<Type, GameObject>();
 
