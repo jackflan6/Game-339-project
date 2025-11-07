@@ -46,11 +46,11 @@ public class Inventory
     }
     public void SetAllCardsInInventory(List<Card> c)
     {
-        cards = c;
+        cards = new List<Card>(c);
     }
     public void SetAllUnlockedCardsInInventory(List<Card> c)
     {
-        unlockedCards = c;
+        unlockedCards = new List<Card>(c);
     }
 
     public void unlockCard(Card c)
