@@ -1903,8 +1903,20 @@ MonoBehaviour:
   allCardsPrefabsInspector:
   - {fileID: 3555370440800643982, guid: 7d8f44e7fcfdea44f89778cbca1113bf, type: 3}
   - {fileID: 3555370440800643982, guid: 49a75dd006441c44d876f5558ef44a8d, type: 3}
+  - {fileID: 3555370440800643982, guid: 4420943fafbffe446a55db1d6c83a2b8, type: 3}
   - {fileID: 3555370440800643982, guid: 8a6177315fdecf943b063b84945451c8, type: 3}
   - {fileID: 3555370440800643982, guid: c8cdc013afb880c4c8d103d65de5d78f, type: 3}
+  - {fileID: 3555370440800643982, guid: e95f514879e41604b9c1f86f18cb66eb, type: 3}
+  - {fileID: 3555370440800643982, guid: 7bf94ed98f999fb46ac34c0d7edc2c4f, type: 3}
+  - {fileID: 3555370440800643982, guid: 0f680db2a09cc804198f66fc3c93238a, type: 3}
+  - {fileID: 3555370440800643982, guid: d3bf788dc80a5b948b8edec7cc870dc4, type: 3}
+  - {fileID: 3555370440800643982, guid: 77d9534baedaa5b49896c3704a2b50ea, type: 3}
+  - {fileID: 3555370440800643982, guid: 9844901619b60724ab8fd2c9e0b81ba1, type: 3}
+  - {fileID: 3555370440800643982, guid: 2ea999ea4daef2449a658ca86b5ab6ba, type: 3}
+  - {fileID: 3555370440800643982, guid: f05e1d00ea1953b4ebe79955b14900b2, type: 3}
+  - {fileID: 3555370440800643982, guid: 95d504cdd9793d44faaf839ad032ef37, type: 3}
+  - {fileID: 3555370440800643982, guid: a1fe1a72d4cd56943bb3ef66a565f460, type: 3}
+  - {fileID: 3555370440800643982, guid: 6e07b6369fca1024f8d19f69a016b50f, type: 3}
   inventorybutton: {fileID: 570190985648385327, guid: 5d86f4e76b90b274880a01ee9536f8b3, type: 3}
   buttons: []
 --- !u!4 &438851524
