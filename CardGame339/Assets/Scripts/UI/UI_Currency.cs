@@ -10,6 +10,10 @@ public class UI_Currency : MonoBehaviour
         CurrencyManager.currencyAmount.ValueChanged += UpdateValue;
         UpdateValue(CurrencyManager.currencyAmount.Value);
     }
+    private void OnDestroy()
+    {
+        CurrencyManager.currencyAmount.ValueChanged -= UpdateValue;
+    }
 
     public void UpdateValue(int val)
     {

@@ -75,8 +75,6 @@ public class TurnSystem : IManager
        logger.print("player turn!");
        isPlayerTurn = true;
        cardManager.DrawCard();
-       cardManager.DrawCard();
-       cardManager.DrawCard();
        currentMana.Value = MaxMana;
     }
 

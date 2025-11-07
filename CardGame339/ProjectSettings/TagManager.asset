@@ -9,6 +9,8 @@ TagManager:
   - GameObjectManager
   - CardInfoPanel
   - UICurrency
+  - inventory viewport
+  - inventory
   layers:
   - Default
   - TransparentFX
