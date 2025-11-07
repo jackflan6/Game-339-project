@@ -65,7 +65,7 @@ public class ServiceResolver : MonoBehaviour
         {
             allCards.Add((Card)Activator.CreateInstance(ManagerManager.Resolve<Inventory>().GetAllCardIDs.Value[gam.GetComponent<SelectableCard>().cardID])) ;
         }
-        ManagerManager.Resolve<CardManager>().AllCards = allCards;
+        //ManagerManager.Resolve<CardManager>().AllCards = allCards;
 
 
         foreach (GameObject gam in allEnemyPrefabs)

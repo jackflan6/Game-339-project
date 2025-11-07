@@ -71,7 +71,6 @@ public class Inventory
 
         foreach (Type t in c)
         {
-            ManagerManager.Resolve<IGameLogger>().print(t.Name);
             CardIDs.TryAdd((int)t.GetField("cardID").GetValue(null), t);
         }
         return CardIDs;
