@@ -55,7 +55,9 @@ public class Inventory
 
     public void unlockCard(Card c)
     {
-        unlockedCards.Add(c);
+        if (!unlockedCards.Contains(c)) {
+            unlockedCards.Add(c);
+        }
     }
     public List<Card> GetAllCardsUnlocked()
     {
