@@ -15,7 +15,11 @@ public class UnityInventory : MonoBehaviour
         allCardsPrefabs = allCardsPrefabsInspector;
     }
     void Start()
-    { 
+    {
+        if (GameObject.FindGameObjectsWithTag("inventory").Length > 1)
+        {
+            Destroy(gameObject);
+        }
         DontDestroyOnLoad(gameObject);
         reloadOptions();
     }

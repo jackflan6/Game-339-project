@@ -9,6 +9,10 @@ public class UI_Currency : MonoBehaviour
         ManagerManager.Resolve<CurrencyManager>().currencyAmount.ValueChanged += UpdateValue;
         UpdateValue(ManagerManager.Resolve<CurrencyManager>().currencyAmount.Value);
     }
+    private void OnDestroy()
+    {
+        ManagerManager.Resolve<CurrencyManager>().currencyAmount.ValueChanged -= UpdateValue;
+    }
 
     public void UpdateValue(int val)
     {

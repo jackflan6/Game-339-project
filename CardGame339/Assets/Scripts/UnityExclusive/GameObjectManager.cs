@@ -34,7 +34,7 @@ public class GameObjectManager : MonoBehaviour
     private void Start()
     {
         staticEnemyPrefabList = EnemyPrefabList;
-        inventory = GameObject.FindGameObjectWithTag("unity inventory").GetComponent<UnityInventory>();
+        inventory = GameObject.FindGameObjectWithTag("inventory").GetComponent<UnityInventory>();
         ManagerManager.Resolve<CardManager>().CardDraw += createCard;
         ManagerManager.Resolve<CardManager>().CardPlayed += DestroyCard;
         ManagerManager.Resolve<EnemyManager>().enemyAdded += createEnemy;

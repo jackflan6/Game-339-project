@@ -50,11 +50,7 @@ public static class ManagerManager
             managers.Add(() => lazy.Value);
         }
 
-        if (m_register.TryAdd(typeof(T), () => lazy.Value))
-        {
-            persistantDependancys.TryAdd(typeof(T), () => lazy.Value);
-            return; 
-        }
+        if (m_register.TryAdd(typeof(T), () => lazy.Value)) { return; }
 
         throw new Exception($"Already registered a {typeof(T)}");
     }
@@ -69,14 +65,18 @@ public static class ManagerManager
             managers.Add(() => lazy.Value);
         }
 
-        if (m_register.TryAdd(typeof(T), () => lazy.Value)) { return; }
+        if (m_register.TryAdd(typeof(T), () => lazy.Value))
+        {
+            persistantDependancys.TryAdd(typeof(T), () => lazy.Value);
+            return;
+        }
 
     }
 
     public static void reload()
     {
         m_register = new ConcurrentDictionary<Type, Func<object>>(persistantDependancys);
-        managers = new List<Func<object>>(persistantDependancys.Values);
+        managers = new List<Func<object>>();
     }
 
 }
