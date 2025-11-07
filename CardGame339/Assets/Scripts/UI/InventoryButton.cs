@@ -13,6 +13,10 @@ public class InventoryButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private void Start()
     {
         origionalColor = GetComponent<Image>().color;
+        if(selected)
+        {
+            GetComponent<Image>().color = selectedColor;
+        }
     }
     public void OnPointerEnter(PointerEventData eventData)
     {

@@ -1,6 +1,8 @@
 
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Inventory
 {
@@ -8,6 +10,25 @@ public class Inventory
     List<Card> unlockedCards;
     public Inventory()
     {
+        createInitialCards();
+    }
+
+    private void createInitialCards()
+    {
+        List<Card> cards = new List<Card>();
+        cards.Add(new BillowingAss());
+        cards.Add(new mediumHeal());
+        cards.Add(new lowDamage());
+        cards.Add(new lowBurn());
+        cards.Add(new lowDraw());
+        cards.Add(new mediumBurn());
+        cards.Add(new mediumDamage());
+        cards.Add(new mediumDraw());
+        cards.Add(new mediumShield());
+        cards.Add(new instantKill());
+        cards.Add(new completeRefresh());
+        SetAllCardsInInventory(cards);
+        SetAllUnlockedCardsInInventory(cards);
     }
 
     public List<Card> GetAllCardsInInventory()
@@ -27,6 +48,10 @@ public class Inventory
     {
         cards = c;
     }
+    public void SetAllUnlockedCardsInInventory(List<Card> c)
+    {
+        unlockedCards = c;
+    }
 
     public void unlockCard(Card c)
     {
@@ -36,5 +61,19 @@ public class Inventory
     {
         return unlockedCards;
     }
+    public Lazy<Dictionary<int, Type>> GetAllCardIDs = new Lazy<Dictionary<int, Type>>(() =>
+    {
+        Dictionary<int, Type> CardIDs = new Dictionary<int, Type>();
 
+        IEnumerable<Type> c = AppDomain.CurrentDomain.GetAssemblies()
+            .SelectMany(assembly => assembly.GetTypes())
+            .Where(type => type.IsSubclassOf(typeof(Card)));
+
+        foreach (Type t in c)
+        {
+            ManagerManager.Resolve<IGameLogger>().print(t.Name);
+            CardIDs.TryAdd((int)t.GetField("cardID").GetValue(null), t);
+        }
+        return CardIDs;
+    });
 }

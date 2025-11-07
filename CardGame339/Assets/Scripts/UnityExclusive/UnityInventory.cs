@@ -12,17 +12,21 @@ public class UnityInventory : MonoBehaviour
     public GameObject inventorybutton;
     private void Awake()
     {
-        allCardsPrefabs = allCardsPrefabsInspector;
-    }
-    void Start()
-    {
         if (GameObject.FindGameObjectsWithTag("inventory").Length > 1)
         {
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+        ManagerManager.registerPersistentDependency(() => new Inventory());
+        allCardsPrefabs = allCardsPrefabsInspector;
+    }
+    void Start()
+    {
+        inventory = ManagerManager.Resolve<Inventory>();
         reloadOptions();
     }
+
+    
 
     public void AddCardToInventory(Card card)
     {
@@ -38,13 +42,15 @@ public class UnityInventory : MonoBehaviour
     public void reloadOptions()//this will change when implemented with gatcha system
     {
         GameObject viewport = GameObject.FindGameObjectWithTag("inventory viewport");
-        foreach (GameObject card in allCardsPrefabs)
+        foreach (Card card in inventory.GetAllCardsUnlocked())
         {
             GameObject button = Instantiate(inventorybutton, viewport.transform);
-            button.GetComponent<Image>().sprite = card.GetComponent<SpriteRenderer>().sprite;
-
-
-
+            button.GetComponent<Image>().sprite = CardToPrefab.Value[card.GetType()].GetComponent<SpriteRenderer>().sprite;
+            button.GetComponent<InventoryButton>().origionalCard = card;
+            if (inventory.GetAllCardsInInventory().Contains(card))
+            {
+                button.GetComponent<InventoryButton>().selected = true;
+            }
         }
     }
 
@@ -52,7 +58,7 @@ public class UnityInventory : MonoBehaviour
     public Lazy<Dictionary<Type, GameObject>> CardToPrefab = new Lazy<Dictionary<Type, GameObject>>(() => {
         Dictionary<Type, GameObject> dic = new Dictionary<Type, GameObject>();
 
-        Dictionary<int, Type> idToTypes = ManagerManager.Resolve<CardManager>().GetAllCardIDs.Value;
+        Dictionary<int, Type> idToTypes = ManagerManager.Resolve<Inventory>().GetAllCardIDs.Value;
 
         foreach (GameObject obj in allCardsPrefabs)
         {

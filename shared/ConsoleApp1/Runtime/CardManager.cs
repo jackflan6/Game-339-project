@@ -20,21 +20,7 @@ public class CardManager : IManager
 
     public int startingHandSize;
 
-    public Lazy<Dictionary<int, Type>> GetAllCardIDs = new Lazy<Dictionary<int, Type>>(() =>
-    {
-        Dictionary<int, Type> CardIDs = new Dictionary<int, Type>();
-
-        IEnumerable<Type> c = AppDomain.CurrentDomain.GetAssemblies()
-            .SelectMany(assembly => assembly.GetTypes())
-            .Where(type => type.IsSubclassOf(typeof(Card)));
-
-        foreach (Type t in c)
-        {
-            ManagerManager.Resolve<IGameLogger>().print(t.Name);
-            CardIDs.TryAdd((int)t.GetField("cardID").GetValue(null),t);
-        }
-        return CardIDs ;
-    });
+    
 
 
 

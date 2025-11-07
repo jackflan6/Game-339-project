@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class ServiceResolver : MonoBehaviour
 {
-    public int handSize;
-    public int maxHandSize;
+    public int handSize = 3;
+    public int maxHandSize = 3;
     public int maxMana;
     public int playerHP;
     public string playerName;
@@ -51,7 +51,6 @@ public class ServiceResolver : MonoBehaviour
         ManagerManager.register((IEffects)UnityEffects);
         ManagerManager.registerDependency(()=> new GachaManager(unityRandom));
         ManagerManager.registerDependency(() => new EnemyManager());
-        ManagerManager.registerPersistentDependency(() => new Inventory());
         ManagerManager.registerDependency(() => new CombatSystem());
         //ManagerManager.registerPersistentDependency(()=> new CurrencyManager());
         ManagerManager.registerDependency(() => new TurnSystem(maxMana));
@@ -64,7 +63,7 @@ public class ServiceResolver : MonoBehaviour
         List<Card> allCards = new List<Card>();
         foreach (GameObject gam in allCardsPrefabs)
         {
-            allCards.Add((Card)Activator.CreateInstance(ManagerManager.Resolve<CardManager>().GetAllCardIDs.Value[gam.GetComponent<SelectableCard>().cardID])) ;
+            allCards.Add((Card)Activator.CreateInstance(ManagerManager.Resolve<Inventory>().GetAllCardIDs.Value[gam.GetComponent<SelectableCard>().cardID])) ;
         }
         ManagerManager.Resolve<CardManager>().AllCards = allCards;
 

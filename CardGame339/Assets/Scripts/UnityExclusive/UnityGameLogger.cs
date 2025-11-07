@@ -22,12 +22,4 @@ public class UnityGameLogger : MonoBehaviour, IGameLogger
     {
         Debug.Log(message);
     }
-    public void Destroy(object obj) 
-    {
-        GameObject.Destroy((GameObject)obj);
-    }
-    public GameObject Instantiate(GameObject obj, Vector3 pos, Quaternion rot)
-    {
-        return GameObject.Instantiate(obj, pos, rot);
-    }
 }
