@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UnityInventory : MonoBehaviour
@@ -15,6 +16,7 @@ public class UnityInventory : MonoBehaviour
         if (GameObject.FindGameObjectsWithTag("inventory").Length > 1)
         {
             Destroy(gameObject);
+            return;
         }
         DontDestroyOnLoad(gameObject);
         ManagerManager.registerPersistentDependency(() => new Inventory());
@@ -25,8 +27,6 @@ public class UnityInventory : MonoBehaviour
         inventory = ManagerManager.Resolve<Inventory>();
         reloadOptions();
     }
-
-    
 
     public void AddCardToInventory(Card card)
     {
@@ -51,7 +51,16 @@ public class UnityInventory : MonoBehaviour
             {
                 button.GetComponent<InventoryButton>().selected = true;
             }
+            buttons.Add(button);
         }
+    }
+    public void UnloadButtons()
+    {
+        foreach(GameObject g in buttons)
+        {
+            Destroy(g);
+        }
+        buttons = new List<GameObject>();
     }
 
 
