@@ -16,8 +16,9 @@ namespace TestProject1
             IDialog dialogue = new ConsoleDialogue();
             IEffects effects = new TestEffects();
             IRandom notSoRandom = new FakeRandom();
+            CurrencyManager currencyManager = new CurrencyManager();
             EnemyManager enemyManager = new EnemyManager(logger);
-            CombatSystem combatSystem = new CombatSystem(enemyManager, logger, effects);
+            CombatSystem combatSystem = new CombatSystem(enemyManager, logger, effects, currencyManager);
             Card card = new lowDamage();
             Enemy enemy = new TheBillowedAss(combatSystem, dialogue, enemyManager, notSoRandom);
             combatSystem.DealDamageToEnemy(card, enemy);
@@ -30,10 +31,11 @@ namespace TestProject1
         {
             IGameLogger logger = new ConsoleGameLogger();
             IEffects effects = new TestEffects();
+            CurrencyManager currencyManager = new CurrencyManager();
             Player player = new Player(10,10,"testPlayer", logger);
             player.currentBurnDamage = 2;
             EnemyManager enemyManager = new EnemyManager(logger);
-            CombatSystem combatSystem = new CombatSystem(enemyManager, logger,effects);
+            CombatSystem combatSystem = new CombatSystem(enemyManager, logger,effects, currencyManager);
             combatSystem.BurnDamageToPlayer(player);
             combatSystem.BurnDamageToPlayer(player);
             combatSystem.BurnDamageToPlayer(player);
@@ -49,8 +51,9 @@ namespace TestProject1
             IDialog dialogue = new ConsoleDialogue();
             IRandom notSoRandom = new FakeRandom();
             IEffects effects = new TestEffects();
+            CurrencyManager currencyManager = new CurrencyManager();
             EnemyManager enemyManager = new EnemyManager(logger);
-            CombatSystem combatSystem = new CombatSystem(enemyManager, logger, effects);
+            CombatSystem combatSystem = new CombatSystem(enemyManager, logger, effects, currencyManager);
             Card card = new lowDamage();
             Enemy enemy = new TheBillowedAss(combatSystem, dialogue, enemyManager, notSoRandom);
             combatSystem.DealDamageToEnemy(card, enemy);
@@ -65,8 +68,9 @@ namespace TestProject1
             IDialog dialogue = new ConsoleDialogue();
             IRandom notSoRandom = new FakeRandom();
             IEffects effects = new TestEffects();
+            CurrencyManager currencyManager = new CurrencyManager();
             EnemyManager enemyManager = new EnemyManager(logger);
-            CombatSystem combatSystem = new CombatSystem(enemyManager, logger,effects);
+            CombatSystem combatSystem = new CombatSystem(enemyManager, logger,effects, currencyManager);
             Card card = new mediumDamage();
             Enemy enemy = new TheBillowedAss(combatSystem, dialogue, enemyManager, notSoRandom);
             combatSystem.DealDamageToEnemy(card, enemy);
@@ -81,8 +85,9 @@ namespace TestProject1
             IDialog dialogue = new ConsoleDialogue();
             IRandom notSoRandom = new FakeRandom();
             IEffects effects = new TestEffects();
+            CurrencyManager currencyManager = new CurrencyManager();
             EnemyManager enemyManager = new EnemyManager(logger);
-            CombatSystem combatSystem = new CombatSystem(enemyManager, logger,effects);
+            CombatSystem combatSystem = new CombatSystem(enemyManager, logger,effects, currencyManager);
             Card card = new mediumShield();
             Enemy enemy = new TheBillowedAss(combatSystem, dialogue, enemyManager, notSoRandom);
             Player player = new Player(10,10,"testPlayer", logger);
@@ -96,7 +101,7 @@ namespace TestProject1
         {
             IRandom fakeRandom= new RealRandom();
             IGameLogger logger = new ConsoleGameLogger();
-            GachaManager gachaManager = new GachaManager(fakeRandom);
+            GachaManager gachaManager = new GachaManager(logger,fakeRandom);
             logger.print(gachaManager.Pull(gachaManager.gachaItems).ToString());
         }
         
@@ -106,7 +111,7 @@ namespace TestProject1
             List<Card> itemsPulled = new List<Card>();
             IRandom fakeRandom= new RealRandom();
             IGameLogger logger = new ConsoleGameLogger();
-            GachaManager gachaManager = new GachaManager(fakeRandom);
+            GachaManager gachaManager = new GachaManager(logger,fakeRandom);
             for (int a = 0; a < 10; a++)
             {
                 Card newItem = gachaManager.Pull(gachaManager.gachaItems);
@@ -131,7 +136,7 @@ namespace TestProject1
             List<Card> itemsPulled = new List<Card>();
             IRandom fakeRandom= new RealRandom();
             IGameLogger logger = new ConsoleGameLogger();
-            GachaManager gachaManager = new GachaManager(fakeRandom);
+            GachaManager gachaManager = new GachaManager(logger, fakeRandom);
             for (int a = 0; a < 90; a++)
             {
                 Card newItem = gachaManager.Pull(gachaManager.gachaItems);
@@ -164,7 +169,7 @@ namespace TestProject1
         {
             IRandom tempRandom= new RealRandom();
             IGameLogger logger = new ConsoleGameLogger();
-            GachaManager gachaManager = new GachaManager(tempRandom);
+            GachaManager gachaManager = new GachaManager(logger, fakeRandom);
             Card resultCard = gachaManager.PullFireCard(gachaManager.gachaItems);
             logger.print(resultCard.ToString());
             Assert.That(resultCard.Element.ToLower().Equals("fire") || resultCard.Element.ToLower().Equals("omni"));
@@ -177,7 +182,7 @@ namespace TestProject1
             List<Card> itemsPulled = new List<Card>();
             IRandom fakeRandom= new RealRandom();
             IGameLogger logger = new ConsoleGameLogger();
-            GachaManager gachaManager = new GachaManager(fakeRandom);
+            GachaManager gachaManager = new GachaManager(logger, fakeRandom);
             itemsPulled=gachaManager.PullFiveTimes(gachaManager.gachaItems);
             for (int a = 0; a < itemsPulled.Count; a++)
             {

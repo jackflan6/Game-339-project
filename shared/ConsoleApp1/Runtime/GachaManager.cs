@@ -39,9 +39,10 @@ public class GachaManager : IManager
     }
 #endif
 
-    public GachaManager(IGameLogger log)
+    public GachaManager(IGameLogger log,IRandom ran)
     {
         logger = log;
+        Random = ran;
     }
 
     public Card Pull(List<Card> allCards)
