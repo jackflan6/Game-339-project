@@ -11,6 +11,7 @@ TagManager:
   - UICurrency
   - inventory viewport
   - inventory
+  - GlobalResolver
   layers:
   - Default
   - TransparentFX

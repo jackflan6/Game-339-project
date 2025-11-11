@@ -28,6 +28,17 @@ public static class ManagerManager
 
         throw new Exception($"Already registered a {typeof(T)}");
     }
+    public static void registerPersistent<T>(T obj)
+    {
+        if (obj == null) { throw new Exception("Tried to register a null value"); }
+
+
+        if (m_register.TryAdd(typeof(T), () => obj))
+        {
+            persistantDependancys.TryAdd(typeof(T), () => obj);
+            return;
+        }
+    }
 
     public static void registerFactory<T>(Func<object> factory)
     {

@@ -21,11 +21,7 @@ public class ServiceResolver : MonoBehaviour
 
     public UIManager UImanager;
     public GameObjectManager gameObjectManager;
-    public UnityGameLogger unityLogger;
-    public UnityRandom unityRandom;
     public UnityDialogSys unityDialog;
-    public SceneChanger sceneChanger;
-    public LocationManager locationManager;
     public UnityEffects UnityEffects;
     private void Awake()
     {
@@ -42,17 +38,11 @@ public class ServiceResolver : MonoBehaviour
         print("Service Resolver is awake");
         //you can only register one thing of each type
         ManagerManager.reload();
-        ManagerManager.register((IGameLogger)unityLogger);
-        ManagerManager.register((IRandom)unityRandom);
         ManagerManager.register((IDialog)unityDialog);
         ManagerManager.register(UImanager);
-        ManagerManager.register(sceneChanger);
-        ManagerManager.register(locationManager);
         ManagerManager.register((IEffects)UnityEffects);
-        ManagerManager.registerDependency(()=> new GachaManager(unityRandom));
         ManagerManager.registerDependency(() => new EnemyManager());
         ManagerManager.registerDependency(() => new CombatSystem());
-        //ManagerManager.registerPersistentDependency(()=> new CurrencyManager());
         ManagerManager.registerDependency(() => new TurnSystem(maxMana));
         ManagerManager.registerDependency(() => new GameManager());
         ManagerManager.registerDependency(() => new Player(playerHP, 0, playerName));

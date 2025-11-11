@@ -14,22 +14,24 @@ public class CombatSystem : IManager
     //public CurrencyManager CurrencyManager;
     public IGameLogger logger { get; }
     public IEffects Effects {get;}
-    
+    private CurrencyManager currencyManager;
+
     #if !NOT_UNITY
     public CombatSystem()
     {
         enemyManager = ManagerManager.Resolve<EnemyManager>();
         logger=ManagerManager.Resolve<IGameLogger>();
         Effects = ManagerManager.Resolve<IEffects>();
-        //  CurrencyManager = ManagerManager.Resolve<CurrencyManager>();
+        currencyManager = ManagerManager.Resolve<CurrencyManager>();
     }
     #endif
-    public CombatSystem(EnemyManager enemyManager, IGameLogger log, IEffects effects)
+    public CombatSystem(EnemyManager enemyManager, IGameLogger log, IEffects effects, CurrencyManager currencyManager)
     {
         this.enemyManager = enemyManager;
-       // CurrencyManager = currencyManager;
+        // CurrencyManager = currencyManager;
         logger = log;
         Effects = effects;
+        this.currencyManager = currencyManager;
     }
     public int DealDamageToEnemy(Card card, Enemy enemy)
     {
@@ -47,7 +49,7 @@ public class CombatSystem : IManager
         enemy.HP.Value -= damageDealt;
         if (enemy.HP.Value <= 0)
         {
-            CurrencyManager.currencyAmount.Value += enemy.dropCurrency.Value;
+            currencyManager.currencyAmount.Value += enemy.dropCurrency.Value;
             enemyManager.DestroyEnemy(enemy);
         }
         return enemy.HP.Value;
@@ -96,7 +98,7 @@ public class CombatSystem : IManager
         }
         if (enemy.HP.Value <= 0)
         {
-            CurrencyManager.currencyAmount.Value += enemy.dropCurrency.Value;
+            currencyManager.currencyAmount.Value += enemy.dropCurrency.Value;
             enemyManager.DestroyEnemy(enemy);
         }
 

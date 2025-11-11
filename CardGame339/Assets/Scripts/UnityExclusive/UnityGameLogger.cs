@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class UnityGameLogger : MonoBehaviour, IGameLogger
 {
+    private void Awake()
+    {
+        if (GameObject.FindGameObjectWithTag("GlobalResolver").GetComponent<GlobalResolver>().loaded)
+        {
+            Destroy(gameObject);
+        }
+    }
     public void Info(string message)
     {
         print(message);
