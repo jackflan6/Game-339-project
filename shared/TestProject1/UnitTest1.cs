@@ -16,7 +16,7 @@ namespace TestProject1
             IDialog dialogue = new ConsoleDialogue();
             IEffects effects = new TestEffects();
             IRandom notSoRandom = new FakeRandom();
-            CurrencyManager currencyManager = new CurrencyManager();
+            CurrencyManager currencyManager = new CurrencyManager(logger);
             EnemyManager enemyManager = new EnemyManager(logger);
             CombatSystem combatSystem = new CombatSystem(enemyManager, logger, effects, currencyManager);
             Card card = new lowDamage();
@@ -31,7 +31,7 @@ namespace TestProject1
         {
             IGameLogger logger = new ConsoleGameLogger();
             IEffects effects = new TestEffects();
-            CurrencyManager currencyManager = new CurrencyManager();
+            CurrencyManager currencyManager = new CurrencyManager(logger);
             Player player = new Player(10,10,"testPlayer", logger);
             player.currentBurnDamage = 2;
             EnemyManager enemyManager = new EnemyManager(logger);
@@ -51,7 +51,7 @@ namespace TestProject1
             IDialog dialogue = new ConsoleDialogue();
             IRandom notSoRandom = new FakeRandom();
             IEffects effects = new TestEffects();
-            CurrencyManager currencyManager = new CurrencyManager();
+            CurrencyManager currencyManager = new CurrencyManager(logger);
             EnemyManager enemyManager = new EnemyManager(logger);
             CombatSystem combatSystem = new CombatSystem(enemyManager, logger, effects, currencyManager);
             Card card = new lowDamage();
@@ -68,7 +68,7 @@ namespace TestProject1
             IDialog dialogue = new ConsoleDialogue();
             IRandom notSoRandom = new FakeRandom();
             IEffects effects = new TestEffects();
-            CurrencyManager currencyManager = new CurrencyManager();
+            CurrencyManager currencyManager = new CurrencyManager(logger);
             EnemyManager enemyManager = new EnemyManager(logger);
             CombatSystem combatSystem = new CombatSystem(enemyManager, logger,effects, currencyManager);
             Card card = new mediumDamage();
@@ -85,7 +85,7 @@ namespace TestProject1
             IDialog dialogue = new ConsoleDialogue();
             IRandom notSoRandom = new FakeRandom();
             IEffects effects = new TestEffects();
-            CurrencyManager currencyManager = new CurrencyManager();
+            CurrencyManager currencyManager = new CurrencyManager(logger);
             EnemyManager enemyManager = new EnemyManager(logger);
             CombatSystem combatSystem = new CombatSystem(enemyManager, logger,effects, currencyManager);
             Card card = new mediumShield();
@@ -169,7 +169,7 @@ namespace TestProject1
         {
             IRandom tempRandom= new RealRandom();
             IGameLogger logger = new ConsoleGameLogger();
-            GachaManager gachaManager = new GachaManager(logger, fakeRandom);
+            GachaManager gachaManager = new GachaManager(logger, tempRandom);
             Card resultCard = gachaManager.PullFireCard(gachaManager.gachaItems);
             logger.print(resultCard.ToString());
             Assert.That(resultCard.Element.ToLower().Equals("fire") || resultCard.Element.ToLower().Equals("omni"));
