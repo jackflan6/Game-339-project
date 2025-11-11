@@ -32,6 +32,7 @@ public class UnityGachaManager : MonoBehaviour
             Debug.Log("List Count:" + CardRoulette.cardSprites.Count);
             CardRoulette.Spin(selectedCardName);
             Debug.Log("Received card: " + selectedCard);
+            ManagerManager.Resolve<Inventory>().unlockCard(selectedCard);
         }
     }
 

@@ -8,6 +8,7 @@ public class Inventory
 {
     List<Card> cards;
     List<Card> unlockedCards;
+    List<Type> unlockedCardsTypes;
     public Inventory()
     {
         createInitialCards();
@@ -20,13 +21,9 @@ public class Inventory
         cards.Add(new mediumHeal());
         cards.Add(new lowDamage());
         cards.Add(new lowBurn());
-        cards.Add(new lowDraw());
-        cards.Add(new mediumBurn());
         cards.Add(new mediumDamage());
-        cards.Add(new mediumDraw());
         cards.Add(new mediumShield());
         cards.Add(new instantKill());
-        cards.Add(new completeRefresh());
         SetAllCardsInInventory(cards);
         SetAllUnlockedCardsInInventory(cards);
     }
@@ -38,7 +35,10 @@ public class Inventory
 
     public void AddCardsInInventory(Card c)
     {
-        cards.Add(c);
+        if (!cards.Contains(c))
+        {
+            cards.Add(c);
+        }
     }
     public void RemoveCardsInInventory(Card c)
     {
@@ -46,16 +46,24 @@ public class Inventory
     }
     public void SetAllCardsInInventory(List<Card> c)
     {
-        cards = c;
+        cards = new List<Card>(c);
     }
     public void SetAllUnlockedCardsInInventory(List<Card> c)
     {
-        unlockedCards = c;
+        unlockedCards = new List<Card>(c);
+        unlockedCardsTypes = new List<Type>();
+        foreach (Card _c in unlockedCards)
+        {
+            unlockedCardsTypes.Add(_c.GetType());
+        }
     }
 
     public void unlockCard(Card c)
     {
+        if (!unlockedCardsTypes.Contains(c.GetType())) { 
         unlockedCards.Add(c);
+        unlockedCardsTypes.Add(c.GetType());
+        }
     }
     public List<Card> GetAllCardsUnlocked()
     {
