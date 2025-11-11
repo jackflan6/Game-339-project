@@ -31,9 +31,18 @@ public class GachaManager : IManager
     private int rarePityCounter;
     private int hardPity;
 
-    public GachaManager(IRandom random)
+#if !NOT_UNITY
+    public GachaManager()
     {
-        Random = random;
+        logger = ManagerManager.Resolve<IGameLogger>();
+        Random = ManagerManager.Resolve<IRandom>();
+    }
+#endif
+
+    public GachaManager(IGameLogger log,IRandom ran)
+    {
+        logger = log;
+        Random = ran;
     }
 
     public Card Pull(List<Card> allCards)

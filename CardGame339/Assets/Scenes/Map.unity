@@ -131,11 +131,11 @@ GameObject:
   - component: {fileID: 101803977}
   m_Layer: 0
   m_Name: GlobalResolver
-  m_TagString: Untagged
+  m_TagString: GlobalResolver
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &101803977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,10 +148,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d46c6c41d14904fac3b6e6b83b626d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  unityLogger: {fileID: 0}
-  unityRandom: {fileID: 0}
-  sceneChanger: {fileID: 0}
-  locationManager: {fileID: 0}
+  loaded: 0
+  unityLogger: {fileID: 187208052}
+  unityRandom: {fileID: 1539529289}
+  sceneChanger: {fileID: 1259959860}
+  locationManager: {fileID: 811540392}
 --- !u!4 &101803978
 Transform:
   m_ObjectHideFlags: 0
@@ -714,6 +715,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4fc2fde062d40e0b3af9901eed0b3aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Location
+--- !u!1 &187208051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 187208053}
+  - component: {fileID: 187208052}
+  m_Layer: 0
+  m_Name: UnityGameLogger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &187208052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187208051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df8ca2f8724582542afec652a2349549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnityGameLogger
+--- !u!4 &187208053
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187208051}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &195444800
 GameObject:
   m_ObjectHideFlags: 0
@@ -5132,6 +5177,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4fc2fde062d40e0b3af9901eed0b3aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Location
+--- !u!1 &1539529288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1539529290}
+  - component: {fileID: 1539529289}
+  m_Layer: 0
+  m_Name: UnityRandom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1539529289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539529288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8869f86d9b330ad4e8ad1eeaf4bab306, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnityRandom
+--- !u!4 &1539529290
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539529288}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1582316734
 GameObject:
   m_ObjectHideFlags: 0
@@ -7041,3 +7130,5 @@ SceneRoots:
   - {fileID: 1259959861}
   - {fileID: 438851524}
   - {fileID: 101803978}
+  - {fileID: 187208053}
+  - {fileID: 1539529290}

@@ -1,9 +1,10 @@
 using ConsoleApp1;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GlobalResolver : MonoBehaviour
 {
-
+    public bool loaded;
     public UnityGameLogger unityLogger;
     public UnityRandom unityRandom;
     public SceneChanger sceneChanger;
@@ -11,12 +12,23 @@ public class GlobalResolver : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        ManagerManager.register(sceneChanger);
-        ManagerManager.register(locationManager);
-        ManagerManager.register((IGameLogger)unityLogger);
-        ManagerManager.register((IRandom)unityRandom);
+        if (GameObject.FindGameObjectsWithTag("GlobalResolver").Length > 1)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        DontDestroyOnLoad(gameObject);
+        ManagerManager.registerPersistent(sceneChanger);
+        ManagerManager.registerPersistent(locationManager);
+        ManagerManager.registerPersistent((IGameLogger)unityLogger);
+        ManagerManager.registerPersistent((IRandom)unityRandom);
         ManagerManager.registerPersistentDependency(() => new Inventory());
-        //ManagerManager.registerPersistentDependency();
+        ManagerManager.registerPersistentDependency(()=> new CurrencyManager());
+        ManagerManager.registerPersistentDependency(() => new GachaManager());
+    }
+    private void Start()
+    {
+        loaded = true;
     }
 
 }
