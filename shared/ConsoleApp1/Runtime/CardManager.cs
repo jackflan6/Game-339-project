@@ -73,7 +73,7 @@ public class CardManager : IManager
     {
         logger.print("cardPlayed!");
         int totalShock=1;
-        CombatSystem.ApplyBurnDamageToEnemy(enemy, card);
+        //CombatSystem.ApplyBurnDamageToEnemy(enemy, card);
         if (card.Element.Equals("Shock"))
         {
             foreach (Card discardCard in DiscardPile)
@@ -90,7 +90,7 @@ public class CardManager : IManager
             card.Effect(enemy);
             CombatSystem.DealDamageToEnemy(card, enemy);
             CombatSystem.GeneratePlayerShield(player, card);
-            CombatSystem.ApplyBurnDamageToEnemy(enemy,card);
+           // CombatSystem.ApplyBurnDamageToEnemy(enemy,card);
             CombatSystem.HealPlayer(player,card);
         }
         Hand.Remove(card);
