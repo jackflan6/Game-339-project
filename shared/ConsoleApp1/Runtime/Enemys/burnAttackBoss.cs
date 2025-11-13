@@ -5,7 +5,8 @@ public class BurnAttackBoss : Enemy
     readonly IDialog dialogSys;
     readonly EnemyManager enemyManager;
     readonly IRandom random;
-    public override ValueHolder<int> dropCurrency { get; } = 5;
+    public override ValueHolder<int> dropCurrency { get; } = 0;
+    public override ValueHolder<int> dropBossCurrency { get; } = 10;
 
     private int processionOfActions;
     //::::Important::::

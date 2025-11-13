@@ -9,6 +9,8 @@ public abstract class Enemy : IEnemy
     
     public abstract ValueHolder<int> dropCurrency { get; }
     
+    public abstract ValueHolder<int> dropBossCurrency { get; }
+    
     public abstract int burnAttackDamage { get; }
     public string Name;
 

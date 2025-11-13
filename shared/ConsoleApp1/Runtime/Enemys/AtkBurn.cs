@@ -10,6 +10,7 @@ public class AtkBurn : Enemy
 
     private int processionOfActions;
     public override ValueHolder<int> dropCurrency { get; } = 5;
+    public override ValueHolder<int> dropBossCurrency { get; } = 0;
     //::::Important::::
     //It is nessasary to have every card have a static int for its ID.
     //This need to be called "enemyID" and reflected in the selectableCard object.

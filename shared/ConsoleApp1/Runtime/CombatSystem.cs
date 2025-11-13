@@ -50,6 +50,7 @@ public class CombatSystem : IManager
         if (enemy.HP.Value <= 0)
         {
             currencyManager.currencyAmount.Value += enemy.dropCurrency.Value;
+            currencyManager.bossCurrencyAmount.Value += enemy.dropBossCurrency.Value;
             enemyManager.DestroyEnemy(enemy);
         }
         return enemy.HP.Value;
@@ -99,6 +100,7 @@ public class CombatSystem : IManager
         if (enemy.HP.Value <= 0)
         {
             currencyManager.currencyAmount.Value += enemy.dropCurrency.Value;
+            currencyManager.bossCurrencyAmount.Value += enemy.dropBossCurrency.Value;
             enemyManager.DestroyEnemy(enemy);
         }
 

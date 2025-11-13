@@ -1826,9 +1826,10 @@ GameObject:
   - component: {fileID: 1602506255}
   - component: {fileID: 1602506257}
   - component: {fileID: 1602506256}
+  - component: {fileID: 1602506258}
   m_Layer: 5
   m_Name: Cores
-  m_TagString: Untagged
+  m_TagString: UIBossCurrency
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1849,8 +1850,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -340, y: 417}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -272.1717, y: 417.26703}
+  m_SizeDelta: {x: 335.6566, y: 50.5341}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1602506256
 MonoBehaviour:
@@ -1951,6 +1952,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1602506254}
   m_CullTransparentMesh: 1
+--- !u!114 &1602506258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602506254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0c667d8fee420946abe62dc74232a38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI_BossCurrency
 --- !u!1 &1747567453
 GameObject:
   m_ObjectHideFlags: 0
