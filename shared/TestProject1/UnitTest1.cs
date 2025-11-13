@@ -165,14 +165,22 @@ namespace TestProject1
         }
 
         [Test]
-        public void PullFireCardOnce()
+        public void PullFireCardPack()
         {
             IRandom tempRandom= new RealRandom();
             IGameLogger logger = new ConsoleGameLogger();
             GachaManager gachaManager = new GachaManager(logger, tempRandom);
-            Card resultCard = gachaManager.PullFireCard(gachaManager.gachaItems);
-            logger.print(resultCard.ToString());
-            Assert.That(resultCard.Element.ToLower().Equals("fire") || resultCard.Element.ToLower().Equals("omni"));
+            List<Card> resultCards = gachaManager.PullFireFiveTimes(gachaManager.gachaItems);
+            logger.print(resultCards.ToString());
+            int numberOfFireOrOmniCards=0;
+            foreach (Card card in resultCards)
+            {
+                if (card.Element.ToLower().Equals("fire") || card.Element.ToLower().Equals("omni"))
+                {
+                    numberOfFireOrOmniCards++;
+                }
+            }
+            Assert.That(numberOfFireOrOmniCards==5);
 
         }
 
@@ -183,7 +191,7 @@ namespace TestProject1
             IRandom fakeRandom= new RealRandom();
             IGameLogger logger = new ConsoleGameLogger();
             GachaManager gachaManager = new GachaManager(logger, fakeRandom);
-            itemsPulled=gachaManager.PullFiveTimes(gachaManager.gachaItems);
+            itemsPulled=gachaManager.PullPack(gachaManager.gachaItems);
             for (int a = 0; a < itemsPulled.Count; a++)
             {
                 logger.print(itemsPulled[a].ToString());
