@@ -48,6 +48,43 @@ public class GachaManager : IManager
     public Card Pull(List<Card> allCards)
     {
         int chance=Random.RandomNumber(100);
+        if (chance < 1 || legendaryPityCounter==89)
+        {
+            
+            List<Card> legendaryItems = CollectLegendaryCards(allCards);
+            int legendaryItem = Random.RandomNumber(legendaryItems.Count);
+            rarePityCounter = 0;
+            legendaryPityCounter = 0;
+            return legendaryItems[legendaryItem];
+        }
+        else if(chance<20 || rarePityCounter==9)
+        {
+            List<Card> rareCards = CollectRareCards(allCards);
+            int rareCard = Random.RandomNumber(rareCards.Count);
+            rarePityCounter = 0;
+            legendaryPityCounter++;
+            return rareCards[rareCard];
+        }
+        else if(chance<30)
+        {
+            List<Card> epicCards = CollectEpicCards(allCards);
+            int epicCard = Random.RandomNumber(epicCards.Count);
+            rarePityCounter = 0;
+            legendaryPityCounter++;
+            return epicCards[epicCard];
+        }
+        
+        List<Card> commonCards = CollectCommonCards(allCards);
+        int commonCard = Random.RandomNumber(commonCards.Count);
+        legendaryPityCounter++;
+        rarePityCounter++;
+        return commonCards[commonCard];
+        
+    }
+    
+    public Card PullHigherChances(List<Card> allCards)
+    {
+        int chance=Random.RandomNumber(100);
         if (chance < 5 || legendaryPityCounter==89)
         {
             
@@ -57,7 +94,7 @@ public class GachaManager : IManager
             legendaryPityCounter = 0;
             return legendaryItems[legendaryItem];
         }
-        else if(chance<30 || rarePityCounter==9)
+        else if(chance<25 || rarePityCounter==9)
         {
             List<Card> rareCards = CollectRareCards(allCards);
             int rareCard = Random.RandomNumber(rareCards.Count);
@@ -65,7 +102,7 @@ public class GachaManager : IManager
             legendaryPityCounter++;
             return rareCards[rareCard];
         }
-        else if(chance<40)
+        else if(chance<35)
         {
             List<Card> epicCards = CollectEpicCards(allCards);
             int epicCard = Random.RandomNumber(epicCards.Count);
@@ -82,36 +119,36 @@ public class GachaManager : IManager
         
     }
 
-    public Card PullFireCard(List<Card> allCards)
+    private Card PullFireCard(List<Card> allCards)
     {
         List<Card> fireCards = CollectFireCards(allCards);
-        return Pull(fireCards);
+        return PullHigherChances(fireCards);
     }
     
-    public Card PullLightningCard(List<Card> allCards)
+    private Card PullLightningCard(List<Card> allCards)
     {
         List<Card> lightningCards = CollectLightningCards(allCards);
-        return Pull(lightningCards);
+        return PullHigherChances(lightningCards);
     }
     
-    public Card PullWindCard(List<Card> allCards)
+    private Card PullWindCard(List<Card> allCards)
     {
         List<Card> windCards = CollectWindCards(allCards);
-        return Pull(windCards);
+        return PullHigherChances(windCards);
     }
     
-    public Card PullEarthCard(List<Card> allCards)
+    private Card PullEarthCard(List<Card> allCards)
     {
         List<Card> earthCards = CollectEarthCards(allCards);
-        return Pull(earthCards);
+        return PullHigherChances(earthCards);
     }
 
-    public List<Card> PullFiveTimes(List<Card> allCards)
+    public List<Card> PullPack(List<Card> allCards)
     {
         List<Card> pullResults = new List<Card>();
         for (int a = 0; a < 5; a++)
         {
-            pullResults.Add(Pull(allCards));
+            pullResults.Add(PullHigherChances(allCards));
         }
 
         return pullResults;
@@ -159,6 +196,15 @@ public class GachaManager : IManager
         }
 
         return pullResults;
+    }
+
+    public Card PullLegendaryCard(List<Card> allCards)
+    {
+        List<Card> legendaryItems = CollectLegendaryCards(allCards);
+        int legendaryItem = Random.RandomNumber(legendaryItems.Count);
+        rarePityCounter = 0;
+        legendaryPityCounter = 0;
+        return legendaryItems[legendaryItem];
     }
 
     private List<Card> CollectFireCards(List<Card> allCards)

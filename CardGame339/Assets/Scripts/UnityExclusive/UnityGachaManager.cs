@@ -41,7 +41,7 @@ public class UnityGachaManager : MonoBehaviour
         if (currencyManager.currencyAmount.Value >= 15)
         {
             currencyManager.currencyAmount.Value -= 15;
-            Debug.Log("Received cards: " +_gachaManager.PullFiveTimes(_gachaManager.gachaItems));
+            Debug.Log("Received cards: " +_gachaManager.PullPack(_gachaManager.gachaItems));
         }
     }
 }

@@ -9,6 +9,8 @@ public class GlobalResolver : MonoBehaviour
     public UnityRandom unityRandom;
     public SceneChanger sceneChanger;
     public LocationManager locationManager;
+
+    public bool hasShownShopDialogue;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
