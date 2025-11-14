@@ -44,4 +44,41 @@ public class UnityGachaManager : MonoBehaviour
             Debug.Log("Received cards: " +_gachaManager.PullPack(_gachaManager.gachaItems));
         }
     }
+
+    public void PullPackOfFireCards()
+    {
+        if (currencyManager.currencyAmount.Value >= 15)
+        {
+            currencyManager.currencyAmount.Value -= 15;
+            Debug.Log("Received cards: " +_gachaManager.PullFireFiveTimes(_gachaManager.gachaItems));
+        }
+    }
+    
+    public void PullPackOfEarthCards()
+    {
+        if (currencyManager.currencyAmount.Value >= 15)
+        {
+            currencyManager.currencyAmount.Value -= 15;
+            Debug.Log("Received cards: " +_gachaManager.PullFiveEarthTimes(_gachaManager.gachaItems));
+        }
+    }
+    
+    public void PullPackOfWindCards()
+    {
+        if (currencyManager.currencyAmount.Value >= 15)
+        {
+            currencyManager.currencyAmount.Value -= 15;
+            Debug.Log("Received cards: " +_gachaManager.PullWindFiveTimes(_gachaManager.gachaItems));
+        }
+    }
+    
+    public void PullPackOfLightningCards()
+    {
+        if (currencyManager.currencyAmount.Value >= 15)
+        {
+            currencyManager.currencyAmount.Value -= 15;
+            Debug.Log("Received cards: " +_gachaManager.PullLightningFiveTimes(_gachaManager.gachaItems));
+        }
+    }
+    
 }
