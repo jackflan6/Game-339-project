@@ -39,4 +39,17 @@ public class SceneChanger : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
     }
+    public void Restart()
+    {
+        GameObject[] everything = SceneManager.GetActiveScene().GetRootGameObjects();
+        foreach (GameObject go in everything)
+        {
+            if (go != gameObject)
+            {
+                Destroy(go);
+            }
+        }
+        sceneName = "Map";
+        ChangeScene();
+    }
 }
