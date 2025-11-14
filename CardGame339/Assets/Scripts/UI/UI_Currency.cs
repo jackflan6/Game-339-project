@@ -5,14 +5,16 @@ using UnityEngine.UI;
 
 public class UI_Currency : MonoBehaviour
 {
+    CurrencyManager currencyManager;
     void Start()
     {
-        CurrencyManager.currencyAmount.ValueChanged += UpdateValue;
-        UpdateValue(CurrencyManager.currencyAmount.Value);
+        currencyManager = ManagerManager.Resolve<CurrencyManager>();
+        currencyManager.currencyAmount.ValueChanged += UpdateValue;
+        UpdateValue(currencyManager.currencyAmount.Value);
     }
     private void OnDestroy()
     {
-        CurrencyManager.currencyAmount.ValueChanged -= UpdateValue;
+        currencyManager.currencyAmount.ValueChanged -= UpdateValue;
     }
 
     public void UpdateValue(int val)

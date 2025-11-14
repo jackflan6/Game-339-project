@@ -1,8 +1,20 @@
 namespace ConsoleApp1
 {
-    public static class CurrencyManager
+    public class CurrencyManager
     {
-        public static IGameLogger logger { get; }
-        public static ValueHolder<int> currencyAmount =new ValueHolder<int>();
+        public IGameLogger logger { get; }
+        public ValueHolder<int> currencyAmount =new ValueHolder<int>();
+        public ValueHolder<int> bossCurrencyAmount = new ValueHolder<int>();
+#if !NOT_UNITY
+        public CurrencyManager()
+        {
+            logger = ManagerManager.Resolve<IGameLogger>();
+        }
+#endif
+
+        public CurrencyManager(IGameLogger log)
+        {
+            logger = log;
+        }
     }
 }

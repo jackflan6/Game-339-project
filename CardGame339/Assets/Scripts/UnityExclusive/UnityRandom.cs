@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class UnityRandom : MonoBehaviour, IRandom
 {
-
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        if (GameObject.FindGameObjectWithTag("GlobalResolver").GetComponent<GlobalResolver>().loaded)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public int RandomNumber(int upperBound)

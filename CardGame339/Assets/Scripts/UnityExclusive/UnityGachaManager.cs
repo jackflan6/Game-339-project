@@ -7,12 +7,12 @@ public class UnityGachaManager : MonoBehaviour
     public CardRoulette CardRoulette;
     public string selectedCardName;
 
-    //private CurrencyManager _currencyManager;
+    private CurrencyManager currencyManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _gachaManager = ManagerManager.Resolve<GachaManager>();
-       // _currencyManager = ManagerManager.Resolve<CurrencyManager>();
+       currencyManager = ManagerManager.Resolve<CurrencyManager>();
     }
 
     // Update is called once per frame
@@ -23,24 +23,25 @@ public class UnityGachaManager : MonoBehaviour
 
     public void PullOneCard()
     {
-        if (CurrencyManager.currencyAmount.Value >= 5)
+        if (currencyManager.currencyAmount.Value >= 5)
         {
-            CurrencyManager.currencyAmount.Value -= 5;
+            currencyManager.currencyAmount.Value -= 5;
             //pull card and put in inventory
             Card selectedCard = _gachaManager.Pull(_gachaManager.gachaItems);
             selectedCardName = selectedCard.Name;
             Debug.Log("List Count:" + CardRoulette.cardSprites.Count);
             CardRoulette.Spin(selectedCardName);
             Debug.Log("Received card: " + selectedCard);
+            ManagerManager.Resolve<Inventory>().unlockCard(selectedCard);
         }
     }
 
     public void PullPackOfCards()
     {
-        if (CurrencyManager.currencyAmount.Value >= 15)
+        if (currencyManager.currencyAmount.Value >= 15)
         {
-            CurrencyManager.currencyAmount.Value -= 15;
-            Debug.Log("Received cards: " +_gachaManager.PullFiveTimes(_gachaManager.gachaItems));
+            currencyManager.currencyAmount.Value -= 15;
+            Debug.Log("Received cards: " +_gachaManager.PullPack(_gachaManager.gachaItems));
         }
     }
 }

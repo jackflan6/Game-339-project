@@ -56,14 +56,10 @@ public class SelectableCard : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         Vector3 worldPos = new Vector3(0, 0, transform.position.z) + (Vector3)((Vector2)Camera.main.ScreenToWorldPoint(pos));
         if (GetComponent<Collider2D>().bounds.Contains((Vector2)Camera.main.ScreenToWorldPoint(pos)))
         {
-            hover = true;
-            GetComponent<SpriteRenderer>().color = Color.yellow;
-            transform.localScale = new Vector3(normscale*1.5f, normscale*1.5f, 1);
+            
         } else
         {
-            hover = false;
-            GetComponent<SpriteRenderer>().color = normCol;
-            transform.localScale = new Vector3(normscale, normscale, 1);
+            
         }
     }
     public void OnMouseClick(Vector2 pos)
@@ -85,6 +81,9 @@ public class SelectableCard : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log("pointer entered");
+        hover = true;
+        GetComponent<SpriteRenderer>().color = Color.yellow;
+        transform.localScale = new Vector3(normscale*1.5f, normscale*1.5f, 1);
         GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().alpha=1;
         GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().text =
             origionalCard.Description;
@@ -92,6 +91,9 @@ public class SelectableCard : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        hover = false;
+        GetComponent<SpriteRenderer>().color = normCol;
+        transform.localScale = new Vector3(normscale, normscale, 1);
         Debug.Log("pointer exited");
         GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().alpha=0;
     }

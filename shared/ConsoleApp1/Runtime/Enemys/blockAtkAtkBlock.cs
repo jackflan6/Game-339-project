@@ -8,6 +8,7 @@ public class blockAtkAtkBlock : Enemy
     readonly EnemyManager enemyManager;
     readonly IRandom random;
     public override ValueHolder<int> dropCurrency { get; } = 5;
+    public override ValueHolder<int> dropBossCurrency { get; } = 0;
 
     private int processionOfActions;
     //::::Important::::
