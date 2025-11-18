@@ -8,4 +8,14 @@ public class TestEffects : IEffects
     {
         Console.WriteLine("Ahh! I'm on fire!");
     }
+
+    public void ShowDamage(Enemy enemy)
+    {
+        Console.WriteLine("Ouch! I've taken damage!");
+    }
+
+    public void DisplayBurnIcon(Enemy enemy)
+    {
+        Console.WriteLine("The burn icon has been assessed!");
+    }
 }

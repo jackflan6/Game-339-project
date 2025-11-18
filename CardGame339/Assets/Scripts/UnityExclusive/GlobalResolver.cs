@@ -10,7 +10,7 @@ public class GlobalResolver : MonoBehaviour
     public SceneChanger sceneChanger;
     public LocationManager locationManager;
 
-    public bool hasShownShopDialogue;
+    public bool hasShownShopDialogue=false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {

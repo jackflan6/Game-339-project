@@ -20,8 +20,29 @@ public class UnityEffects : MonoBehaviour, IEffects
     public void ShowBurn(Enemy enemy)
     {
         StartCoroutine(FlashRedHalfSecond(enemy));
+        
     }
-    
+
+    public void ShowDamage(Enemy enemy)
+    {
+        StartCoroutine(ShakeEnemy(enemy));
+    }
+
+    public void DisplayBurnIcon(Enemy enemy)
+    {
+        if (enemy.currentBurnDamage>0)
+        {
+            GameObjectManager.allCreatedEnemys[enemy].transform.GetChild(0).GetComponent<SpriteRenderer>().enabled=true;
+            print("enemy is burning");
+        }
+
+        if (enemy.currentBurnDamage<=0)
+        {  
+            GameObjectManager.allCreatedEnemys[enemy].transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+            print("enemy is not burning");
+        }
+    }
+
 
     private IEnumerator FlashRedHalfSecond(Enemy enemy)
     {
@@ -30,5 +51,19 @@ public class UnityEffects : MonoBehaviour, IEffects
         yield return new WaitForSeconds(0.5f);
         GameObjectManager.allCreatedEnemys[enemy].GetComponent<SpriteRenderer>().color = defaultColor;
         
+    }
+    private IEnumerator ShakeEnemy(Enemy enemy)
+    {
+        Vector3 currentPos = GameObjectManager.allCreatedEnemys[enemy].gameObject.transform.position;
+        for ( int i = 0; i < 5; i++)
+        {
+            GameObjectManager.allCreatedEnemys[enemy].gameObject.transform.localPosition += new Vector3(0.1f, 0, 0);
+            yield return new WaitForSeconds(0.03f);
+            GameObjectManager.allCreatedEnemys[enemy].gameObject.transform.localPosition -= new Vector3(0.1f, 0, 0);
+            yield return new WaitForSeconds(0.03f);
+        }
+
+        GameObjectManager.allCreatedEnemys[enemy].gameObject.transform.position = currentPos;
+
     }
 }
