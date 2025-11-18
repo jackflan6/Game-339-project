@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ConsoleApp1;
 using UnityEngine;
 
@@ -41,7 +42,12 @@ public class UnityGachaManager : MonoBehaviour
         if (currencyManager.currencyAmount.Value >= 15)
         {
             currencyManager.currencyAmount.Value -= 15;
-            Debug.Log("Received cards: " +_gachaManager.PullPack(_gachaManager.gachaItems));
+            List<Card> receivedCards = _gachaManager.PullPack(_gachaManager.gachaItems);
+            foreach (Card card in receivedCards)
+            {
+                Debug.Log("Received card: " + card);
+                ManagerManager.Resolve<Inventory>().unlockCard(card);
+            }
         }
     }
 
@@ -50,7 +56,12 @@ public class UnityGachaManager : MonoBehaviour
         if (currencyManager.currencyAmount.Value >= 15)
         {
             currencyManager.currencyAmount.Value -= 15;
-            Debug.Log("Received cards: " +_gachaManager.PullFireFiveTimes(_gachaManager.gachaItems));
+            List<Card> receivedCards = _gachaManager.PullFireFiveTimes(_gachaManager.gachaItems);
+            foreach (Card card in receivedCards)
+            {
+                Debug.Log("Received card: " + card);
+                ManagerManager.Resolve<Inventory>().unlockCard(card);
+            }
         }
     }
     
@@ -59,7 +70,12 @@ public class UnityGachaManager : MonoBehaviour
         if (currencyManager.currencyAmount.Value >= 15)
         {
             currencyManager.currencyAmount.Value -= 15;
-            Debug.Log("Received cards: " +_gachaManager.PullFiveEarthTimes(_gachaManager.gachaItems));
+            List<Card> receivedCards = _gachaManager.PullFiveEarthTimes(_gachaManager.gachaItems);
+            foreach (Card card in receivedCards)
+            {
+                Debug.Log("Received card: " + card);
+                ManagerManager.Resolve<Inventory>().unlockCard(card);
+            }
         }
     }
     
@@ -68,7 +84,12 @@ public class UnityGachaManager : MonoBehaviour
         if (currencyManager.currencyAmount.Value >= 15)
         {
             currencyManager.currencyAmount.Value -= 15;
-            Debug.Log("Received cards: " +_gachaManager.PullWindFiveTimes(_gachaManager.gachaItems));
+            List<Card> receivedCards = _gachaManager.PullWindFiveTimes(_gachaManager.gachaItems);
+            foreach (Card card in receivedCards)
+            {
+                Debug.Log("Received card: " + card);
+                ManagerManager.Resolve<Inventory>().unlockCard(card);
+            }
         }
     }
     
@@ -77,7 +98,40 @@ public class UnityGachaManager : MonoBehaviour
         if (currencyManager.currencyAmount.Value >= 15)
         {
             currencyManager.currencyAmount.Value -= 15;
-            Debug.Log("Received cards: " +_gachaManager.PullLightningFiveTimes(_gachaManager.gachaItems));
+            List<Card> receivedCards = _gachaManager.PullLightningFiveTimes(_gachaManager.gachaItems);
+            foreach (Card card in receivedCards)
+            {
+                Debug.Log("Received card: " + card);
+                ManagerManager.Resolve<Inventory>().unlockCard(card);
+            }
+        }
+    }
+    
+    public void PullPackOfOmniCards()
+    {
+        if (currencyManager.currencyAmount.Value >= 15)
+        {
+            currencyManager.currencyAmount.Value -= 15;
+            List<Card> receivedCards = _gachaManager.PullOmniFiveTimes(_gachaManager.gachaItems);
+            foreach (Card card in receivedCards)
+            {
+                Debug.Log("Received card: " + card);
+                ManagerManager.Resolve<Inventory>().unlockCard(card);
+            }
+        }
+    }
+    
+    public void PullPackOfLegendaryCards()
+    {
+        if (currencyManager.currencyAmount.Value >= 1)
+        {
+            currencyManager.currencyAmount.Value -= 1;
+            List<Card> receivedCards = _gachaManager.PullLegendaryFiveTimes(_gachaManager.gachaItems);
+            foreach (Card card in receivedCards)
+            {
+                Debug.Log("Received card: " + card);
+                ManagerManager.Resolve<Inventory>().unlockCard(card);
+            }
         }
     }
     

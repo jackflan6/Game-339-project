@@ -1630,7 +1630,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1237390661}
         m_TargetAssemblyTypeName: UnityGachaManager, Assembly-CSharp
-        m_MethodName: PullPackOfCards
+        m_MethodName: PullPackOfOmniCards
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2226,7 +2226,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1237390661}
         m_TargetAssemblyTypeName: UnityGachaManager, Assembly-CSharp
-        m_MethodName: PullPackOfCards
+        m_MethodName: PullPackOfFireCards
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2648,7 +2648,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1237390661}
         m_TargetAssemblyTypeName: UnityGachaManager, Assembly-CSharp
-        m_MethodName: PullPackOfCards
+        m_MethodName: PullPackOfEarthCards
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3927,7 +3927,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1237390661}
         m_TargetAssemblyTypeName: UnityGachaManager, Assembly-CSharp
-        m_MethodName: PullPackOfCards
+        m_MethodName: PullPackOfLegendaryCards
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4075,7 +4075,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1237390661}
         m_TargetAssemblyTypeName: UnityGachaManager, Assembly-CSharp
-        m_MethodName: PullPackOfCards
+        m_MethodName: PullPackOfLightningCards
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

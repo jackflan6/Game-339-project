@@ -17,13 +17,11 @@ public class Inventory
     private void createInitialCards()
     {
         List<Card> cards = new List<Card>();
-        cards.Add(new BillowingAss());
-        cards.Add(new mediumHeal());
+        cards.Add(new healCard());
         cards.Add(new lowDamage());
         cards.Add(new lowBurn());
-        cards.Add(new mediumDamage());
-        cards.Add(new mediumShield());
-        cards.Add(new instantKill());
+        cards.Add(new shieldCard());
+        cards.Add(new lowDraw());
         SetAllCardsInInventory(cards);
         SetAllUnlockedCardsInInventory(cards);
     }
