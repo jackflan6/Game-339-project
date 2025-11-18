@@ -14,6 +14,7 @@ public class SelectableEnemy : MonoBehaviour
     private Color defaultColor;
     void Start()
     {
+        transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
         GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().onMouseMove += OnMouseMove;
         GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().onMousePress += OnMouseClick;
         defaultColor = this.GetComponent<SpriteRenderer>().color;

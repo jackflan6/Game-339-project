@@ -35,6 +35,7 @@ public class CombatSystem : IManager
     }
     public int DealDamageToEnemy(Card card, Enemy enemy)
     {
+        Effects.DisplayBurnIcon(enemy);
         int damageDealt = card.Damage;
         damageDealt -= enemy.currentShield.Value;
         enemy.currentShield.Value -= card.Damage;
@@ -45,6 +46,11 @@ public class CombatSystem : IManager
         if (damageDealt < 0)
         {
             damageDealt = 0;
+        }
+
+        if (card.Damage > 0)
+        {
+            Effects.ShowDamage(enemy);
         }
         enemy.HP.Value -= damageDealt;
         if (enemy.HP.Value <= 0)
@@ -90,20 +96,20 @@ public class CombatSystem : IManager
 
     public int BurnDamageToEnemy(Enemy enemy)
     {
-        Effects.ShowBurn(enemy);
         enemy.HP.Value -= enemy.currentBurnDamage;
         enemy.currentBurnDamage /= 2;
         if (enemy.currentBurnDamage == 0)
         {
             enemy.isBurning = false;
         }
+        Effects.ShowBurn(enemy);
         if (enemy.HP.Value <= 0)
         {
             currencyManager.currencyAmount.Value += enemy.dropCurrency.Value;
             currencyManager.bossCurrencyAmount.Value += enemy.dropBossCurrency.Value;
             enemyManager.DestroyEnemy(enemy);
         }
-
+        Effects.DisplayBurnIcon(enemy);
         return enemy.HP.Value;
     }
 
