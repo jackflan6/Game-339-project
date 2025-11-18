@@ -197,6 +197,34 @@ public class GachaManager : IManager
 
         return pullResults;
     }
+    
+    public List<Card> PullOmniFiveTimes(List<Card> allCards)
+    {
+        List<Card> pullResults = new List<Card>();
+        for (int a = 0; a < 5; a++)
+        {
+            pullResults.Add(PullOmniCard(allCards));
+        }
+
+        return pullResults;
+    }
+    
+    public List<Card> PullLegendaryFiveTimes(List<Card> allCards)
+    {
+        List<Card> pullResults = new List<Card>();
+        for (int a = 0; a < 5; a++)
+        {
+            pullResults.Add(PullLegendaryCard(allCards));
+        }
+
+        return pullResults;
+    }
+
+    private Card PullOmniCard(List<Card> allCards)
+    {
+        List<Card> omniCards = CollectOmniCards(allCards);
+        return PullHigherChances(omniCards);
+    }
 
     public Card PullLegendaryCard(List<Card> allCards)
     {
@@ -221,10 +249,24 @@ public class GachaManager : IManager
         return fireCards;
     }
     
+    private List<Card> CollectOmniCards(List<Card> allCards)
+    {
+        List<Card> omniCards = new List<Card>();
+        foreach (Card card in allCards)
+        {
+            if (card.Element.ToLower().Equals("omni"))
+            {
+                omniCards.Add(card);
+            }
+        }
+
+        return omniCards;
+    }
+    
     private List<Card> CollectWindCards(List<Card> allCards)
     {
         List<Card> windCards = new List<Card>();
-        foreach (Card card in gachaItems)
+        foreach (Card card in allCards)
         {
             if (card.Element.ToLower().Equals("wind") || card.Element.ToLower().Equals("omni"))
             {
@@ -238,7 +280,7 @@ public class GachaManager : IManager
     private List<Card> CollectEarthCards(List<Card> allCards)
     {
         List<Card> earthCards = new List<Card>();
-        foreach (Card card in gachaItems)
+        foreach (Card card in allCards)
         {
             if (card.Element.ToLower().Equals("earth") || card.Element.ToLower().Equals("omni"))
             {
@@ -252,7 +294,7 @@ public class GachaManager : IManager
     private List<Card> CollectLightningCards(List<Card> allCards)
     {
         List<Card> fireCards = new List<Card>();
-        foreach (Card card in gachaItems)
+        foreach (Card card in allCards)
         {
             if (card.Element.ToLower().Equals("lightning") || card.Element.ToLower().Equals("omni"))
             {

@@ -30,26 +30,34 @@ public class UnityEffects : MonoBehaviour, IEffects
 
     public void DisplayBurnIcon(Enemy enemy)
     {
-        if (enemy.currentBurnDamage>0)
+        if(GameObjectManager.allCreatedEnemys.ContainsKey(enemy))
         {
-            GameObjectManager.allCreatedEnemys[enemy].transform.GetChild(0).GetComponent<SpriteRenderer>().enabled=true;
-            print("enemy is burning");
-        }
+            if (enemy != null && enemy.currentBurnDamage > 0)
+            {
+                GameObjectManager.allCreatedEnemys[enemy].transform.GetChild(0).GetComponent<SpriteRenderer>().enabled =
+                    true;
+                print("enemy is burning");
+            }
 
-        if (enemy.currentBurnDamage<=0)
-        {  
-            GameObjectManager.allCreatedEnemys[enemy].transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
-            print("enemy is not burning");
+            else if (enemy != null && enemy.currentBurnDamage <= 0)
+            {
+                GameObjectManager.allCreatedEnemys[enemy].transform.GetChild(0).GetComponent<SpriteRenderer>().enabled =
+                    false;
+                print("enemy is not burning");
+            }
         }
     }
 
 
     private IEnumerator FlashRedHalfSecond(Enemy enemy)
     {
-        Color defaultColor = GameObjectManager.allCreatedEnemys[enemy].GetComponent<SpriteRenderer>().color;
-        GameObjectManager.allCreatedEnemys[enemy].GetComponent<SpriteRenderer>().color = Color.red;
-        yield return new WaitForSeconds(0.5f);
-        GameObjectManager.allCreatedEnemys[enemy].GetComponent<SpriteRenderer>().color = defaultColor;
+        if(GameObjectManager.allCreatedEnemys.ContainsKey(enemy))
+        {
+            Color defaultColor = GameObjectManager.allCreatedEnemys[enemy].GetComponent<SpriteRenderer>().color;
+            GameObjectManager.allCreatedEnemys[enemy].GetComponent<SpriteRenderer>().color = Color.red;
+            yield return new WaitForSeconds(0.5f);
+            GameObjectManager.allCreatedEnemys[enemy].GetComponent<SpriteRenderer>().color = defaultColor;
+        }
         
     }
     private IEnumerator ShakeEnemy(Enemy enemy)
