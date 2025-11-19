@@ -10,7 +10,7 @@ public class ServiceResolver : MonoBehaviour
     public int handSize = 3;
     public int maxHandSize = 3;
     public int maxMana;
-    public int playerHP;
+   // public ValueHolder<int> playerHP;
     public string playerName;
 
     //The logic for these two list are just to set up the enemys.
@@ -45,7 +45,7 @@ public class ServiceResolver : MonoBehaviour
         ManagerManager.registerDependency(() => new CombatSystem());
         ManagerManager.registerDependency(() => new TurnSystem(maxMana));
         ManagerManager.registerDependency(() => new GameManager());
-        ManagerManager.registerDependency(() => new Player(playerHP, 0, playerName));
+        ManagerManager.registerDependency(() => new Player(ManagerManager.Resolve<CurrencyManager>().maxPlayerHP, 0, playerName));
         ManagerManager.registerDependency(() => new CardManager(handSize,maxHandSize));
         ManagerManager.registerDependency(()=> unityDialog);
         

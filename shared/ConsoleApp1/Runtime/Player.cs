@@ -15,20 +15,20 @@ public class Player
     public int currentBurnDamage;
     
     #if !NOT_UNITY
-    public Player(int hp, int defense, string name)
+    public Player(ValueHolder<int> hp, int defense, string name)
     {
         _logger = ManagerManager.Resolve<IGameLogger>();
-        HP.Value = hp;
+        HP.Value = hp.Value;
         Defense = defense;
         Name = name;
     }
     
     #endif
 
-    public Player(int hp, int defense, string name, IGameLogger logger)
+    public Player(ValueHolder<int> hp, int defense, string name, IGameLogger logger)
     {
         _logger = logger;
-        HP.Value = hp;
+        HP.Value = hp.Value;
         Defense = defense;
         Name = name;
     }

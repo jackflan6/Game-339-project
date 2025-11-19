@@ -156,10 +156,21 @@ public class GachaManager : IManager
     
     public List<Card> PullFireFiveTimes(List<Card> allCards)
     {
+        int omniCards = 0;
         List<Card> pullResults = new List<Card>();
         for (int a = 0; a < 5; a++)
         {
-            pullResults.Add(PullFireCard(allCards));
+            Card receivedCard = PullFireCard(allCards);
+            if (receivedCard.Element.ToLower().Equals("omni"))
+            {
+                omniCards++;
+            }
+
+            while (receivedCard.Element.ToLower().Equals("omni") && omniCards > 2)
+            {
+                receivedCard = PullFireCard(allCards);
+            }
+            pullResults.Add(receivedCard);
         }
 
         return pullResults;
@@ -167,10 +178,21 @@ public class GachaManager : IManager
     
     public List<Card> PullLightningFiveTimes(List<Card> allCards)
     {
+        int omniCards = 0;
         List<Card> pullResults = new List<Card>();
         for (int a = 0; a < 5; a++)
         {
-            pullResults.Add(PullLightningCard(allCards));
+            Card receivedCard = PullLightningCard(allCards);
+            if (receivedCard.Element.ToLower().Equals("omni"))
+            {
+                omniCards++;
+            }
+
+            while (receivedCard.Element.ToLower().Equals("omni") && omniCards > 2)
+            {
+                receivedCard = PullLightningCard(allCards);
+            }
+            pullResults.Add(receivedCard);
         }
 
         return pullResults;
@@ -178,23 +200,44 @@ public class GachaManager : IManager
     
     public List<Card> PullWindFiveTimes(List<Card> allCards)
     {
+        int omniCards = 0;
         List<Card> pullResults = new List<Card>();
         for (int a = 0; a < 5; a++)
         {
-            pullResults.Add(PullWindCard(allCards));
+            Card receivedCard = PullWindCard(allCards);
+            if (receivedCard.Element.ToLower().Equals("omni"))
+            {
+                omniCards++;
+            }
+
+            while (receivedCard.Element.ToLower().Equals("omni") && omniCards > 2)
+            {
+                receivedCard = PullWindCard(allCards);
+            }
+            pullResults.Add(receivedCard);
         }
 
         return pullResults;
     }
     
-    public List<Card> PullFiveEarthTimes(List<Card> allCards)
+    public List<Card> PullEarthFiveTimes(List<Card> allCards)
     {
+        int omniCards = 0;
         List<Card> pullResults = new List<Card>();
         for (int a = 0; a < 5; a++)
         {
-            pullResults.Add(PullEarthCard(allCards));
-        }
+            Card receivedCard = PullEarthCard(allCards);
+            if (receivedCard.Element.ToLower().Equals("omni"))
+            {
+                omniCards++;
+            }
 
+            while (receivedCard.Element.ToLower().Equals("omni") && omniCards > 2)
+            {
+                receivedCard = PullEarthCard(allCards);
+            }
+            pullResults.Add(receivedCard);
+        }
         return pullResults;
     }
     
