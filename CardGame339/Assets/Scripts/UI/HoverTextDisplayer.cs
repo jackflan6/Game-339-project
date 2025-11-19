@@ -10,7 +10,7 @@ public class HoverTextDisplayer : MonoBehaviour, IPointerEnterHandler, IPointerE
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        print(descriptionToBeDisplayed);
+        ManagerManager.Resolve<IGameLogger>().print(descriptionToBeDisplayed);
     }
 
     // Update is called once per frame
@@ -21,16 +21,12 @@ public class HoverTextDisplayer : MonoBehaviour, IPointerEnterHandler, IPointerE
     
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("pointer entered");
-        //GetComponent<SpriteRenderer>().color = Color.yellow;
         GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().alpha=1;
         GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().text = descriptionToBeDisplayed;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        //GetComponent<SpriteRenderer>().color = normCol;
-        Debug.Log("pointer exited");
         GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().alpha=0;
     }
 }

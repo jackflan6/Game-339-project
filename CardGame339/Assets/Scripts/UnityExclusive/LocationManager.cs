@@ -154,12 +154,12 @@ public class LocationManager : MonoBehaviour
                 if (connectedLocation.button != null)
                 {
                     connectedLocation.button.interactable = true;
-                    Debug.Log($"Enabled connected button: {connectionID}");
+                    ManagerManager.Resolve<IGameLogger>().print($"Enabled connected button: {connectionID}");
                 }
             }
             else
             {
-                Debug.LogWarning($"Connection ID {connectionID} not found for Location {location.ID}");
+                ManagerManager.Resolve<IGameLogger>().Warning($"Connection ID {connectionID} not found for Location {location.ID}");
             }
         }
     }

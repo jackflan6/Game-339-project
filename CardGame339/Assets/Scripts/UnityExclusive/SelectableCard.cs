@@ -80,7 +80,6 @@ public class SelectableCard : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("pointer entered");
         hover = true;
         GetComponent<SpriteRenderer>().color = Color.yellow;
         transform.localScale = new Vector3(normscale*1.5f, normscale*1.5f, 1);
@@ -94,7 +93,6 @@ public class SelectableCard : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         hover = false;
         GetComponent<SpriteRenderer>().color = normCol;
         transform.localScale = new Vector3(normscale, normscale, 1);
-        Debug.Log("pointer exited");
         GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().alpha=0;
     }
 }

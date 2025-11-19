@@ -12,7 +12,7 @@ public class SceneChanger : MonoBehaviour
             SceneManager.LoadScene(sceneName);
         }
         else
-            print("no scene to load.");
+            ManagerManager.Resolve<IGameLogger>().Error("no scene to load.");
     }
     
     public void ChangeSceneToSpecificScene(string sceneToChangeTo)
@@ -22,7 +22,7 @@ public class SceneChanger : MonoBehaviour
             SceneManager.LoadScene(sceneToChangeTo);
         }
         else
-            print("no scene to load.");
+            ManagerManager.Resolve<IGameLogger>().Error("no scene to load.");
     }
 
     public void TryAgain()

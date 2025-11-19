@@ -36,14 +36,14 @@ public class UnityEffects : MonoBehaviour, IEffects
             {
                 GameObjectManager.allCreatedEnemys[enemy].transform.GetChild(0).GetComponent<SpriteRenderer>().enabled =
                     true;
-                print("enemy is burning");
+                ManagerManager.Resolve<IGameLogger>().print("enemy is burning");
             }
 
             else if (enemy != null && enemy.currentBurnDamage <= 0)
             {
                 GameObjectManager.allCreatedEnemys[enemy].transform.GetChild(0).GetComponent<SpriteRenderer>().enabled =
                     false;
-                print("enemy is not burning");
+                ManagerManager.Resolve<IGameLogger>().print("enemy is not burning");
             }
         }
     }
