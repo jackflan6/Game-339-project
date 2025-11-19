@@ -8,6 +8,7 @@ public class UnityGachaManager : MonoBehaviour
     private GachaManager _gachaManager;
     public CardRoulette CardRoulette;
     public string selectedCardName;
+    
 
     private CurrencyManager currencyManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,9 +26,20 @@ public class UnityGachaManager : MonoBehaviour
 
     public void PullOneCard()
     {
-        if (currencyManager.currencyAmount.Value >= 0)
+        if (currencyManager.currencyAmount.Value >= 5)
         {
-            currencyManager.currencyAmount.Value -= 0;
+            currencyManager.currencyAmount.Value -= 5;
+            //pull card and put in inventory
+            Card selectedCard = _gachaManager.Pull(_gachaManager.gachaItems);
+            selectedCardName = selectedCard.Name;
+            Debug.Log("List Count:" + CardRoulette.cardSprites.Count);
+            CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[0], CardRoulette.Panels[0]);
+            Debug.Log("Received card: " + selectedCard);
+            ManagerManager.Resolve<Inventory>().unlockCard(selectedCard);
+        }
+        else if (currencyManager.maxPlayerHP >= 2)
+        {
+            currencyManager.maxPlayerHP.Value -= 2;
             //pull card and put in inventory
             Card selectedCard = _gachaManager.Pull(_gachaManager.gachaItems);
             selectedCardName = selectedCard.Name;
@@ -83,9 +95,25 @@ public class UnityGachaManager : MonoBehaviour
     
     public IEnumerator FireCardsCoroutine(float Delay)
     {
-        if (currencyManager.currencyAmount.Value >= 0)
+        if (currencyManager.currencyAmount.Value >= 15)
         {
-            currencyManager.currencyAmount.Value -= 0;
+            currencyManager.currencyAmount.Value -= 15;
+            List<Card> receivedCards = _gachaManager.PullFireFiveTimes(_gachaManager.gachaItems);
+            int slotImageNumber = 1;
+            foreach (Card card in receivedCards)
+            {
+                Debug.Log("Received card: " + card);
+                selectedCardName = card.Name;
+                CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[2]);
+                Debug.Log("spun");
+                ManagerManager.Resolve<Inventory>().unlockCard(card);
+                yield return new WaitForSeconds(Delay);
+                slotImageNumber ++;
+            }
+        }
+        else if (currencyManager.maxPlayerHP.Value > 5)
+        {
+            currencyManager.maxPlayerHP.Value -= 5;
             List<Card> receivedCards = _gachaManager.PullFireFiveTimes(_gachaManager.gachaItems);
             int slotImageNumber = 1;
             foreach (Card card in receivedCards)
@@ -103,10 +131,26 @@ public class UnityGachaManager : MonoBehaviour
     
     public IEnumerator EarthCardsCoroutine(float Delay)
     {
-        if (currencyManager.currencyAmount.Value >= 0)
+        if (currencyManager.currencyAmount.Value >= 15)
         {
-            currencyManager.currencyAmount.Value -= 0;
-            List<Card> receivedCards = _gachaManager.PullFiveEarthTimes(_gachaManager.gachaItems);
+            currencyManager.currencyAmount.Value -= 15;
+            List<Card> receivedCards = _gachaManager.PullEarthFiveTimes(_gachaManager.gachaItems);
+            int slotImageNumber = 1;
+            foreach (Card card in receivedCards)
+            {
+                Debug.Log("Received card: " + card);
+                selectedCardName = card.Name;
+                CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[1]);
+                ManagerManager.Resolve<Inventory>().unlockCard(card);
+                yield return new WaitForSeconds(Delay);
+                slotImageNumber ++;
+            }
+        }
+        
+        else if (currencyManager.maxPlayerHP.Value > 5)
+        {
+            currencyManager.maxPlayerHP.Value -= 5;
+            List<Card> receivedCards = _gachaManager.PullEarthFiveTimes(_gachaManager.gachaItems);
             int slotImageNumber = 1;
             foreach (Card card in receivedCards)
             {
@@ -122,9 +166,25 @@ public class UnityGachaManager : MonoBehaviour
     
     public IEnumerator WindCardsCoroutine(float Delay)
     {
-        if (currencyManager.currencyAmount.Value >= 0)
+        if (currencyManager.currencyAmount.Value >= 15)
         {
-            currencyManager.currencyAmount.Value -= 0;
+            currencyManager.currencyAmount.Value -= 15;
+            List<Card> receivedCards = _gachaManager.PullWindFiveTimes(_gachaManager.gachaItems);
+            int slotImageNumber = 1;
+            foreach (Card card in receivedCards)
+            {
+                Debug.Log("Received card: " + card);
+                selectedCardName = card.Name;
+                CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[6]);
+                ManagerManager.Resolve<Inventory>().unlockCard(card);
+                yield return new WaitForSeconds(Delay);
+                slotImageNumber ++;
+            }
+        }
+        
+        else if (currencyManager.maxPlayerHP.Value > 5)
+        {
+            currencyManager.maxPlayerHP.Value -= 5;
             List<Card> receivedCards = _gachaManager.PullWindFiveTimes(_gachaManager.gachaItems);
             int slotImageNumber = 1;
             foreach (Card card in receivedCards)
@@ -141,9 +201,25 @@ public class UnityGachaManager : MonoBehaviour
     
     public IEnumerator LightningCardsCoroutine(float Delay)
     {
-        if (currencyManager.currencyAmount.Value >= 0)
+        if (currencyManager.currencyAmount.Value >= 15)
         {
-            currencyManager.currencyAmount.Value -= 0;
+            currencyManager.currencyAmount.Value -= 15;
+            List<Card> receivedCards = _gachaManager.PullLightningFiveTimes(_gachaManager.gachaItems);
+            int slotImageNumber = 1;
+            foreach (Card card in receivedCards)
+            {
+                Debug.Log("Received card: " + card);
+                selectedCardName = card.Name;
+                CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[5]);
+                ManagerManager.Resolve<Inventory>().unlockCard(card);
+                yield return new WaitForSeconds(Delay);
+                slotImageNumber ++;
+            }
+        }
+        
+        else if (currencyManager.maxPlayerHP.Value > 5)
+        {
+            currencyManager.maxPlayerHP.Value -= 5;
             List<Card> receivedCards = _gachaManager.PullLightningFiveTimes(_gachaManager.gachaItems);
             int slotImageNumber = 1;
             foreach (Card card in receivedCards)
@@ -160,9 +236,25 @@ public class UnityGachaManager : MonoBehaviour
     
     public IEnumerator OmniCardsCoroutine(float Delay)
     {
-        if (currencyManager.currencyAmount.Value >= 0)
+        if (currencyManager.currencyAmount.Value >= 15)
         {
-            currencyManager.currencyAmount.Value -= 0;
+            currencyManager.currencyAmount.Value -= 15;
+            List<Card> receivedCards = _gachaManager.PullOmniFiveTimes(_gachaManager.gachaItems);
+            int slotImageNumber = 1;
+            foreach (Card card in receivedCards)
+            {
+                Debug.Log("Received card: " + card);
+                selectedCardName = card.Name;
+                CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[3]);
+                ManagerManager.Resolve<Inventory>().unlockCard(card);
+                yield return new WaitForSeconds(Delay);
+                slotImageNumber ++;
+            }
+        }
+        
+        else if (currencyManager.maxPlayerHP.Value > 5)
+        {
+            currencyManager.maxPlayerHP.Value -= 5;
             List<Card> receivedCards = _gachaManager.PullOmniFiveTimes(_gachaManager.gachaItems);
             int slotImageNumber = 1;
             foreach (Card card in receivedCards)
