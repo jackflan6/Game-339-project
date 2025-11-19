@@ -46,7 +46,7 @@ public class MapPlayer : MonoBehaviour
             {
                 playerIcon.position = location.button.transform.position;
                 currentLocationID = locationID;
-                Debug.Log($"Moved PlayerIcon to Location ID {location.ID}");
+                ManagerManager.Resolve<IGameLogger>().print($"Moved PlayerIcon to Location ID {location.ID}");
             }
         }
     }

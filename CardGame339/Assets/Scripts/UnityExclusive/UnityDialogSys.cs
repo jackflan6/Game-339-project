@@ -39,7 +39,7 @@ public class UnityDialogSys : MonoBehaviour, IDialog
         {
             if (postBattleVictoryDialogue.Count != postBattleVictoryCharacterNames.Count)
             {
-                print("The dialogue lines does not match the number of speak labels");
+                ManagerManager.Resolve<IGameLogger>().Error("The dialogue lines does not match the number of speak labels");
                 return;
             }
             if (dialogueCount == postBattleVictoryDialogue.Count)
@@ -47,7 +47,7 @@ public class UnityDialogSys : MonoBehaviour, IDialog
                 battleDialogue.transform.parent.gameObject.SetActive(false);
                 return;
             }
-            print(postBattleVictoryDialogue[dialogueCount]);
+            ManagerManager.Resolve<IGameLogger>().print(postBattleVictoryDialogue[dialogueCount]);
             battleDialogueCharacterNames.text = postBattleVictoryCharacterNames[dialogueCount];
             battleDialogue.text = postBattleVictoryDialogue[dialogueCount];
             dialogueCount++;
@@ -56,7 +56,7 @@ public class UnityDialogSys : MonoBehaviour, IDialog
         {
             if (postBattleDefeatDialogue.Count != postBattleDefeatCharacterNames.Count)
             {
-                print("The dialogue lines does not match the number of speak labels");
+                ManagerManager.Resolve<IGameLogger>().Error("The dialogue lines does not match the number of speak labels");
                 return;
             }
             if (dialogueCount == postBattleDefeatDialogue.Count)
@@ -64,7 +64,7 @@ public class UnityDialogSys : MonoBehaviour, IDialog
                 battleDialogue.transform.parent.gameObject.SetActive(false);
                 return;
             }
-            print(postBattleDefeatDialogue[dialogueCount]);
+            ManagerManager.Resolve<IGameLogger>().print(postBattleDefeatDialogue[dialogueCount]);
             battleDialogueCharacterNames.text = postBattleDefeatCharacterNames[dialogueCount];
             battleDialogue.text = postBattleDefeatDialogue[dialogueCount];
             dialogueCount++;
@@ -73,7 +73,7 @@ public class UnityDialogSys : MonoBehaviour, IDialog
         {
             if (preBattleDialogue.Count != preBattleCharacterNames.Count)
             {
-                print("The dialogue lines does not match the number of speak labels");
+                ManagerManager.Resolve<IGameLogger>().Error("The dialogue lines does not match the number of speak labels");
                 return;
             }
 
@@ -83,7 +83,7 @@ public class UnityDialogSys : MonoBehaviour, IDialog
                 return;
             }
 
-            print(preBattleDialogue[dialogueCount]);
+            ManagerManager.Resolve<IGameLogger>().print(preBattleDialogue[dialogueCount]);
             battleDialogueCharacterNames.text = preBattleCharacterNames[dialogueCount];
             battleDialogue.text = preBattleDialogue[dialogueCount];
             dialogueCount++;

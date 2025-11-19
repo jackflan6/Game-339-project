@@ -47,7 +47,7 @@ public class ShopDialogueSys : MonoBehaviour, IDialog
             _globalResolver.hasShownShopDialogue = true;
             return;
         }
-        print(shopEnterDialogue[dialogueCount]);
+        ManagerManager.Resolve<IGameLogger>().print(shopEnterDialogue[dialogueCount]);
         shopDialogueCharacterNames.text = shopEnterDialogueCharacterNames[dialogueCount];
         shopDialogue.text = shopEnterDialogue[dialogueCount];
         dialogueCount++;

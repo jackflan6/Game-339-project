@@ -35,7 +35,6 @@ public class ServiceResolver : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        print("Service Resolver is awake");
         //you can only register one thing of each type
         ManagerManager.reload();
         ManagerManager.register((IDialog)unityDialog);
@@ -76,7 +75,7 @@ public class ServiceResolver : MonoBehaviour
         foreach (Func<object> manager in ManagerManager.managers)
         {
             var man = (IManager)manager();
-            print(man.GetType() + "has started");
+            ManagerManager.Resolve<IGameLogger>().print(man.GetType() + "has started");
             man.Start();
         }
     }

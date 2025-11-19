@@ -24,11 +24,11 @@ public class DialogueDisplayer : MonoBehaviour
         if (speaker.GetComponentInChildren<TextMeshPro>() != null)
         {
             speaker.GetComponentInChildren<TextMeshPro>().text = message;
-            print("text created with message: " + message);
+            ManagerManager.Resolve<IGameLogger>().print("text created with message: " + message);
         }
         else
         {
-            print("text mesh is null");
+            ManagerManager.Resolve<IGameLogger>().Error("text mesh is null");
         }
     }
     

@@ -44,7 +44,7 @@ public class GameObjectManager : MonoBehaviour
 
     public void createCard(Card card)
     {
-        Debug.Log("created card");
+        ManagerManager.Resolve<IGameLogger>().print("created card");
         GameObject c = Instantiate(inventory.CardToPrefab.Value[card.GetType()]);
         allCreatedCards.Add(c);
         c.GetComponent<SelectableCard>().origionalCard = card;
@@ -78,7 +78,7 @@ public class GameObjectManager : MonoBehaviour
 
     public void createEnemy(Enemy enemy)
     {
-        Debug.Log("created enemy");
+        ManagerManager.Resolve<IGameLogger>().print("created enemy");
         GameObject c = Instantiate(EnemyToPrefab.Value[enemy.GetType()]);
         allCreatedEnemys.Add(enemy,c);
         c.GetComponent<SelectableEnemy>().origionalEnemy = enemy;
@@ -106,7 +106,7 @@ public class GameObjectManager : MonoBehaviour
         {
             if (!dic.TryAdd(idToTypes[obj.GetComponent<SelectableEnemy>().enemyID], obj))
             {
-                Debug.Log("failed to find id for " + obj.name);
+                ManagerManager.Resolve<IGameLogger>().Error("failed to find id for " + obj.name);
             }
         }
         return dic;
