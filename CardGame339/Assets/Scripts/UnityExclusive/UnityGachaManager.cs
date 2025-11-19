@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using ConsoleApp1;
 using UnityEngine;
@@ -24,14 +25,14 @@ public class UnityGachaManager : MonoBehaviour
 
     public void PullOneCard()
     {
-        if (currencyManager.currencyAmount.Value >= 5)
+        if (currencyManager.currencyAmount.Value >= 0)
         {
-            currencyManager.currencyAmount.Value -= 5;
+            currencyManager.currencyAmount.Value -= 0;
             //pull card and put in inventory
             Card selectedCard = _gachaManager.Pull(_gachaManager.gachaItems);
             selectedCardName = selectedCard.Name;
             Debug.Log("List Count:" + CardRoulette.cardSprites.Count);
-            CardRoulette.Spin(selectedCardName);
+            CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[0], CardRoulette.Panels[0]);
             Debug.Log("Received card: " + selectedCard);
             ManagerManager.Resolve<Inventory>().unlockCard(selectedCard);
         }
@@ -39,9 +40,9 @@ public class UnityGachaManager : MonoBehaviour
 
     public void PullPackOfCards()
     {
-        if (currencyManager.currencyAmount.Value >= 15)
+        if (currencyManager.currencyAmount.Value >= 0)
         {
-            currencyManager.currencyAmount.Value -= 15;
+            currencyManager.currencyAmount.Value -= 0;
             List<Card> receivedCards = _gachaManager.PullPack(_gachaManager.gachaItems);
             foreach (Card card in receivedCards)
             {
@@ -51,86 +52,146 @@ public class UnityGachaManager : MonoBehaviour
         }
     }
 
-    public void PullPackOfFireCards()
+    public void PullFirePack()
     {
-        if (currencyManager.currencyAmount.Value >= 15)
+        StartCoroutine(FireCardsCoroutine(0.2f));
+    }
+    public void PullEarthPAck()
+    {
+        StartCoroutine(EarthCardsCoroutine(0.2f));
+    }
+
+    public void PullWindPack()
+    {
+        StartCoroutine(WindCardsCoroutine(0.2f));
+    }
+
+    public void PullLightningPack()
+    {
+        StartCoroutine(LightningCardsCoroutine(0.2f));
+    }
+
+    public void PullOmniPack()
+    {
+        StartCoroutine(OmniCardsCoroutine(0.2f));
+    }
+
+    public void PullLegendaryPack()
+    {
+        StartCoroutine(LegendaryCardsCoroutine(0.2f));
+    }
+    
+    public IEnumerator FireCardsCoroutine(float Delay)
+    {
+        if (currencyManager.currencyAmount.Value >= 0)
         {
-            currencyManager.currencyAmount.Value -= 15;
+            currencyManager.currencyAmount.Value -= 0;
             List<Card> receivedCards = _gachaManager.PullFireFiveTimes(_gachaManager.gachaItems);
+            int slotImageNumber = 1;
             foreach (Card card in receivedCards)
             {
                 Debug.Log("Received card: " + card);
+                selectedCardName = card.Name;
+                CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[2]);
+                Debug.Log("spun");
                 ManagerManager.Resolve<Inventory>().unlockCard(card);
+                yield return new WaitForSeconds(Delay);
+                slotImageNumber ++;
             }
         }
     }
     
-    public void PullPackOfEarthCards()
+    public IEnumerator EarthCardsCoroutine(float Delay)
     {
-        if (currencyManager.currencyAmount.Value >= 15)
+        if (currencyManager.currencyAmount.Value >= 0)
         {
-            currencyManager.currencyAmount.Value -= 15;
+            currencyManager.currencyAmount.Value -= 0;
             List<Card> receivedCards = _gachaManager.PullFiveEarthTimes(_gachaManager.gachaItems);
+            int slotImageNumber = 1;
             foreach (Card card in receivedCards)
             {
                 Debug.Log("Received card: " + card);
+                selectedCardName = card.Name;
+                CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[1]);
                 ManagerManager.Resolve<Inventory>().unlockCard(card);
+                yield return new WaitForSeconds(Delay);
+                slotImageNumber ++;
             }
         }
     }
     
-    public void PullPackOfWindCards()
+    public IEnumerator WindCardsCoroutine(float Delay)
     {
-        if (currencyManager.currencyAmount.Value >= 15)
+        if (currencyManager.currencyAmount.Value >= 0)
         {
-            currencyManager.currencyAmount.Value -= 15;
+            currencyManager.currencyAmount.Value -= 0;
             List<Card> receivedCards = _gachaManager.PullWindFiveTimes(_gachaManager.gachaItems);
+            int slotImageNumber = 1;
             foreach (Card card in receivedCards)
             {
                 Debug.Log("Received card: " + card);
+                selectedCardName = card.Name;
+                CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[6]);
                 ManagerManager.Resolve<Inventory>().unlockCard(card);
+                yield return new WaitForSeconds(Delay);
+                slotImageNumber ++;
             }
         }
     }
     
-    public void PullPackOfLightningCards()
+    public IEnumerator LightningCardsCoroutine(float Delay)
     {
-        if (currencyManager.currencyAmount.Value >= 15)
+        if (currencyManager.currencyAmount.Value >= 0)
         {
-            currencyManager.currencyAmount.Value -= 15;
+            currencyManager.currencyAmount.Value -= 0;
             List<Card> receivedCards = _gachaManager.PullLightningFiveTimes(_gachaManager.gachaItems);
+            int slotImageNumber = 1;
             foreach (Card card in receivedCards)
             {
                 Debug.Log("Received card: " + card);
+                selectedCardName = card.Name;
+                CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[5]);
                 ManagerManager.Resolve<Inventory>().unlockCard(card);
+                yield return new WaitForSeconds(Delay);
+                slotImageNumber ++;
             }
         }
     }
     
-    public void PullPackOfOmniCards()
+    public IEnumerator OmniCardsCoroutine(float Delay)
     {
-        if (currencyManager.currencyAmount.Value >= 15)
+        if (currencyManager.currencyAmount.Value >= 0)
         {
-            currencyManager.currencyAmount.Value -= 15;
+            currencyManager.currencyAmount.Value -= 0;
             List<Card> receivedCards = _gachaManager.PullOmniFiveTimes(_gachaManager.gachaItems);
+            int slotImageNumber = 1;
             foreach (Card card in receivedCards)
             {
                 Debug.Log("Received card: " + card);
+                selectedCardName = card.Name;
+                CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[3]);
                 ManagerManager.Resolve<Inventory>().unlockCard(card);
+                yield return new WaitForSeconds(Delay);
+                slotImageNumber ++;
             }
         }
     }
     
-    public void PullPackOfLegendaryCards()
+    public IEnumerator LegendaryCardsCoroutine(float Delay)
     {
-        if (currencyManager.currencyAmount.Value >= 1)
+        if (currencyManager.currencyAmount.Value >= 0)
         {
-            currencyManager.currencyAmount.Value -= 1;
+            currencyManager.currencyAmount.Value -= 0;
             List<Card> receivedCards = _gachaManager.PullLegendaryFiveTimes(_gachaManager.gachaItems);
+            int slotImageNumber = 1;
             foreach (Card card in receivedCards)
             {
                 Debug.Log("Received card: " + card);
+                selectedCardName = card.Name;
+                CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[4]);
                 ManagerManager.Resolve<Inventory>().unlockCard(card);
+                yield return new WaitForSeconds(Delay);
+                slotImageNumber ++;
             }
         }
     }

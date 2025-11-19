@@ -5,7 +5,8 @@ using UnityEngine;
 public class CardRoulette : MonoBehaviour
 {
     private CardRoulette Instance;
-    public SpriteRenderer displayRenderer;
+    public UnityEngine.UI.Image[] SlotImages;
+    public RectTransform[] Panels;
     public List<Sprite> cardSprites;
 
     private Sprite selectedCard;
@@ -25,8 +26,9 @@ public class CardRoulette : MonoBehaviour
         }
     }
     
-    public void Spin(string cardName)
+    public void Spin(string cardName, UnityEngine.UI.Image targetImage, RectTransform targetPanel)
     {
+        targetImage.transform.SetParent(targetPanel, false);
         Sprite targetCard = cardSprites.Find(sprite => sprite.name == cardName);
 
         if (targetCard == null)
@@ -34,10 +36,11 @@ public class CardRoulette : MonoBehaviour
             Debug.LogError($"No sprite found that matches the name: {cardName}");
             return;
         }
-        StartCoroutine(SpinRoutine(targetCard));
+        StartCoroutine(SpinRoutine(targetCard, targetImage));
     }
+    
 
-    IEnumerator SpinRoutine(Sprite targetCard)
+    IEnumerator SpinRoutine(Sprite targetCard, UnityEngine.UI.Image targetImage)
     {
         float totalSpinDuration = 5f;
         float minInterval = 0.03f;
@@ -47,7 +50,7 @@ public class CardRoulette : MonoBehaviour
 
         while (elapsed < totalSpinDuration)
         {
-            displayRenderer.sprite = cardSprites[Random.Range(0, cardSprites.Count)];
+            targetImage.sprite = cardSprites[Random.Range(0, cardSprites.Count)];
 
             float t = elapsed / totalSpinDuration;
             float currentInterval = Mathf.Lerp(minInterval, maxInterval, t);
@@ -57,6 +60,6 @@ public class CardRoulette : MonoBehaviour
         }
 
         selectedCard = targetCard;
-        displayRenderer.sprite = selectedCard;
+        targetImage.sprite = selectedCard;
     }
 }
