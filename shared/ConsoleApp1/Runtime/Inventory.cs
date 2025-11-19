@@ -22,6 +22,7 @@ public class Inventory
         cards.Add(new lowBurn());
         cards.Add(new shieldCard());
         cards.Add(new lowDraw());
+      //  cards.Add(new maxHPRaiser());
         SetAllCardsInInventory(cards);
         SetAllUnlockedCardsInInventory(cards);
     }

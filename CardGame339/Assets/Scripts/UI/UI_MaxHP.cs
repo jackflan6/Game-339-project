@@ -1,3 +1,4 @@
+using System;
 using ConsoleApp1;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +13,14 @@ public class UI_MaxHP: MonoBehaviour
 
     public void UpdateValue(int val)
     {
-        GetComponent<Text>().text = "HP: " + val.ToString();
+        if(gameObject!=null)
+        {
+            GetComponent<Text>().text = "Max HP: " + val.ToString();
+        }
     }
 
+    public void OnDestroy()
+    {
+        ManagerManager.Resolve<CurrencyManager>().maxPlayerHP.ValueChanged -= UpdateValue;
+    }
 }

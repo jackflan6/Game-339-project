@@ -10,6 +10,7 @@ public class GachaManager : IManager
         new ultraDefense(), //earth
         new BurningSlash(), //fire
         new completeRefresh(), //wind
+        new maxHPRaiser(), //omni (appears in all packs)
         new healCard(), //omni (appears in all packs)
         new mediumHeal(), //omni (appears in all packs)
         new highHeal(), //omni (appears in all packs)

@@ -153,6 +153,7 @@ MonoBehaviour:
   unityRandom: {fileID: 1539529289}
   sceneChanger: {fileID: 1259959860}
   locationManager: {fileID: 811540392}
+  hasShownShopDialogue: 0
 --- !u!4 &101803978
 Transform:
   m_ObjectHideFlags: 0
@@ -2030,6 +2031,7 @@ MonoBehaviour:
   - {fileID: 3555370440800643982, guid: 95d504cdd9793d44faaf839ad032ef37, type: 3}
   - {fileID: 3555370440800643982, guid: a1fe1a72d4cd56943bb3ef66a565f460, type: 3}
   - {fileID: 3555370440800643982, guid: 6e07b6369fca1024f8d19f69a016b50f, type: 3}
+  - {fileID: 3555370440800643982, guid: a9d817372ee1ce047ae849c071d47c55, type: 3}
   inventorybutton: {fileID: 570190985648385327, guid: 5d86f4e76b90b274880a01ee9536f8b3, type: 3}
   buttons: []
 --- !u!4 &438851524
