@@ -29,13 +29,15 @@ public class UI_HP : MonoBehaviour
         //GetComponent<Text>().text = "HP: " + val.ToString();
         health = val;
         float ratio = Mathf.Min((float)val / (float)maxHealth,1);
-        //Debug.Log(ratio + " " + val + " " + maxHealth);
         currentHealthBar.rectTransform.localPosition = new Vector3(currentHealthBar.rectTransform.rect.width * ratio - currentHealthBar.rectTransform.rect.width, 0, 0);
         healthText.text = health.ToString("0") + "/" + maxHealth.ToString("0");
     }
     public void UpdatedMaxHealth(int val)
     {
-
+        maxHealth = val;
+        float ratio = Mathf.Min((float)health / (float)maxHealth, 1);
+        currentHealthBar.rectTransform.localPosition = new Vector3(currentHealthBar.rectTransform.rect.width * ratio - currentHealthBar.rectTransform.rect.width, 0, 0);
+        healthText.text = health.ToString("0") + "/" + maxHealth.ToString("0");
     }
 
 }

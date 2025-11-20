@@ -33,7 +33,7 @@ public class UnityGachaManager : MonoBehaviour
             Card selectedCard = _gachaManager.Pull(_gachaManager.gachaItems);
             selectedCardName = selectedCard.Name;
             ManagerManager.Resolve<IGameLogger>().print("List Count:" + CardRoulette.cardSprites.Count);
-            CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[0], CardRoulette.Panels[0]);
+            CardRoulette.Spin(selectedCard, CardRoulette.SlotImages[0], CardRoulette.Panels[0]);
             ManagerManager.Resolve<IGameLogger>().print("Received card: " + selectedCard);
             ManagerManager.Resolve<Inventory>().unlockCard(selectedCard);
         }
@@ -44,7 +44,7 @@ public class UnityGachaManager : MonoBehaviour
             Card selectedCard = _gachaManager.Pull(_gachaManager.gachaItems);
             selectedCardName = selectedCard.Name;
             ManagerManager.Resolve<IGameLogger>().print("List Count:" + CardRoulette.cardSprites.Count);
-            CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[0], CardRoulette.Panels[0]);
+            CardRoulette.Spin(selectedCard, CardRoulette.SlotImages[0], CardRoulette.Panels[0]);
             ManagerManager.Resolve<IGameLogger>().print("Received card: " + selectedCard);
             ManagerManager.Resolve<Inventory>().unlockCard(selectedCard);
         }
@@ -104,7 +104,7 @@ public class UnityGachaManager : MonoBehaviour
             {
                 ManagerManager.Resolve<IGameLogger>().print("Received card: " + card);
                 selectedCardName = card.Name;
-                CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[2]);
+                CardRoulette.Spin(card, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[2]);
                 ManagerManager.Resolve<IGameLogger>().print("spun");
                 ManagerManager.Resolve<Inventory>().unlockCard(card);
                 yield return new WaitForSeconds(Delay);
@@ -120,7 +120,7 @@ public class UnityGachaManager : MonoBehaviour
             {
                 ManagerManager.Resolve<IGameLogger>().print("Received card: " + card);
                 selectedCardName = card.Name;
-                CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[2]);
+                CardRoulette.Spin(card, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[2]);
                 ManagerManager.Resolve<IGameLogger>().print("spun");
                 ManagerManager.Resolve<Inventory>().unlockCard(card);
                 yield return new WaitForSeconds(Delay);
@@ -140,7 +140,7 @@ public class UnityGachaManager : MonoBehaviour
             {
                 ManagerManager.Resolve<IGameLogger>().print("Received card: " + card);
                 selectedCardName = card.Name;
-                CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[1]);
+                CardRoulette.Spin(card, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[1]);
                 ManagerManager.Resolve<Inventory>().unlockCard(card);
                 yield return new WaitForSeconds(Delay);
                 slotImageNumber ++;
@@ -156,7 +156,7 @@ public class UnityGachaManager : MonoBehaviour
             {
                 ManagerManager.Resolve<IGameLogger>().print("Received card: " + card);
                 selectedCardName = card.Name;
-                CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[1]);
+                CardRoulette.Spin(card, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[1]);
                 ManagerManager.Resolve<Inventory>().unlockCard(card);
                 yield return new WaitForSeconds(Delay);
                 slotImageNumber ++;
@@ -175,7 +175,7 @@ public class UnityGachaManager : MonoBehaviour
             {
                 ManagerManager.Resolve<IGameLogger>().print("Received card: " + card);
                 selectedCardName = card.Name;
-                CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[6]);
+                CardRoulette.Spin(card, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[6]);
                 ManagerManager.Resolve<Inventory>().unlockCard(card);
                 yield return new WaitForSeconds(Delay);
                 slotImageNumber ++;
@@ -191,7 +191,7 @@ public class UnityGachaManager : MonoBehaviour
             {
                 ManagerManager.Resolve<IGameLogger>().print("Received card: " + card);
                 selectedCardName = card.Name;
-                CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[6]);
+                CardRoulette.Spin(card, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[6]);
                 ManagerManager.Resolve<Inventory>().unlockCard(card);
                 yield return new WaitForSeconds(Delay);
                 slotImageNumber ++;
@@ -210,7 +210,7 @@ public class UnityGachaManager : MonoBehaviour
             {
                 ManagerManager.Resolve<IGameLogger>().print("Received card: " + card);
                 selectedCardName = card.Name;
-                CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[5]);
+                CardRoulette.Spin(card, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[5]);
                 ManagerManager.Resolve<Inventory>().unlockCard(card);
                 yield return new WaitForSeconds(Delay);
                 slotImageNumber ++;
@@ -226,7 +226,7 @@ public class UnityGachaManager : MonoBehaviour
             {
                 ManagerManager.Resolve<IGameLogger>().print("Received card: " + card);
                 selectedCardName = card.Name;
-                CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[5]);
+                CardRoulette.Spin(card, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[5]);
                 ManagerManager.Resolve<Inventory>().unlockCard(card);
                 yield return new WaitForSeconds(Delay);
                 slotImageNumber ++;
@@ -245,7 +245,7 @@ public class UnityGachaManager : MonoBehaviour
             {
                 ManagerManager.Resolve<IGameLogger>().print("Received card: " + card);
                 selectedCardName = card.Name;
-                CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[3]);
+                CardRoulette.Spin(card, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[3]);
                 ManagerManager.Resolve<Inventory>().unlockCard(card);
                 yield return new WaitForSeconds(Delay);
                 slotImageNumber ++;
@@ -261,7 +261,7 @@ public class UnityGachaManager : MonoBehaviour
             {
                 ManagerManager.Resolve<IGameLogger>().print("Received card: " + card);
                 selectedCardName = card.Name;
-                CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[3]);
+                CardRoulette.Spin(card, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[3]);
                 ManagerManager.Resolve<Inventory>().unlockCard(card);
                 yield return new WaitForSeconds(Delay);
                 slotImageNumber ++;
@@ -280,7 +280,7 @@ public class UnityGachaManager : MonoBehaviour
             {
                 ManagerManager.Resolve<IGameLogger>().print("Received card: " + card);
                 selectedCardName = card.Name;
-                CardRoulette.Spin(selectedCardName, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[4]);
+                CardRoulette.Spin(card, CardRoulette.SlotImages[slotImageNumber], CardRoulette.Panels[4]);
                 ManagerManager.Resolve<Inventory>().unlockCard(card);
                 yield return new WaitForSeconds(Delay);
                 slotImageNumber ++;

@@ -11,29 +11,30 @@ public class CardRoulette : MonoBehaviour
 
     private Sprite selectedCard;
 
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
+    //void Awake()
+    //{
+    //    if (Instance == null)
+    //    {
+    //        Instance = this;
 
-            cardSprites = new List<Sprite>(Resources.LoadAll<Sprite>("New Cards"));
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-    }
+    //        cardSprites = new List<Sprite>(Resources.LoadAll<Sprite>("New Cards"));
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject);
+    //        return;
+    //    }
+    //}
     
-    public void Spin(string cardName, UnityEngine.UI.Image targetImage, RectTransform targetPanel)
+    public void Spin(Card card, UnityEngine.UI.Image targetImage, RectTransform targetPanel)
     {
         targetImage.transform.SetParent(targetPanel, false);
-        Sprite targetCard = cardSprites.Find(sprite => sprite.name == cardName);
+        Sprite targetCard = GameObject.FindGameObjectWithTag("inventory").GetComponent<UnityInventory>().
+            CardToPrefab.Value[card.GetType()].GetComponent<SpriteRenderer>().sprite;
 
         if (targetCard == null)
         {
-            Debug.LogError($"No sprite found that matches the name: {cardName}");
+            Debug.LogError($"No sprite found that matches the name: {card.Name}");
             return;
         }
         StartCoroutine(SpinRoutine(targetCard, targetImage));
