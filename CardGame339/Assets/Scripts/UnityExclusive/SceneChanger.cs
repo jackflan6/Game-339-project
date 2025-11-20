@@ -1,3 +1,4 @@
+using ConsoleApp1;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -31,6 +32,18 @@ public class SceneChanger : MonoBehaviour
         LocationManager.Instance?.ResetLocation();
         
         ChangeSceneToSpecificScene("Map");
+    }
+    
+    public void TryAgainAfterVictory()
+    {
+        MapPlayer.Instance?.ResetPlayer();
+        LocationManager.Instance?.ResetLocation();
+        ManagerManager.Resolve<CurrencyManager>().maxPlayerHP = 20;
+        ManagerManager.Resolve<CurrencyManager>().currencyAmount = 0;
+        ManagerManager.Resolve<Inventory>().RemoveAllCardsInInventory();
+        ManagerManager.Resolve<Inventory>().createInitialCards();
+        
+        ChangeSceneToSpecificScene("TitleScreen");
     }
     
     public void QuitGameButton()

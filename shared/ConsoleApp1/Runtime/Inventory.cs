@@ -14,7 +14,7 @@ public class Inventory
         createInitialCards();
     }
 
-    private void createInitialCards()
+    public void createInitialCards()
     {
         List<Card> cards = new List<Card>();
         cards.Add(new healCard());
@@ -41,6 +41,11 @@ public class Inventory
     public void RemoveCardsInInventory(Card c)
     {
         cards.Remove(c);
+    }
+
+    public void RemoveAllCardsInInventory()
+    {
+        cards.Clear();
     }
     public void SetAllCardsInInventory(List<Card> c)
     {
