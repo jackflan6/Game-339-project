@@ -5,8 +5,8 @@ public class finalBoss : Enemy
     readonly IDialog dialogSys;
     readonly EnemyManager enemyManager;
     readonly IRandom random;
-    public override ValueHolder<int> dropCurrency { get; } = 0;
-    public override ValueHolder<int> dropBossCurrency { get; } = 20;
+    public override ValueHolder<int> dropCurrency { get; } = 100;
+    public override ValueHolder<int> dropBossCurrency { get; } = 0;
 
     private int processionOfActions;
     //::::Important::::
