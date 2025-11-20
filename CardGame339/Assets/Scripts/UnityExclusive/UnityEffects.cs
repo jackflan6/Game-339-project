@@ -56,7 +56,10 @@ public class UnityEffects : MonoBehaviour, IEffects
             Color defaultColor = GameObjectManager.allCreatedEnemys[enemy].GetComponent<SpriteRenderer>().color;
             GameObjectManager.allCreatedEnemys[enemy].GetComponent<SpriteRenderer>().color = Color.red;
             yield return new WaitForSeconds(0.5f);
-            GameObjectManager.allCreatedEnemys[enemy].GetComponent<SpriteRenderer>().color = defaultColor;
+            if (GameObjectManager.allCreatedEnemys.ContainsKey(enemy))
+            {
+                GameObjectManager.allCreatedEnemys[enemy].GetComponent<SpriteRenderer>().color = defaultColor;
+            }
         }
         
     }

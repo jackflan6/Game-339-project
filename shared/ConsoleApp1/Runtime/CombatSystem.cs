@@ -103,12 +103,6 @@ public class CombatSystem : IManager
             enemy.isBurning = false;
         }
         Effects.ShowBurn(enemy);
-        if (enemy.HP.Value <= 0)
-        {
-            currencyManager.currencyAmount.Value += enemy.dropCurrency.Value;
-            currencyManager.bossCurrencyAmount.Value += enemy.dropBossCurrency.Value;
-            enemyManager.DestroyEnemy(enemy);
-        }
         Effects.DisplayBurnIcon(enemy);
         return enemy.HP.Value;
     }
