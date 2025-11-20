@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class UnityDialogSys : MonoBehaviour, IDialog
 {
@@ -125,7 +126,15 @@ public class UnityDialogSys : MonoBehaviour, IDialog
             locationManager.SetupMapScene();
         }
 
-        sceneChanger.ChangeSceneToSpecificScene("Map");
+        if (SceneManager.GetActiveScene().name.Equals("FinalBoss"))
+        {
+            SceneManager.LoadScene(14);
+        }
+
+        else
+        {
+            sceneChanger.ChangeSceneToSpecificScene("Map");
+        }
     }
 
     public bool IsDialoguePlaying()
