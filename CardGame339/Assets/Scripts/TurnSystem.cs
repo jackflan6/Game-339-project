@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ConsoleApp1;
 using TMPro;
 
 public class TurnSystem : IManager
@@ -86,11 +87,21 @@ public class TurnSystem : IManager
 
     public void BurnDamageToAllEnemies()
     {
-        for (int a=0;a<enemyManager.enemies.Count;a++)
+        foreach (Enemy enemy in enemyManager.enemies)
         {
-            if (enemyManager.enemies[a].currentBurnDamage>0)
+            if(enemy.currentBurnDamage>0)
             {
-                combatSystem.BurnDamageToEnemy(enemyManager.enemies[a]);
+                combatSystem.BurnDamageToEnemy(enemy);
+            }
+        }
+
+        for(int a=0;a<enemyManager.enemies.Count;a++)
+        {
+            if (enemyManager.enemies[a].HP.Value <= 0)
+            {
+                ManagerManager.Resolve<CurrencyManager>().currencyAmount.Value += enemyManager.enemies[a].dropCurrency.Value;
+                enemyManager.DestroyEnemy(enemyManager.enemies[a]);
+                a--;
             }
         }
     }
