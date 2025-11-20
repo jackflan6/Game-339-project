@@ -63,6 +63,7 @@ public class UnityDialogSys : MonoBehaviour, IDialog
             if (dialogueCount == postBattleDefeatDialogue.Count)
             {
                 battleDialogue.transform.parent.gameObject.SetActive(false);
+                ManagerManager.Resolve<SceneChanger>().ChangeSceneToSpecificScene("DeathScreen");
                 return;
             }
             ManagerManager.Resolve<IGameLogger>().print(postBattleDefeatDialogue[dialogueCount]);

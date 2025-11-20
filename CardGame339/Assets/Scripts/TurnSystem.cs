@@ -63,7 +63,6 @@ public class TurnSystem : IManager
         {
             logger.print("player lost!");
             UnityDialogSys.PrepareBattleEndDialogue(2);
-            SceneChanger.ChangeSceneToSpecificScene("DeathScreen");
         }
 
         PlayerTurn();
@@ -72,6 +71,11 @@ public class TurnSystem : IManager
     public void PlayerTurn()
     { 
         combatSystem.BurnDamageToPlayer(player);
+        if (player.HP.Value <= 0)
+        {
+            logger.print("player lost!");
+            UnityDialogSys.PrepareBattleEndDialogue(2);
+        }
        logger.print("player turn!");
        isPlayerTurn = true;
        cardManager.DrawCard();
