@@ -11,8 +11,8 @@ public class ultraDefense : Card
     public override string Element { get; set; }= "Earth";
     public override int rarity { get; } = 4;
 
-    public override int ShieldValue { get; set; } = 10;
-    public override int Heal { get; set; } = 10;
+    public override int ShieldValue { get; set; } = 5;
+    public override int Heal { get; set; } = 5;
     public override int ManaCost { get; set; } = 3;
     public override int Damage { get; set; } = 0;
 

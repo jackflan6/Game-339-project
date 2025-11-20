@@ -34,7 +34,7 @@ public class CardRoulette : MonoBehaviour
 
         if (targetCard == null)
         {
-            Debug.LogError($"No sprite found that matches the name: {card.Name}");
+            ManagerManager.Resolve<IGameLogger>().Error($"No sprite found that matches the name: {card.Name}");
             return;
         }
         StartCoroutine(SpinRoutine(targetCard, targetImage));

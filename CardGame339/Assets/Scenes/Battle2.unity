@@ -947,17 +947,6 @@ RectTransform:
   m_AnchoredPosition: {x: -6, y: 20}
   m_SizeDelta: {x: 12, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1131541030 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9212629200461185179, guid: 091bee24aac4f3c46bc12d1e6da1dd0e, type: 3}
-  m_PrefabInstance: {fileID: 7657515359659942165}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
 --- !u!1 &1220924696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1562,7 +1551,6 @@ MonoBehaviour:
   handSize: 2
   maxHandSize: 5
   maxMana: 10
-  playerHP: 20
   playerName: player1
   allCardsPrefabs:
   - {fileID: 3555370440800643982, guid: 9844901619b60724ab8fd2c9e0b81ba1, type: 3}
@@ -1602,17 +1590,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1761154213 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4102800240316538154, guid: 091bee24aac4f3c46bc12d1e6da1dd0e, type: 3}
-  m_PrefabInstance: {fileID: 7657515359659942165}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
 --- !u!1 &1868977202
 GameObject:
   m_ObjectHideFlags: 0
@@ -1644,8 +1621,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   mousepos: {x: 0, y: 0}
   shieldText: {fileID: 866089364}
-  playerHP: {fileID: 1131541030}
-  manaText: {fileID: 1761154213}
+  playerHP: {fileID: 0}
+  manaText: {fileID: 0}
 --- !u!4 &1868977204
 Transform:
   m_ObjectHideFlags: 0
@@ -1801,6 +1778,14 @@ PrefabInstance:
     - target: {fileID: 3838751651254552797, guid: 091bee24aac4f3c46bc12d1e6da1dd0e, type: 3}
       propertyPath: m_Name
       value: Panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7417369281928644800, guid: 091bee24aac4f3c46bc12d1e6da1dd0e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -215.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7417369281928644800, guid: 091bee24aac4f3c46bc12d1e6da1dd0e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -52.549
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
