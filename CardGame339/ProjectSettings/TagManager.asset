@@ -13,6 +13,9 @@ TagManager:
   - inventory
   - GlobalResolver
   - UIBossCurrency
+  - HealthSprite
+  - ManaSprite
+  - UIMaxHP
   layers:
   - Default
   - TransparentFX

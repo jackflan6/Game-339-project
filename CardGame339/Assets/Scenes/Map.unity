@@ -1985,6 +1985,7 @@ MonoBehaviour:
   - {fileID: 3555370440800643982, guid: 95d504cdd9793d44faaf839ad032ef37, type: 3}
   - {fileID: 3555370440800643982, guid: a1fe1a72d4cd56943bb3ef66a565f460, type: 3}
   - {fileID: 3555370440800643982, guid: 6e07b6369fca1024f8d19f69a016b50f, type: 3}
+  - {fileID: 3555370440800643982, guid: 34f76d7b946f95e498d983212c379b3c, type: 3}
   inventorybutton: {fileID: 570190985648385327, guid: 5d86f4e76b90b274880a01ee9536f8b3, type: 3}
   buttons: []
 --- !u!4 &438851524
