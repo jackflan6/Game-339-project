@@ -121,12 +121,6 @@ public class CombatSystem : IManager
         {
             player.isBurning = false;
         }
-
-        if (player.HP.Value <= 0)
-        {
-            logger.print("player lost!");
-        }
-
         return player.HP.Value;
     }
 
