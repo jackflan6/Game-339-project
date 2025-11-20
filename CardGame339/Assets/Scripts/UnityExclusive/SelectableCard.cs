@@ -74,6 +74,8 @@ public class SelectableCard : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().alpha=1;
         GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().text =
             origionalCard.Description;
+        AudioPlayer ap = GameObject.FindGameObjectWithTag("AudioPlayer").GetComponent<AudioPlayer>();
+        ap.playSoundEffect(ap.cardSoundEffect);
     }
 
     public void OnPointerExit(PointerEventData eventData)

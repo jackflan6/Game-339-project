@@ -41,6 +41,7 @@ public class UnityInventory : MonoBehaviour
     public List<GameObject> buttons;
     public void reloadOptions()//this will change when implemented with gatcha system
     {
+        UnloadButtons();
         GameObject viewport = GameObject.FindGameObjectWithTag("inventory viewport");
         foreach (Card card in inventory.GetAllCardsUnlocked())
         {

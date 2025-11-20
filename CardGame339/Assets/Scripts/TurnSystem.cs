@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using ConsoleApp1;
 using TMPro;
@@ -50,14 +51,15 @@ public class TurnSystem : IManager
         
     }
 
+
     public void EnemiesTurn()
     {
         logger.print("enemies Turn");
         BurnDamageToAllEnemies();
         foreach (Enemy enemy in enemyManager.enemies)
         {
-            enemy.DoAction(player,enemy);
-            
+            enemy.DoAction(player, enemy);
+
         }
 
         if (player.HP.Value <= 0)
@@ -67,6 +69,7 @@ public class TurnSystem : IManager
         }
 
         PlayerTurn();
+        
     }
 
     public void PlayerTurn()

@@ -57,6 +57,7 @@ public class SelectableEnemy : MonoBehaviour
     {
         if (hover)
         {
+            GameObject.FindGameObjectWithTag("AudioPlayer").GetComponent<AudioPlayer>().playSoundEffect();
            ManagerManager.Resolve<TurnSystem>().SelectEnemyToAttack(origionalEnemy);
         }
     }
