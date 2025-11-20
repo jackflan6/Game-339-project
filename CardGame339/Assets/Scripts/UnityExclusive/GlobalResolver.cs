@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 public class GlobalResolver : MonoBehaviour
 {
     public bool loaded;
-    public UnityGameLogger unityLogger;
-    public UnityRandom unityRandom;
     public SceneChanger sceneChanger;
     public LocationManager locationManager;
 
@@ -22,8 +20,8 @@ public class GlobalResolver : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         ManagerManager.registerPersistent(sceneChanger);
         ManagerManager.registerPersistent(locationManager);
-        ManagerManager.registerPersistent((IGameLogger)unityLogger);
-        ManagerManager.registerPersistent((IRandom)unityRandom);
+        ManagerManager.registerPersistent((IRandom)new UnityRandom());
+        ManagerManager.registerPersistent((IGameLogger)(new UnityGameLogger()));
         ManagerManager.registerPersistentDependency(() => new Inventory());
         ManagerManager.registerPersistentDependency(()=> new CurrencyManager());
         ManagerManager.registerPersistentDependency(() => new GachaManager());

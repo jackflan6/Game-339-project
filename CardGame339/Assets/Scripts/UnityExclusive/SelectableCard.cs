@@ -26,14 +26,13 @@ public class SelectableCard : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     void Start()
     {
         normscale = transform.localScale.x;
-        GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().onMouseMove += OnMouseMove;
         GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().onMousePress += OnMouseClick;
     }
     private void OnDestroy()
     {
-        GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().onMouseMove -= OnMouseMove;
+        if (GameObject.FindGameObjectWithTag("UIManager") != null) { 
         GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().onMousePress -= OnMouseClick;
-
+        }
     }
     private float speed;
     private void Update()
@@ -51,37 +50,26 @@ public class SelectableCard : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
         //transform.position = cardPosition;
     }
-    public void OnMouseMove(Vector2 pos)
-    {
-        Vector3 worldPos = new Vector3(0, 0, transform.position.z) + (Vector3)((Vector2)Camera.main.ScreenToWorldPoint(pos));
-        if (GetComponent<Collider2D>().bounds.Contains((Vector2)Camera.main.ScreenToWorldPoint(pos)))
-        {
-            
-        } else
-        {
-            
-        }
-    }
     public void OnMouseClick(Vector2 pos)
     {
         if (hover)
         {
            ManagerManager.Resolve<TurnSystem>().SelectCardToPlay(origionalCard);
-        }
-        if (ManagerManager.Resolve<TurnSystem>().cardToPlay == origionalCard)
-        {
             normCol = Color.orange;
-        } else
+        }else
         {
             normCol = originalCol;
 
         }
+        GetComponent<SpriteRenderer>().color = normCol;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         hover = true;
+        if (normCol != Color.orange) { 
         GetComponent<SpriteRenderer>().color = Color.yellow;
+        }
         transform.localScale = new Vector3(normscale*1.5f, normscale*1.5f, 1);
         GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().alpha=1;
         GameObject.FindGameObjectWithTag("CardInfoPanel").GetComponent<TextMeshPro>().text =
