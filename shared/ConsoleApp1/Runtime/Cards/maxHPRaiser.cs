@@ -15,7 +15,7 @@ public class maxHPRaiser : Card
     public override int Heal { get; set; } = 3;
     public override int ManaCost { get; set; } = 5;
     public override int Damage { get; set; } = 0;
-    public override string Name { get; set; } = "Complete Refresh_1";
+    public override string Name { get; set; } = "True Recovery_0";
 
     public override int BurnDamage { get; set; } = 0;
 
