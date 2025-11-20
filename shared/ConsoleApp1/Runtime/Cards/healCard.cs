@@ -11,7 +11,7 @@ public class healCard : Card
     public override int Heal { get; set; } = 3;
     public override int ManaCost { get; set; } = 1;
     public override int Damage { get; set; } = 0;
-    public override string Name { get; set; } = "Minor Health Potion (1)_0";
+    public override string Name { get; set; } = "Minor Health Potion_0";
 
     public override string Description { get; } = "Mana Cost: 1\nThis card heals 3 HP";
 
