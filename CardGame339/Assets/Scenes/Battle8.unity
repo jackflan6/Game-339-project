@@ -1160,7 +1160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.45882353, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1866,7 +1866,6 @@ MonoBehaviour:
   handSize: 2
   maxHandSize: 5
   maxMana: 10
-  playerHP: 20
   playerName: player1
   allCardsPrefabs:
   - {fileID: 3555370440800643982, guid: 9844901619b60724ab8fd2c9e0b81ba1, type: 3}

@@ -5674,11 +5674,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopDialogueSys
   shopEnterDialogue:
-  - We have shop dialogue now!
-  - Wow! So cool!
+  - Well, well, well. You found your way to my card shop!
+  - It wasn't that hard. It's like...always available.
+  - Silence! I like your bravery. I'd be willing to sell you new cards...
+  - But I'm going to get something out of it too!
+  - In exchange for gold dropped from my minions, I'll let you unlock new and more
+    powerful cards.
+  - It'll be random! You never know what you're gonna get!
+  - And if you're really bold, I'll even let you fork over your own maximum health
+    when you're all out of gold.
+  - How does that sound?
+  - You've got yourself a deal, devil.
   shopEnterDialogueCharacterNames:
-  - A
-  - B
+  - Demon King
+  - Foolish Human
+  - Demon King
+  - Demon King
+  - Demon King
+  - Demon King
+  - Demon King
+  - Demon King
+  - Foolish Human
   shopDialogue: {fileID: 1442062550}
   shopDialogueCharacterNames: {fileID: 1870419709}
 --- !u!1 &1442062548
@@ -5989,7 +6005,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1488088864
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6025,7 +6041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.4566037, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
