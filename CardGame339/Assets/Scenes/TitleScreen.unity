@@ -241,12 +241,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336367476}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1903143484}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &357743431
 GameObject:
@@ -549,30 +549,6 @@ MonoBehaviour:
       - m_Target: {fileID: 963511358}
         m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
         m_MethodName: ChangeScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1903143485}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 336367477}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1367,7 +1343,7 @@ GameObject:
   - component: {fileID: 1903143485}
   m_Layer: 0
   m_Name: AudioPlayer1
-  m_TagString: Untagged
+  m_TagString: AudioPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1384,6 +1360,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ed1c47102be4342a6137cba8730b95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioPlayer
+  cardSoundEffect: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
+  playcardSoundEffect: {fileID: 8300000, guid: 81652031b64c342cc8dbc59c138d77c5, type: 3}
+  defaltMusic: {fileID: 8300000, guid: ef6e76d14e68945e08b6e99b51ee557a, type: 3}
+  fightMusic: {fileID: 8300000, guid: 91cde71c5050d4fa3bb5eb832a806e64, type: 3}
+  bossMusic: {fileID: 8300000, guid: 97ca45ebd327c3b438d1ff469d6e9ba7, type: 3}
   audioClips: []
 --- !u!4 &1903143484
 Transform:
@@ -1397,7 +1378,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 336367478}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1903143485
@@ -1409,10 +1391,10 @@ AudioSource:
   m_GameObject: {fileID: 1903143481}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: ed00feaed43be0641958cf92b4dd1b19, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 97ca45ebd327c3b438d1ff469d6e9ba7, type: 3}
-  m_PlayOnAwake: 0
+  m_Resource: {fileID: 8300000, guid: ef6e76d14e68945e08b6e99b51ee557a, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -1506,4 +1488,3 @@ SceneRoots:
   - {fileID: 357743434}
   - {fileID: 963511359}
   - {fileID: 1903143484}
-  - {fileID: 336367478}
