@@ -130,7 +130,12 @@ public class CombatSystem : IManager
 
     public void HealPlayer(Player player, Card card)
     {
-        player.HP.Value += card.Heal;
+        if (player.HP.Value + card.Heal <= currencyManager.maxPlayerHP.Value) {
+            player.HP.Value += card.Heal;
+        } else
+        {
+            player.HP.Value = currencyManager.maxPlayerHP.Value;
+        }
     }
     
     public void Start()
